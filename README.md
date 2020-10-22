@@ -7,7 +7,11 @@ http://zetcode.com/javagames/
                   
 https://phocode.com/java/java-2d-lap-trinh-do-hoa-2d-voi-java/
 
-Repo có sẵn: https://github.com/search?l=Java&q=bomberman&type=Repositories
+Repo có sẵn: 
+
+https://github.com/carlosflorencio/bomberman
+
+https://github.com/search?l=Java&q=bomberman&type=Repositories
 
 https://github.com/INT2204-5-N2/
 
