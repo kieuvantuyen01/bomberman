@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 
 /**
- * T?t c? sprite (h�nh ?nh game) ???c l?u tr? v�o m?t ?nh duy nh?t
- * Class n�y gi�p l?y ra c�c sprite ri�ng t? 1 ?nh chung duy nh?t ?�
+ * Tất cả sprite (hình ảnh game) được lưu trữ vào một ảnh duy nhật
+ * Class này giúp lấy ra các sprite riêng từ 1 ảnh chung duy nhất đó
  */
 public class SpriteSheet {
 
