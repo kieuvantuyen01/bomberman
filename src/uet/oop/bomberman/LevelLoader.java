@@ -34,8 +34,12 @@ public class LevelLoader {
                     String.format(LEVEL_TEMPLATE, level));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String[] line = br.readLine().split("\\s+");
-            if (line.length!=3) {
+            if (line.length != 3) {
                 throw new LevelLoaderException("Lỗi đọc file: Số hàng, cột");
+            }
+            int lv = Integer.parseInt(line[0]);
+            if (lv!=level){
+                throw new LevelLoaderException("Lỗi đọc file: Sai thông số màn chơi");
             }
             int rows = Integer.parseInt(line[1]);
             int cols = Integer.parseInt(line[2]);
@@ -75,9 +79,9 @@ public class LevelLoader {
             return matrix;
 
 
-        } catch (LevelLoaderException e){
+        } catch (LevelLoaderException e) {
             System.err.println(e.getMessage());
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
