@@ -11,7 +11,7 @@ public abstract class Entity {
     //Toạ độ tính từ góc trái trên trong Canvas
     protected int y;
 
-    public Image img;
+    protected Image img;
 
     //Khởi tạo đối tượng, chuy?n t? t?a ?? ??n v? sang t?a ?? trong canvas
     public Entity(int xUnit, int yUnit) {

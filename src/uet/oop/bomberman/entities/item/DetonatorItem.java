@@ -1,12 +1,16 @@
 package uet.oop.bomberman.entities.item;
 
-import uet.oop.bomberman.entities.Entity;
+import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Detonator extends Entity {
-    public Detonator(int x, int y) {
+public class DetonatorItem extends Item {
+    public DetonatorItem(int x, int y) {
         super(x, y);
         this.img = Sprite.powerup_detonator.getFxImage();
+    }
+
+    public DetonatorItem(int xUnit, int yUnit, Image img) {
+        super(xUnit, yUnit, img);
     }
 
     @Override

@@ -1,13 +1,17 @@
 package uet.oop.bomberman.entities.item;
 
-import uet.oop.bomberman.entities.Entity;
+import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Wallpass extends Entity {
+public class WallpassItem extends Item {
 
-    public Wallpass(int x, int y) {
+    public WallpassItem(int x, int y) {
         super(x, y);
         this.img = Sprite.powerup_wallpass.getFxImage();
+    }
+
+    public WallpassItem(int xUnit, int yUnit, Image img) {
+        super(xUnit, yUnit, img);
     }
 
     @Override

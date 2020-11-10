@@ -1,13 +1,17 @@
 package uet.oop.bomberman.entities.item;
 
-import uet.oop.bomberman.entities.Entity;
+import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Speed extends Entity {
+public class SpeedItem extends Item {
 
-    public Speed(int x, int y) {
+    public SpeedItem(int x, int y) {
         super(x, y);
         this.img = Sprite.powerup_speed.getFxImage();
+    }
+
+    public SpeedItem(int xUnit, int yUnit, Image img) {
+        super(xUnit, yUnit, img);
     }
 
     @Override

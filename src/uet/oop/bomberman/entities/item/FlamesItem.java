@@ -1,13 +1,17 @@
 package uet.oop.bomberman.entities.item;
 
-import uet.oop.bomberman.entities.Entity;
+import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Flames extends Entity {
+public class FlamesItem extends Item {
 
-    public Flames(int x, int y) {
+    public FlamesItem(int x, int y) {
         super(x, y);
         this.img = Sprite.powerup_flames.getFxImage();
+    }
+
+    public FlamesItem(int xUnit, int yUnit, Image img) {
+        super(xUnit, yUnit, img);
     }
 
     @Override

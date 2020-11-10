@@ -1,13 +1,11 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.item.Flames;
-import uet.oop.bomberman.entities.item.Speed;
+import uet.oop.bomberman.entities.item.FlamesItem;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.exception.LevelLoaderException;
-import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -63,10 +61,10 @@ public class LevelLoader {
                             matrix[i][j] = new Bomber(j, i);
                             break;
                         case 'f':
-                            matrix[i][j] = new Flames(j, i);
+                            matrix[i][j] = new FlamesItem(j, i);
                             break;
                         case 's':
-                            matrix[i][j] = new Speed(j, i);
+                            matrix[i][j] = new SpeedItem(j, i);
                             break;
                         default:
                             matrix[i][j] = new Grass(j, i);
