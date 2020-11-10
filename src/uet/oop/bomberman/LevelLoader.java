@@ -1,8 +1,8 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.item.powerup.FlamePass;
-import uet.oop.bomberman.entities.item.powerup.Speed;
+import uet.oop.bomberman.entities.item.Flames;
+import uet.oop.bomberman.entities.item.Speed;
 import uet.oop.bomberman.exception.LevelLoaderException;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -63,7 +63,7 @@ public class LevelLoader {
                             matrix[i][j] = new Bomber(j, i);
                             break;
                         case 'f':
-                            matrix[i][j] = new FlamePass(j, i);
+                            matrix[i][j] = new Flames(j, i);
                             break;
                         case 's':
                             matrix[i][j] = new Speed(j, i);

@@ -1,4 +1,4 @@
-package uet.oop.bomberman.entities.item.powerup;
+package uet.oop.bomberman.entities.item;
 
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
