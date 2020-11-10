@@ -18,10 +18,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BombermanGame extends Application {
-    
-    public static final int WIDTH = 31;
+
+    public static final int WIDTH = (int) (31 / 2);
     public static final int HEIGHT = 13;
-    
+
     private GraphicsContext gc;
     private Canvas canvas;
     private List<Entity> entities = new ArrayList<>();
@@ -66,9 +66,12 @@ public class BombermanGame extends Application {
 
     public void createMap() {
         Entity[][] map = instance.loadMap(1);
-        for (Entity[] value : map) {
-            for (int j = 0; j < value.length; j++) {
-                stillObjects.add(value[j]);
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[0].length; j++) {
+                if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1) {
+                    map[i][j] = new Wall(j, i, Sprite.wall.getFxImage());
+                }
+                stillObjects.add(map[i][j]);
             }
         }
     }
