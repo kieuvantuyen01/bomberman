@@ -1,10 +1,11 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.item.powerup;
 
+import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Wall extends Entity {
+public class FlamePass extends Entity {
 
-    public Wall(int x, int y) {
+    public FlamePass(int x, int y) {
         super(x, y);
         this.img = Sprite.wall.getFxImage();
     }

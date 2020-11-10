@@ -1,8 +1,8 @@
 package uet.oop.bomberman;
 
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.item.powerup.FlamePass;
+import uet.oop.bomberman.entities.item.powerup.Speed;
 import uet.oop.bomberman.exception.LevelLoaderException;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -38,7 +38,7 @@ public class LevelLoader {
                 throw new LevelLoaderException("Lỗi đọc file: Số hàng, cột");
             }
             int lv = Integer.parseInt(line[0]);
-            if (lv!=level){
+            if (lv != level) {
                 throw new LevelLoaderException("Lỗi đọc file: Sai thông số màn chơi");
             }
             int rows = Integer.parseInt(line[1]);
@@ -51,25 +51,25 @@ public class LevelLoader {
                 for (int j = 0; j < cols; j++) {
                     switch (map.charAt(j)) {
                         case '#':
-                            matrix[i][j] = new Wall(j, i, Sprite.wall.getFxImage());
+                            matrix[i][j] = new Wall(j, i);
                             break;
                         case '*':
-                            matrix[i][j] = new Wall(j, i, Sprite.brick.getFxImage());
+                            matrix[i][j] = new Brick(j, i);
                             break;
                         case 'x':
-                            matrix[i][j] = new Wall(j, i, Sprite.portal.getFxImage());
+                            matrix[i][j] = new Portal(j, i);
                             break;
                         case 'p':
-                            matrix[i][j] = new Wall(j, i, Sprite.bomb.getFxImage());
+                            matrix[i][j] = new Bomber(j, i);
                             break;
                         case 'f':
-                            matrix[i][j] = new Wall(j, i, Sprite.powerup_flamepass.getFxImage());
+                            matrix[i][j] = new FlamePass(j, i);
                             break;
                         case 's':
-                            matrix[i][j] = new Wall(j, i, Sprite.powerup_speed.getFxImage());
+                            matrix[i][j] = new Speed(j, i);
                             break;
                         default:
-                            matrix[i][j] = new Grass(j, i, Sprite.grass.getFxImage());
+                            matrix[i][j] = new Grass(j, i);
                             break;
                     }
                 }

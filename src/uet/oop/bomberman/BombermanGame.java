@@ -60,7 +60,7 @@ public class BombermanGame extends Application {
 
         createMap();
 
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
+        Entity bomberman = new Bomber(1, 1);
         entities.add(bomberman);
     }
 
