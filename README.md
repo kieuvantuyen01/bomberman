@@ -1,3 +1,14 @@
+Target:
+
+Tuần 11: làm hoạt hình cho dynamic entity, tự động di chuyển
+
+Tuần 12: xử lí va chạm, bom nổ, xử lí level
+
+Tuần 13: xử lí thời gian, tốc độ, thông số game, hiệu ứng âm thanh
+
+Tuần 14: thuật toán tìm đường, AI, bổ sung các entity khác (2 cái) 
+
+
 Tài liệu tham khảo:
 Java 2D Graphics: https://docs.oracle.com/javase/tutorial/2d/index.html
 
@@ -8,6 +19,7 @@ http://zetcode.com/javagames/
 https://phocode.com/java/java-2d-lap-trinh-do-hoa-2d-voi-java/
 
 Repo có sẵn: 
+
 https://github.com/int2204-5-n1/asg1-mon-qua-c-a-chua/tree/master/bomberman-starter
 
 https://github.com/carlosflorencio/bomberman
