@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Grass extends Entity {
+public class Grass extends StaticEntity {
 
     public Grass(int x, int y) {
         super(x, y);

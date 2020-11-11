@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Bomber extends Entity {
+public class Bomber extends DynamicEntity {
 
     public Bomber(int x, int y) {
         super( x, y);

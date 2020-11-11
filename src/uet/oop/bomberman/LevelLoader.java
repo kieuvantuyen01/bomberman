@@ -14,6 +14,10 @@ public class LevelLoader {
     private Entity[][] matrix;
     public String LEVEL_TEMPLATE = "/levels/Level%d.txt";
 
+    private int level;
+    private int rows;
+    private int cols;
+
     private LevelLoader() {
 
     }
@@ -35,12 +39,12 @@ public class LevelLoader {
             if (line.length != 3) {
                 throw new LevelLoaderException("Lỗi đọc file: Số hàng, cột");
             }
-            int lv = Integer.parseInt(line[0]);
-            if (lv != level) {
+            this.level = Integer.parseInt(line[0]);
+            if (this.level != level) {
                 throw new LevelLoaderException("Lỗi đọc file: Sai thông số màn chơi");
             }
-            int rows = Integer.parseInt(line[1]);
-            int cols = Integer.parseInt(line[2]);
+            rows = Integer.parseInt(line[1]);
+            cols = Integer.parseInt(line[2]);
             System.out.println(rows + " " + cols);
             Entity[][] matrix = new Entity[rows][cols];
             for (int i = 0; i < rows; i++) {
@@ -84,5 +88,21 @@ public class LevelLoader {
         }
 
         return null;
+    }
+
+    public Entity[][] getMatrix() {
+        return matrix;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
     }
 }
