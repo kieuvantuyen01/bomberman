@@ -1,15 +1,19 @@
 package uet.oop.bomberman.entities.item;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.Entity;
 
 public abstract class Item extends Entity {
 
-    public Item(int xUnit, int yUnit) {
-        super(xUnit, yUnit);
+    public Item() {
     }
 
-    public Item(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
+    public Item(Coordinates tile) {
+        super(tile);
+    }
+
+    public Item(Coordinates tile, Image img) {
+        super(tile, img);
     }
 }

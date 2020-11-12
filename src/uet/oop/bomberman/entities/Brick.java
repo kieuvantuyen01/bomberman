@@ -1,17 +1,22 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Brick extends Entity {
 
-    public Brick(int x, int y) {
-        super(x, y);
-        this.img = Sprite.wall.getFxImage();
+    public Brick() {
+        this.img=Sprite.brick.getFxImage();
     }
 
-    public Brick(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
+    public Brick(Coordinates tile) {
+        super(tile);
+        this.img=Sprite.brick.getFxImage();
+    }
+
+    public Brick(Coordinates tile, Image img) {
+        super(tile, img);
     }
 
     @Override

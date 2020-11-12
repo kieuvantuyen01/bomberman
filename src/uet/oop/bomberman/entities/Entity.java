@@ -1,33 +1,58 @@
 package uet.oop.bomberman.entities;
 
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public abstract class Entity {
-    //Toạ độ tính từ góc trái trên trong Canvas
-    protected int x;
+import java.awt.*;
 
-    //Toạ độ tính từ góc trái trên trong Canvas
-    protected int y;
+public abstract class Entity {
+    //T?a ?? X t�nh t? g�c tr�i tr�n trong Canvas
+    protected Coordinates pixel;
+
+    protected Coordinates tile;
 
     protected Image img;
 
-    //Khởi tạo đối tượng, chuy?n t? t?a ?? ??n v? sang t?a ?? trong canvas
-    public Entity(int xUnit, int yUnit) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
+    protected Sprite _sprite;
+
+    protected Rectangle rectangle;
+
+    protected String name;
+
+    public Entity() {
+
+    }
+    //Kh?i t?o ??i t??ng, chuy?n t? t?a ?? ??n v? sang t?a ?? trong canvas
+
+
+    public Entity(Coordinates tile) {
+        this.tile = tile;
+        pixel=tile.convertTileToPixel();
     }
 
-    public Entity(int xUnit, int yUnit, Image img) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
+    public Entity(Coordinates tile, Image img) {
+        this.tile = tile;
+        pixel=tile.convertTileToPixel();
         this.img = img;
+        this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
+        gc.drawImage(img, pixel.getX(), pixel.getY());
+    }
+
+    public Rectangle getRectangle() {
+        return this.rectangle;
     }
 
     public abstract void update();
+
+    public boolean isCollision(Entity other) {
+        return true;
+    }
 }

@@ -53,25 +53,25 @@ public class LevelLoader {
                 for (int j = 0; j < cols; j++) {
                     switch (map.charAt(j)) {
                         case '#':
-                            matrix[i][j] = new Wall(j, i);
+                            matrix[i][j] = new Wall(new Coordinates(j,i));
                             break;
                         case '*':
-                            matrix[i][j] = new Brick(j, i);
+                            matrix[i][j] = new Brick(new Coordinates(j,i));
                             break;
                         case 'x':
-                            matrix[i][j] = new Portal(j, i);
+                            matrix[i][j] = new Portal(new Coordinates(j,i));
                             break;
                         case 'p':
-                            matrix[i][j] = new Bomber(j, i);
+                            matrix[i][j] = new Bomber(new Coordinates(j,i));
                             break;
                         case 'f':
-                            matrix[i][j] = new FlamesItem(j, i);
+                            matrix[i][j] = new FlamesItem(new Coordinates(j,i));
                             break;
                         case 's':
-                            matrix[i][j] = new SpeedItem(j, i);
+                            matrix[i][j] = new SpeedItem(new Coordinates(j,i));
                             break;
                         default:
-                            matrix[i][j] = new Grass(j, i);
+                            matrix[i][j] = new Grass(new Coordinates(j,i));
                             break;
                     }
                 }

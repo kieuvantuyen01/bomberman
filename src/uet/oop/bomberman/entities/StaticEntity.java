@@ -1,13 +1,18 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Coordinates;
 
 public abstract class StaticEntity extends Entity {
-    public StaticEntity(int xUnit, int yUnit) {
-        super(xUnit, yUnit);
+    public StaticEntity() {
     }
 
-    public StaticEntity(int xUnit, int yUnit, Image img) {
-        super(xUnit, yUnit, img);
+    public StaticEntity(Coordinates tile) {
+        super(tile);
     }
+
+    public StaticEntity(Coordinates tile, Image img) {
+        super(tile, img);
+    }
+
 }
