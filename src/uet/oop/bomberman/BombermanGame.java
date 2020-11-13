@@ -9,10 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
@@ -27,10 +24,10 @@ public class BombermanGame extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
+    private static List<Entity> entities = new ArrayList<>();
     private static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
-    private Keyboard input = new Keyboard();
+    public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -53,46 +50,14 @@ public class BombermanGame extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        input.setUp(true);
-                        break;
-                    case DOWN:
-                        input.setDown(true);
-                        break;
-                    case LEFT:
-                        input.setLeft(true);
-                        break;
-                    case RIGHT:
-                        input.setRight(true);
-                        break;
-                    case SPACE:
-                        input.setSpace(true);
-                        break;
-                }
+                input.keyPressed(event);
             }
         });
 
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        input.setUp(false);
-                        break;
-                    case DOWN:
-                        input.setDown(false);
-                        break;
-                    case LEFT:
-                        input.setLeft(false);
-                        break;
-                    case RIGHT:
-                        input.setRight(false);
-                        break;
-                    case SPACE:
-                        input.setSpace(false);
-                        break;
-                }
+                input.keyRelease(event);
             }
         });
         // Them scene vao stage
@@ -109,11 +74,8 @@ public class BombermanGame extends Application {
         timer.start();
 
         createMap();
-        Coordinates p=new Coordinates(1,1);
-        Entity bomberman = new Bomber(p, Sprite.player_right.getFxImage(), input);
-        //Entity testBalloom = new Balloom(6,6,Sprite.balloom_right1.getFxImage());
-        entities.add(bomberman);
-        //entities.add(testBalloom);
+        Entity bomber = new Bomber(new Coordinates(2,1),input);
+        entities.add(bomber);
     }
 
     public void createMap() {
@@ -199,5 +161,9 @@ public class BombermanGame extends Application {
             }
         }*/
         return null;
+    }
+
+    public static void setEntity(Entity entity) {
+        entities.add(entity);
     }
 }

@@ -62,7 +62,8 @@ public class LevelLoader {
                             matrix[i][j] = new Portal(new Coordinates(j,i));
                             break;
                         case 'p':
-                            matrix[i][j] = new Bomber(new Coordinates(j,i));
+                            matrix[i][j] = new Bomber(new Coordinates(j,i),BombermanGame.input);
+                            BombermanGame.setEntity(matrix[i][j]);
                             break;
                         case 'f':
                             matrix[i][j] = new FlamesItem(new Coordinates(j,i));

@@ -33,6 +33,13 @@ public class Bomber extends DynamicEntity {
         super(tile, img);
     }
 
+    public Bomber(Coordinates tile, Keyboard _input) {
+        super(tile);
+        this.img=Sprite.player_right.getFxImage();
+        this._input = _input;
+        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
+    }
+
     public Bomber(Coordinates tile, Image img, Keyboard _input) {
         super(tile, img);
         this._input = _input;
