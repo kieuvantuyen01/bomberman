@@ -32,12 +32,12 @@ public abstract class Entity {
 
     public Entity(Coordinates tile) {
         this.tile = tile;
-        pixel=tile.convertTileToPixel();
+        pixel = tile.convertTileToPixel();
     }
 
     public Entity(Coordinates tile, Image img) {
         this.tile = tile;
-        pixel=tile.convertTileToPixel();
+        pixel = tile.convertTileToPixel();
         this.img = img;
         this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
     }
@@ -53,6 +53,10 @@ public abstract class Entity {
     public abstract void update();
 
     public boolean isCollision(Entity other) {
+        if (this.tile.getX() != other.tile.getX()
+                || this.tile.getY() != other.tile.getY()) {
+            return false;
+        }
         return true;
     }
 }

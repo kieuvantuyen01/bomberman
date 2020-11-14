@@ -8,10 +8,11 @@ import uet.oop.bomberman.exception.LevelLoaderException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 public class LevelLoader {
     public static LevelLoader instance = null;
-    private Entity[][] matrix;
+    private Stack<Entity>[][] matrix;
     public String LEVEL_TEMPLATE = "/levels/Level%d.txt";
 
     private int level;
@@ -29,7 +30,7 @@ public class LevelLoader {
         return instance;
     }
 
-    public Entity[][] loadMap(int level) {
+    public Stack<Entity>[][] loadMap(int level) {
 
         try {
             InputStream is = this.getClass().getResourceAsStream(
@@ -46,33 +47,39 @@ public class LevelLoader {
             rows = Integer.parseInt(line[1]);
             cols = Integer.parseInt(line[2]);
             System.out.println(rows + " " + cols);
-            Entity[][] matrix = new Entity[rows][cols];
+            Stack<Entity>[][] matrix = new Stack[rows][cols];
             for (int i = 0; i < rows; i++) {
                 String map = br.readLine();
                 System.out.println(map);
                 for (int j = 0; j < cols; j++) {
+                    matrix[i][j]=new Stack<Entity>();
                     switch (map.charAt(j)) {
                         case '#':
-                            matrix[i][j] = new Wall(new Coordinates(j,i));
+                            matrix[i][j].push(new Wall(new Coordinates(j,i)));
                             break;
                         case '*':
-                            matrix[i][j] = new Brick(new Coordinates(j,i));
+                            matrix[i][j].push(new Brick(new Coordinates(j,i)));
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         case 'x':
-                            matrix[i][j] = new Portal(new Coordinates(j,i));
+                            matrix[i][j].push(new Portal(new Coordinates(j,i)));
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         case 'p':
-                            matrix[i][j] = new Bomber(new Coordinates(j,i),BombermanGame.input);
-                            BombermanGame.setEntity(matrix[i][j]);
+                            matrix[i][j].push(new Bomber(new Coordinates(j,i),BombermanGame.input));
+                            BombermanGame.setEntity(matrix[i][j].peek());
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         case 'f':
-                            matrix[i][j] = new FlamesItem(new Coordinates(j,i));
+                            matrix[i][j].push(new FlamesItem(new Coordinates(j,i)));
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         case 's':
-                            matrix[i][j] = new SpeedItem(new Coordinates(j,i));
+                            matrix[i][j].push(new SpeedItem(new Coordinates(j,i)));
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         default:
-                            matrix[i][j] = new Grass(new Coordinates(j,i));
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                     }
                 }
@@ -91,7 +98,7 @@ public class LevelLoader {
         return null;
     }
 
-    public Entity[][] getMatrix() {
+    public Stack<Entity>[][] getMatrix() {
         return matrix;
     }
 

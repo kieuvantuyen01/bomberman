@@ -16,6 +16,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class BombermanGame extends Application {
 
@@ -79,10 +80,11 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() {
-        Entity[][] map = instance.loadMap(1);
+        Stack<Entity>[][] map = instance.loadMap(1);
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
-                stillObjects.add(map[i][j]);
+                while (!map[i][j].empty())
+                stillObjects.add(map[i][j].pop());
             }
         }
     }
