@@ -75,8 +75,6 @@ public class BombermanGame extends Application {
         timer.start();
 
         createMap();
-        Entity bomber = new Bomber(new Coordinates(2,1),input);
-        entities.add(bomber);
     }
 
     public void createMap() {

@@ -19,14 +19,15 @@ public class Bomber extends DynamicEntity {
     protected static double speed = 1.0;
     protected static int max_bomb = 1;
     protected static boolean flame = false;
+    protected static Coordinates d = new Coordinates(0, 0);
 
     public Bomber() {
-        this.img=Sprite.player_right.getFxImage();
+        this.img = Sprite.player_right.getFxImage();
     }
 
     public Bomber(Coordinates tile) {
         super(tile);
-        this.img=Sprite.player_right.getFxImage();
+        this.img = Sprite.player_right.getFxImage();
     }
 
     public Bomber(Coordinates tile, Image img) {
@@ -35,7 +36,7 @@ public class Bomber extends DynamicEntity {
 
     public Bomber(Coordinates tile, Keyboard _input) {
         super(tile);
-        this.img=Sprite.player_right.getFxImage();
+        this.img = Sprite.player_right.getFxImage();
         this._input = _input;
         this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
@@ -110,14 +111,27 @@ public class Bomber extends DynamicEntity {
     @Override
     protected void handleMove() {
         double xa = 0, ya = 0;
-        if (_input.up) ya -= speed;
-        if (_input.down) ya += speed * 1.34;
-        if (_input.left) xa -= speed;
-        if (_input.right) xa += speed * 1.34;
+        if (_input.up || d.getY() < 0) {
+            ya -= speed;
+            if (d.getY() >= 0) d.setY(d.getY() - Sprite.SCALED_SIZE);
+        }
+        if (_input.down || d.getY() > 0) {
+            ya += speed;
+            if (d.getY() <= 0) d.setY(d.getY() + Sprite.SCALED_SIZE);
+        }
+        if (_input.left || d.getX() < 0) {
+            xa -= speed;
+            if (d.getX() >= 0) d.setX(d.getX() - Sprite.SCALED_SIZE);
+        }
+        if (_input.right || d.getX() > 0) {
+            xa += speed;
+            if (d.getX() <= 0) d.setX(d.getX() + Sprite.SCALED_SIZE);
+        }
 
-        if (xa != 0 || ya != 0) {
+        if (d.getX() != 0 || d.getY() != 0) {
             move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-
+            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
+            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
             _moving = true;
         } else {
             _moving = false;
@@ -127,14 +141,14 @@ public class Bomber extends DynamicEntity {
 
     @Override
     protected void move(double xa, double ya) {
-        if (xa > 0) _direction = 1;
-        if (xa < 0) _direction = 3;
-        if (ya > 0) _direction = 2;
-        if (ya < 0) _direction = 0;
+        if (d.getX() > 0) _direction = 1;
+        if (d.getX() < 0) _direction = 3;
+        if (d.getY() > 0) _direction = 2;
+        if (d.getY() < 0) _direction = 0;
 
         if (canMove(this.rectangle)) { //separate the moves for the player can slide when is colliding
             if (canMove(new Rectangle(pixel.getX(), (int) (pixel.getY() + ya), (int) img.getWidth(), (int) img.getHeight()))) {
-               pixel.setY((int) (pixel.getY()+ya));
+                pixel.setY((int) (pixel.getY() + ya));
                 this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
             }
 
@@ -142,11 +156,12 @@ public class Bomber extends DynamicEntity {
 
         if (canMove(this.rectangle)) {
             if (canMove(new Rectangle((int) (pixel.getX() + xa), pixel.getY(), (int) img.getWidth(), (int) img.getHeight()))) {
-               pixel.setX((int) (pixel.getX()+xa));
+                pixel.setX((int) (pixel.getX() + xa));
                 this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
             }
 
         }
+        tile.convertPixelToTile();
     }
 
     @Override
