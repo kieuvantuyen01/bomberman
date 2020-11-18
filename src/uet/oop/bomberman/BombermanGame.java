@@ -176,7 +176,6 @@ public class BombermanGame extends Application {
                 entity=cur;
             }
         }
-        System.out.println(entity);
         return entity;
     }
 }

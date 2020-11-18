@@ -114,20 +114,19 @@ public class Bomber extends DynamicEntity {
     @Override
     protected void handleMove() {
         double xa = 0, ya = 0;
-        if ((_input.up && d.getX()==0 && BombermanGame.getEntityAt(tile.getX(),tile.getY()-1) instanceof Wall ==false) || d.getY() < 0) {
+        if ((_input.up && d.getX()==0 && canMoveToDirection(0,-1)) || d.getY() < 0) {
             ya -= speed;
-          //  System.out.println(tile.getX()+" "+ tile.getY());
             if (d.getY() >= 0) d.setY(d.getY() - Sprite.SCALED_SIZE);
         }
-        if ((_input.down && d.getX()==0 && BombermanGame.getEntityAt(tile.getX(),tile.getY()+1) instanceof Wall ==false)|| d.getY() > 0) {
+        if ((_input.down && d.getX()==0 && canMoveToDirection(0,1))|| d.getY() > 0) {
             ya += speed;
             if (d.getY() <= 0) d.setY(d.getY() + Sprite.SCALED_SIZE);
         }
-        if ((_input.left && d.getY()==0 && BombermanGame.getEntityAt(tile.getX()-1,tile.getY()) instanceof Wall ==false) || d.getX() < 0) {
+        if ((_input.left && d.getY()==0 && canMoveToDirection(-1,0)) || d.getX() < 0) {
             xa -= speed;
             if (d.getX() >= 0) d.setX(d.getX() - Sprite.SCALED_SIZE);
         }
-        if ((_input.right && d.getY()==0 && BombermanGame.getEntityAt(tile.getX()+1,tile.getY()) instanceof Wall ==false) || d.getX() > 0) {
+        if ((_input.right && d.getY()==0 && canMoveToDirection(1,0)) || d.getX() > 0) {
             xa += speed;
             if (d.getX() <= 0) d.setX(d.getX() + Sprite.SCALED_SIZE);
         }
@@ -138,6 +137,10 @@ public class Bomber extends DynamicEntity {
             d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
             _moving = true;
         } else {
+            if (_input.up) _direction=0;
+            if (_input.right) _direction=1;
+            if (_input.down) _direction=2;
+            if (_input.left) _direction=3;
             _moving = false;
         }
 
@@ -150,21 +153,21 @@ public class Bomber extends DynamicEntity {
         if (d.getY() > 0) _direction = 2;
         if (d.getY() < 0) _direction = 0;
 
-        if (canMove(this.rectangle)) { //separate the moves for the player can slide when is colliding
-            if (canMove(new Rectangle(pixel.getX(), (int) (pixel.getY() + ya), (int) img.getWidth(), (int) img.getHeight()))) {
+       // if (canMove(this.rectangle)) { //separate the moves for the player can slide when is colliding
+           // if (canMove(new Rectangle(pixel.getX(), (int) (pixel.getY() + ya), (int) img.getWidth(), (int) img.getHeight()))) {
                 pixel.setY((int) (pixel.getY() + ya));
                 this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
-            }
+            //}
 
-        }
+      //  }
 
-        if (canMove(this.rectangle)) {
-            if (canMove(new Rectangle((int) (pixel.getX() + xa), pixel.getY(), (int) img.getWidth(), (int) img.getHeight()))) {
+     //   if (canMove(this.rectangle)) {
+           // if (canMove(new Rectangle((int) (pixel.getX() + xa), pixel.getY(), (int) img.getWidth(), (int) img.getHeight()))) {
                 pixel.setX((int) (pixel.getX() + xa));
                 this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
-            }
+           // }
 
-        }
+     //   }
         tile=pixel.convertPixelToTile();
         System.out.println(tile.getX()+" "+tile.getY());
     }
@@ -184,12 +187,11 @@ public class Bomber extends DynamicEntity {
     }
 
     @Override
-    protected boolean canMove(Rectangle rec) {
-        /*Entity a = game.getEntity(rec);
-        if (a != null && (a instanceof Wall || a instanceof Brick)) {
+    protected boolean canMoveToDirection(int x,int y) {
+        Entity entity = BombermanGame.getEntityAt(tile.getX()+x,tile.getY()+y);
+        if (entity instanceof Wall || entity instanceof Brick){
             return false;
         }
-        else */
         return true;
     }
 

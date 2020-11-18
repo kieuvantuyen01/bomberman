@@ -32,7 +32,7 @@ public abstract class DynamicEntity extends Entity {
 
     protected abstract void afterDie();
 
-    protected abstract boolean canMove(Rectangle rec);
+    protected abstract boolean canMoveToDirection(int x,int y);
 
     public boolean isAlive() {
         return _alive;

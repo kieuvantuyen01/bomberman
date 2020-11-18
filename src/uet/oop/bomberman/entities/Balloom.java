@@ -71,7 +71,7 @@ public class Balloom extends DynamicEntity {
     }
 
     @Override
-    protected boolean canMove(Rectangle rec) {
+    protected boolean canMoveToDirection(int x,int y) {
         return false;
     }
 }
