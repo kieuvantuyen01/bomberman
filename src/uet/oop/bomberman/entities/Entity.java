@@ -59,4 +59,20 @@ public abstract class Entity {
         }
         return true;
     }
+
+    public Coordinates getTile() {
+        return tile;
+    }
+
+    public void setTile(Coordinates tile) {
+        this.tile = tile;
+    }
+
+    public Coordinates getPixel() {
+        return pixel;
+    }
+
+    public void setPixel(Coordinates pixel) {
+        this.pixel = pixel;
+    }
 }

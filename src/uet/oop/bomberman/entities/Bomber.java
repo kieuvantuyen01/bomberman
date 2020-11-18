@@ -28,15 +28,18 @@ public class Bomber extends DynamicEntity {
     public Bomber(Coordinates tile) {
         super(tile);
         this.img = Sprite.player_right.getFxImage();
+        this.pixel.setX(this.pixel.getX()+6);
     }
 
     public Bomber(Coordinates tile, Image img) {
         super(tile, img);
+        this.pixel.setX(this.pixel.getX()+6);
     }
 
     public Bomber(Coordinates tile, Keyboard _input) {
         super(tile);
         this.img = Sprite.player_right.getFxImage();
+        this.pixel.setX(this.pixel.getX()+4);
         this._input = _input;
         this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
@@ -111,19 +114,20 @@ public class Bomber extends DynamicEntity {
     @Override
     protected void handleMove() {
         double xa = 0, ya = 0;
-        if (_input.up || d.getY() < 0) {
+        if ((_input.up && d.getX()==0 && BombermanGame.getEntityAt(tile.getX(),tile.getY()-1) instanceof Wall ==false) || d.getY() < 0) {
             ya -= speed;
+          //  System.out.println(tile.getX()+" "+ tile.getY());
             if (d.getY() >= 0) d.setY(d.getY() - Sprite.SCALED_SIZE);
         }
-        if (_input.down || d.getY() > 0) {
+        if ((_input.down && d.getX()==0 && BombermanGame.getEntityAt(tile.getX(),tile.getY()+1) instanceof Wall ==false)|| d.getY() > 0) {
             ya += speed;
             if (d.getY() <= 0) d.setY(d.getY() + Sprite.SCALED_SIZE);
         }
-        if (_input.left || d.getX() < 0) {
+        if ((_input.left && d.getY()==0 && BombermanGame.getEntityAt(tile.getX()-1,tile.getY()) instanceof Wall ==false) || d.getX() < 0) {
             xa -= speed;
             if (d.getX() >= 0) d.setX(d.getX() - Sprite.SCALED_SIZE);
         }
-        if (_input.right || d.getX() > 0) {
+        if ((_input.right && d.getY()==0 && BombermanGame.getEntityAt(tile.getX()+1,tile.getY()) instanceof Wall ==false) || d.getX() > 0) {
             xa += speed;
             if (d.getX() <= 0) d.setX(d.getX() + Sprite.SCALED_SIZE);
         }
@@ -161,7 +165,8 @@ public class Bomber extends DynamicEntity {
             }
 
         }
-        tile.convertPixelToTile();
+        tile=pixel.convertPixelToTile();
+        System.out.println(tile.getX()+" "+tile.getY());
     }
 
     @Override

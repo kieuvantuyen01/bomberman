@@ -13,10 +13,8 @@ import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Stack;
 
 public class BombermanGame extends Application {
 
@@ -25,6 +23,7 @@ public class BombermanGame extends Application {
 
     private GraphicsContext gc;
     private Canvas canvas;
+
     private static List<Entity> entities = new ArrayList<>();
     private static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
@@ -165,5 +164,19 @@ public class BombermanGame extends Application {
 
     public static void setEntity(Entity entity) {
         entities.add(entity);
+    }
+    public static Entity getEntityAt(int x,int y){
+        Coordinates coordinates=new Coordinates(x,y);
+        Iterator<Entity> itr=stillObjects.iterator();
+        Entity cur;
+        Entity entity = null;
+        while (itr.hasNext()){
+            cur=itr.next();
+            if(cur.getTile().getY()==coordinates.getY()&&cur.getTile().getX()==coordinates.getX()){
+                entity=cur;
+            }
+        }
+        System.out.println(entity);
+        return entity;
     }
 }
