@@ -25,7 +25,9 @@ public class Oneal extends Enemy {
 
     @Override
     protected void handleMove() {
-        findBomber();
+        if (d.getY()==0&&d.getX()==0){
+            findBomber();
+        }
         if (d.getX()==0&&ya==0){
             if (xa<0){
                 if (canMoveToDirection(-1,0)){
