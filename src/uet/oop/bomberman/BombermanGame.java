@@ -26,6 +26,7 @@ public class BombermanGame extends Application {
     private Canvas canvas;
 
     private static List<Entity> entities = new ArrayList<>();
+    private static Bomber bomber;
     private static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
     public static Keyboard input = new Keyboard();
@@ -87,14 +88,24 @@ public class BombermanGame extends Application {
         }
     }
 
+    public static Bomber getBomber() {
+        return bomber;
+    }
+
+    public static void setBomber(Bomber bomber) {
+        BombermanGame.bomber = bomber;
+    }
+
     public void update() {
         entities.forEach(Entity::update);
+        bomber.update();
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        bomber.render(gc);
     }
 
     public static Entity getEntity(Rectangle rec) {

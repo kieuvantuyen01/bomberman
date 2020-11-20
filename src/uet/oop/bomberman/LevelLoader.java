@@ -2,6 +2,7 @@ package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.exception.LevelLoaderException;
@@ -68,7 +69,7 @@ public class LevelLoader {
                             break;
                         case 'p':
                             matrix[i][j].push(new Bomber(new Coordinates(j,i),BombermanGame.input));
-                            BombermanGame.setEntity(matrix[i][j].peek());
+                            BombermanGame.setBomber((Bomber) matrix[i][j].peek());
                             matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                         case 'f':
@@ -81,6 +82,11 @@ public class LevelLoader {
                             break;
                         case '1':
                             matrix[i][j].push(new Balloom(new Coordinates(j,i),true));
+                            BombermanGame.setEntity(matrix[i][j].peek());
+                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            break;
+                        case '2':
+                            matrix[i][j].push(new Oneal(new Coordinates(j,i)));
                             BombermanGame.setEntity(matrix[i][j].peek());
                             matrix[i][j].push(new Grass(new Coordinates(j,i)));
                         default:

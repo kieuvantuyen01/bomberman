@@ -100,42 +100,6 @@ public class Balloom extends Enemy {
     }
 
     @Override
-    public void chooseSprite() {
-        switch (_direction) {
-            case 0:
-                img = Sprite.balloom_left1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.balloom_left2.getFxImage(), Sprite.balloom_left3.getFxImage(), _animate, 20);
-                }
-                break;
-            case 1:
-                img = Sprite.balloom_right1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.balloom_right2.getFxImage(), Sprite.balloom_right3.getFxImage(), _animate, 20);
-                }
-                break;
-            case 2:
-                img = Sprite.balloom_right1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.balloom_right2.getFxImage(), Sprite.balloom_right3.getFxImage(), _animate, 20);
-                }
-                break;
-            case 3:
-                img = Sprite.balloom_left1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.balloom_left2.getFxImage(), Sprite.balloom_left3.getFxImage(), _animate, 20);
-                }
-                break;
-            default:
-                img = Sprite.balloom_right1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.balloom_right2.getFxImage(), Sprite.balloom_right3.getFxImage(), _animate, 20);
-                }
-                break;
-        }
-    }
-
-    @Override
     public void update() {
         if (_alive == false) {
             afterDie();
@@ -145,7 +109,11 @@ public class Balloom extends Enemy {
 
         handleMove();
 
-        chooseSprite();
+        chooseSprite(Sprite.balloom_right1,
+                Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3,
+                Sprite.balloom_right1,Sprite.balloom_right2,Sprite.balloom_right3,
+                Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3,
+                Sprite.balloom_right1,Sprite.balloom_right2,Sprite.balloom_right3);
 
     }
 
@@ -157,5 +125,9 @@ public class Balloom extends Enemy {
     @Override
     protected boolean canMoveToDirection(int x, int y) {
         return super.canMoveToDirection(x, y);
+    }
+
+    protected boolean canSeeBomber(){
+        return true;
     }
 }

@@ -62,12 +62,15 @@ public class Bomber extends MovableEntity {
 
         handleMove();
 
-        chooseSprite();
+        chooseSprite(Sprite.player_right,
+                Sprite.player_left,Sprite.player_left_1,Sprite.player_left_2,
+                Sprite.player_right,Sprite.player_right_1,Sprite.player_right_2,
+                Sprite.player_up,Sprite.player_up_1,Sprite.player_up_2,
+                Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2);
 
         showBom();
     }
 
-    //d�ng ?? cho v�o h�m ch?n h�nh ?nh
     @Override
     public void animate() {
         if (_animate > 6000) _animate = 0;
@@ -75,42 +78,6 @@ public class Bomber extends MovableEntity {
     }
 
 
-    //ch?n h�nh ?nh khi di chuy?n
-    @Override
-    public void chooseSprite() {
-        switch (_direction) {
-            case 0:
-                img = Sprite.player_up.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.player_up_1.getFxImage(), Sprite.player_up_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 1:
-                img = Sprite.player_right.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.player_right_1.getFxImage(), Sprite.player_right_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 2:
-                img = Sprite.player_down.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.player_down_1.getFxImage(), Sprite.player_down_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 3:
-                img = Sprite.player_left.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.player_left_1.getFxImage(), Sprite.player_left_2.getFxImage(), _animate, 20);
-                }
-                break;
-            default:
-                img = Sprite.player_right.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(Sprite.player_right_1.getFxImage(), Sprite.player_right_2.getFxImage(), _animate, 20);
-                }
-                break;
-        }
-    }
 
     @Override
     protected void handleMove() {
@@ -138,10 +105,10 @@ public class Bomber extends MovableEntity {
             d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
             _moving = true;
         } else {
-            if (_input.up) _direction=0;
-            if (_input.right) _direction=1;
-            if (_input.down) _direction=2;
-            if (_input.left) _direction=3;
+            if (_input.up) _direction=DIRECTION.UP;
+            if (_input.right) _direction=DIRECTION.RIGHT;
+            if (_input.down) _direction=DIRECTION.DOWN;
+            if (_input.left) _direction=DIRECTION.LEFT;
             _moving = false;
         }
 
