@@ -75,4 +75,5 @@ public abstract class Entity {
     public void setPixel(Coordinates pixel) {
         this.pixel = pixel;
     }
+
 }

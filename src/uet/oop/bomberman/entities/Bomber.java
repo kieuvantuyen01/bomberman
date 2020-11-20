@@ -9,17 +9,16 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
 
-public class Bomber extends DynamicEntity {
+public class Bomber extends MovableEntity {
 
     protected BombermanGame game = new BombermanGame();
     protected Keyboard _input = new Keyboard();
-    protected int _animate = 0;
+
 
 
     protected static double speed = 1.0;
     protected static int max_bomb = 1;
     protected static boolean flame = false;
-    protected static Coordinates d = new Coordinates(0, 0);
 
     public Bomber() {
         this.img = Sprite.player_right.getFxImage();
@@ -41,13 +40,13 @@ public class Bomber extends DynamicEntity {
         this.img = Sprite.player_right.getFxImage();
         this.pixel.setX(this.pixel.getX()+4);
         this._input = _input;
-        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
+//        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
 
     public Bomber(Coordinates tile, Image img, Keyboard _input) {
         super(tile, img);
         this._input = _input;
-        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
+  //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
 
 
@@ -69,6 +68,7 @@ public class Bomber extends DynamicEntity {
     }
 
     //d�ng ?? cho v�o h�m ch?n h�nh ?nh
+    @Override
     public void animate() {
         if (_animate > 6000) _animate = 0;
         else _animate++;
@@ -76,7 +76,8 @@ public class Bomber extends DynamicEntity {
 
 
     //ch?n h�nh ?nh khi di chuy?n
-    private void chooseSprite() {
+    @Override
+    public void chooseSprite() {
         switch (_direction) {
             case 0:
                 img = Sprite.player_up.getFxImage();
@@ -148,28 +149,7 @@ public class Bomber extends DynamicEntity {
 
     @Override
     protected void move(double xa, double ya) {
-        if (d.getX() > 0) _direction = 1;
-        if (d.getX() < 0) _direction = 3;
-        if (d.getY() > 0) _direction = 2;
-        if (d.getY() < 0) _direction = 0;
-
-       // if (canMove(this.rectangle)) { //separate the moves for the player can slide when is colliding
-           // if (canMove(new Rectangle(pixel.getX(), (int) (pixel.getY() + ya), (int) img.getWidth(), (int) img.getHeight()))) {
-                pixel.setY((int) (pixel.getY() + ya));
-                this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
-            //}
-
-      //  }
-
-     //   if (canMove(this.rectangle)) {
-           // if (canMove(new Rectangle((int) (pixel.getX() + xa), pixel.getY(), (int) img.getWidth(), (int) img.getHeight()))) {
-                pixel.setX((int) (pixel.getX() + xa));
-                this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
-           // }
-
-     //   }
-        tile=pixel.convertPixelToTile();
-        System.out.println(tile.getX()+" "+tile.getY());
+        super.move(xa, ya);
     }
 
     @Override
@@ -187,12 +167,8 @@ public class Bomber extends DynamicEntity {
     }
 
     @Override
-    protected boolean canMoveToDirection(int x,int y) {
-        Entity entity = BombermanGame.getEntityAt(tile.getX()+x,tile.getY()+y);
-        if (entity instanceof Wall || entity instanceof Brick){
-            return false;
-        }
-        return true;
+    protected boolean canMoveToDirection(int x, int y) {
+        return super.canMoveToDirection(x, y);
     }
 
     //th�m bom v�o stillobjects
