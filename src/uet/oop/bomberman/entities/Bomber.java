@@ -52,14 +52,13 @@ public class Bomber extends MovableEntity {
 
     @Override
     public void update() {
-        checkDead();
-        checkItem();
+
         if (_alive == false) {
             afterDie();
             return;
         }
         animate();
-
+        putBomb();
         handleMove();
 
         chooseSprite(Sprite.player_right,
@@ -68,7 +67,12 @@ public class Bomber extends MovableEntity {
                 Sprite.player_up,Sprite.player_up_1,Sprite.player_up_2,
                 Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2);
 
-        showBom();
+    }
+
+    protected void putBomb(){
+        if (_input.space){
+            BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(),tile.getY())));
+        }
     }
 
     @Override
@@ -138,111 +142,6 @@ public class Bomber extends MovableEntity {
         return super.canMoveToDirection(x, y);
     }
 
-    //th�m bom v�o stillobjects
-    public void showBom() {
-        /*if (_input.space) {
-            if (listBom.size() < max_bomb) {
-                Bomb bom = new Bomb(rounding(x*1.0 / Sprite.SCALED_SIZE), rounding(y*1.0 / Sprite.SCALED_SIZE)
-                        , Sprite.bomb.getFxImage(), 200);
-                if (listBom.size() == 0 ) {
-                    listBom.add(bom);
-                    BombermanGame.stillObjects.add(bom);
-                } else {
-                    if (checkListBom(bom) == false) {
-                        listBom.add(bom);
-                        BombermanGame.stillObjects.add(bom);
-                    }
-                }
-
-            }
-
-        }*/
-    }
-
-    //ki?m tra nh?ng v? tr� qu? bom hi?n t?i
-    //public boolean checkListBom(Bomb b) {
-        /*for (int i = 0; i < listBom.size(); i++) {
-            if (b.getRectangle().intersects(listBom.get(i).rectangle)) {
-                return true;
-            }
-        }
-
-        return false;*/
-    //}
-
-    //set ??m ng??c cho bom v� t?o bom n?
-    public static void deadLineAllBom() {
-       /* for (int i = 0; i < listBom.size(); i++) {
-            Bomb t = listBom.get(i);
-            if (t.time > 0) {
-                listBom.get(i).deadLineBom();
-            } else {
-                listBom.remove(i);
-                BombermanGame.stillObjects.remove(t);
-                if (flame == false) {
-                    listBomBang.add(new BomBang(t.x, t.y,25));
-                } else {
-                    listBomBang.add(new BomBang(t.x, t.y,25, 0));
-                }
-
-                BombermanGame.stillObjects.addAll(listBomBang);
-            }
-
-        }*/
-
-        /*for (int i = 0; i < listBomBang.size(); i++) {
-            BomBang t = listBomBang.get(i);
-
-            if (t.time > 0) {
-                listBomBang.get(i).deadLineBomBang();
-            } else {
-                listBomBang.remove(i);
-                BombermanGame.stillObjects.remove(t);
-            }
-        }*/
-    }
-
-    //ki?m tra ch?t
-    public void checkDead() {
-        /*Entity c = BombermanGame.getEntity(rectangle);
-        if (c instanceof BomBang) {
-            //System.out.println("player die");
-            kill();
-        }
-
-        if (BombermanGame.checkCollisionEnemy(rectangle)) {
-            //System.out.println("player die");
-            kill();
-        }*/
-    }
-
-    //check va cham item
-    public void checkItem() {
-        /*Entity t = BombermanGame.checkCollisionItem(this.rectangle);
-        if (t instanceof SpeedItem) {
-            speed = 1.5;
-            ((SpeedItem) t).afterCollision();
-        }
-
-        if (t instanceof FlameItem) {
-            flame = true;
-            ((FlameItem) t).afterCollision();
-        }
-
-        if (t instanceof BombItem) {
-            max_bomb = 2;
-            ((BombItem) t).afterCollision();
-        }*/
-    }
-
-    //l�m tr�n s? ?? ??t bom
-    public int rounding(double s) {
-        if (s - (int) s > 0.5) {
-            return (int) (s + 1);
-        } else {
-            return (int) s;
-        }
-    }
 
 
 }

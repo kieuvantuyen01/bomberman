@@ -83,35 +83,31 @@ public abstract class MovableEntity extends Entity implements Animated {
         return (_y* Game.SCALE) - (_sprite.SIZE / 2 * Game.SCALE);
     }*/
 
+    @Override
+    public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {
+        img=sprite1.getFxImage();
+        if (_moving){
+            img=Sprite.movingSprite(sprite2.getFxImage(),sprite3.getFxImage(),_animate,20);
+        }
+    }
+
     protected void chooseSprite(Sprite default1,
-                                Sprite left1,Sprite left2,Sprite left3,
-                                Sprite right1,Sprite right2,Sprite right3,
-                                Sprite up1,Sprite up2,Sprite up3,
-                                Sprite down1,Sprite down2,Sprite down3) {
+                                Sprite left1, Sprite left2, Sprite left3,
+                                Sprite right1, Sprite right2, Sprite right3,
+                                Sprite up1, Sprite up2, Sprite up3,
+                                Sprite down1, Sprite down2, Sprite down3) {
         switch (_direction) {
             case UP:
-                img = up1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(up2.getFxImage(), up3.getFxImage(), _animate, 20);
-                }
+                loadAnimated(up1,up2,up3);
                 break;
             case RIGHT:
-                img = right1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(right2.getFxImage(), right3.getFxImage(), _animate, 20);
-                }
+                loadAnimated(right1,right2,right3);
                 break;
             case DOWN:
-                img = down1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(down2.getFxImage(), down3.getFxImage(), _animate, 20);
-                }
+                loadAnimated(down1,down2,down3);
                 break;
             case LEFT:
-                img = left1.getFxImage();
-                if (_moving) {
-                    img = Sprite.movingSprite(left2.getFxImage(), left3.getFxImage(), _animate, 20);
-                }
+                loadAnimated(left1,left2,left3);
                 break;
             default:
                 img = default1.getFxImage();

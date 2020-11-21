@@ -3,6 +3,8 @@ package uet.oop.bomberman;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.awt.event.KeyListener;
+
 public class Keyboard {
 
     public boolean up, down, left, right, space;
@@ -35,13 +37,6 @@ public class Keyboard {
         this.up = up;
     }
 
-    public void keyRelease() {
-        up = false;
-        down = false;
-        left = false;
-        right = false;
-        space = false;
-    }
 
     public void keyPressed(KeyEvent event) {
         if (event.getCode()== KeyCode.SPACE||event.getCode()== KeyCode.ENTER){

@@ -27,6 +27,7 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
+    private static List<Bomb> bombs = new ArrayList<>();
     private static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
     public static Keyboard input = new Keyboard();
@@ -49,6 +50,7 @@ public class BombermanGame extends Application {
         Scene scene = new Scene(root);
 
         // Them scene vao stage
+
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -98,6 +100,7 @@ public class BombermanGame extends Application {
 
     public void update() {
         entities.forEach(Entity::update);
+        bombs.forEach(Bomb::update);
         bomber.update();
     }
 
@@ -105,73 +108,16 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        bombs.forEach(g->g.render(gc));
         bomber.render(gc);
     }
 
-    public static Entity getEntity(Rectangle rec) {
-        /*//System.out.println(stillObjects.size());
-        for (int i = 0; i < stillObjects.size(); i++) {
-            Entity t = stillObjects.get(i);
-            if (t instanceof BomBang) {
-                if (((BomBang) t).handleCollisionBomBang(rec)) {
-                    return t;
-                }
-            }
-            if (t instanceof Bomb) {
-
-            } else {
-                if (t.getRectangle().getBounds().intersects(rec.getBounds())) {
-                    if (t instanceof Wall ) {
-                        return t;
-                    }
-                    //System.out.println("yes");
-
-                }
-            }
-
-        }
-
-        for (int i = 0; i < changeObjects.size(); i++) {
-            Entity t = changeObjects.get(i);
-            if (t != null ) {
-                if (t.getRectangle().getBounds().intersects(rec.getBounds())) {
-                    if (t instanceof Brick) {
-                        return t;
-                    }
-                }
-
-            }
-        }
-*/
-        return null;
+    public static List<Bomb> getBombs() {
+        return bombs;
     }
 
-    //ki?m tra ch?m qu�i
-    public static boolean checkCollisionEnemy(Rectangle rec) {
-        /*//System.out.println(stillObjects.size());
-        for (int i = 0; i < entities.size(); i++) {
-            Entity t = entities.get(i);
-            if (!(t instanceof Bomber)) {
-                if (t.getRectangle().intersects(rec)) {
-                    return true;
-                }
-            }
-        }*/
-        return false;
-    }
-
-    //ki?m tra ch?m item
-    public static Entity checkCollisionItem(Rectangle rec) {
-        /*
-        for (int i = 0; i < changeObjects.size(); i++) {
-            Entity t = changeObjects.get(i);
-            if (! (t instanceof Brick)) {
-                if (t.getRectangle().intersects(rec)) {
-                    return t;
-                }
-            }
-        }*/
-        return null;
+    public static void setBomb(Bomb bomb) {
+        bombs.add(bomb);
     }
 
     public static void setEntity(Entity entity) {
