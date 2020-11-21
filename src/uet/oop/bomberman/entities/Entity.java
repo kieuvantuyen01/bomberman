@@ -5,16 +5,16 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
 
 public abstract class Entity {
-    //T?a ?? X tính t? góc trái trên trong Canvas
-    protected int x;
+    //T?a ?? X tï¿½nh t? gï¿½c trï¿½i trï¿½n trong Canvas
+    protected Coordinates pixel;
 
-    //T?a ?? Y tính t? góc trái trên trong Canvas
-    protected int y;
+    public Coordinates tile;
 
     protected Image img;
 
@@ -23,24 +23,66 @@ public abstract class Entity {
     protected Rectangle rectangle;
 
     protected String name;
+    private boolean _removed = false;
+
+    public void remove() {
+        _removed = true;
+    }
+
+    public boolean isRemoved() {
+        return _removed;
+    }
 
     public Entity() {
 
     }
     //Kh?i t?o ??i t??ng, chuy?n t? t?a ?? ??n v? sang t?a ?? trong canvas
-    public Entity( int xUnit, int yUnit, Image img) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
+
+
+    public Entity(Coordinates tile) {
+        this.tile = tile;
+        pixel = tile.convertTileToPixel();
+    }
+
+    public Entity(Coordinates tile, Image img) {
+        this.tile = tile;
+        pixel = tile.convertTileToPixel();
         this.img = img;
-        this.rectangle = new Rectangle(x ,y , (int) img.getWidth(), (int) img.getHeight());
+        this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
+        gc.drawImage(img, pixel.getX(), pixel.getY());
     }
+
     public Rectangle getRectangle() {
         return this.rectangle;
     }
 
     public abstract void update();
+
+    public boolean isCollision(Entity other) {
+        if (this.tile.getX() != other.tile.getX()
+                || this.tile.getY() != other.tile.getY()) {
+            return false;
+        }
+        return true;
+    }
+
+    public Coordinates getTile() {
+        return tile;
+    }
+
+    public void setTile(Coordinates tile) {
+        this.tile = tile;
+    }
+
+    public Coordinates getPixel() {
+        return pixel;
+    }
+
+    public void setPixel(Coordinates pixel) {
+        this.pixel = pixel;
+    }
+
 }

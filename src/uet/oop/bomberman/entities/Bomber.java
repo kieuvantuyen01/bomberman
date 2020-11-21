@@ -1,30 +1,58 @@
 package uet.oop.bomberman.entities;
 
+import com.sun.deploy.util.OrderedHashSet;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.Bomb;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Bomber extends DynamicEntity {
+public class Bomber extends MovableEntity {
 
     protected BombermanGame game = new BombermanGame();
     protected Keyboard _input = new Keyboard();
-    protected int _animate = 0;
 
 
     protected static double speed = 1.0;
     protected static int max_bomb = 1;
     protected static boolean flame = false;
+    private int bombRemain;
+    private final List<Bomb> bombs = new ArrayList<>();
+    public static List<Bomb> listBomb = new ArrayList<>();
 
-    public Bomber(int x, int y, Image img, Keyboard _input) {
-        this.x = x * Sprite.SCALED_SIZE;
-        this.y = y * Sprite.SCALED_SIZE;
-        this.img = img;
+    public Bomber() {
+        this.img = Sprite.player_right.getFxImage();
+    }
+
+    public Bomber(Coordinates tile) {
+        super(tile);
+        this.img = Sprite.player_right.getFxImage();
+        this.pixel.setX(this.pixel.getX() + 6);
+    }
+
+    public Bomber(Coordinates tile, Image img) {
+        super(tile, img);
+        this.pixel.setX(this.pixel.getX() + 6);
+    }
+
+    public Bomber(Coordinates tile, Keyboard _input) {
+        super(tile);
+        this.img = Sprite.player_right.getFxImage();
+        this.pixel.setX(this.pixel.getX() + 4);
         this._input = _input;
-        this.rectangle = new Rectangle(this.x, this.y , (int) (img.getWidth()), (int) img.getHeight());
+//        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
+    }
+
+    public Bomber(Coordinates tile, Image img, Keyboard _input) {
+        super(tile, img);
+        this._input = _input;
+        //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
 
 
@@ -32,7 +60,7 @@ public class Bomber extends DynamicEntity {
     public void update() {
         checkDead();
         checkItem();
-        if(_alive == false) {
+        if (_alive == false) {
             afterDie();
             return;
         }
@@ -40,67 +68,64 @@ public class Bomber extends DynamicEntity {
 
         handleMove();
 
-        chooseSprite();
+        chooseSprite(Sprite.player_right,
+                Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2,
+                Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2,
+                Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2);
 
         showBom();
     }
 
-    //dùng ?? cho vào hàm ch?n hình ?nh
+    @Override
     public void animate() {
         if (_animate > 6000) _animate = 0;
         else _animate++;
     }
 
 
-    //ch?n hình ?nh khi di chuy?n
-    private void chooseSprite() {
-        switch(_direction) {
-            case 0:
-                img = Sprite.player_up.getFxImage();
-                if(_moving) {
-                    img = Sprite.movingSprite(Sprite.player_up_1.getFxImage(), Sprite.player_up_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 1:
-                img = Sprite.player_right.getFxImage();
-                if(_moving) {
-                    img = Sprite.movingSprite(Sprite.player_right_1.getFxImage(), Sprite.player_right_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 2:
-                img = Sprite.player_down.getFxImage();
-                if(_moving) {
-                    img = Sprite.movingSprite(Sprite.player_down_1.getFxImage(), Sprite.player_down_2.getFxImage(), _animate, 20);
-                }
-                break;
-            case 3:
-                img = Sprite.player_left.getFxImage();
-                if(_moving) {
-                    img = Sprite.movingSprite(Sprite.player_left_1.getFxImage(), Sprite.player_left_2.getFxImage(), _animate, 20);
-                }
-                break;
-            default:
-                img = Sprite.player_right.getFxImage();
-                if(_moving) {
-                    img = Sprite.movingSprite(Sprite.player_right_1.getFxImage(), Sprite.player_right_2.getFxImage(), _animate, 20);
-                }
-                break;
-        }
-    }
-
     @Override
     protected void handleMove() {
         double xa = 0, ya = 0;
-        if(_input.up) ya-= speed;
-        if(_input.down) ya+=speed*1.34;
-        if(_input.left) xa-=speed;
-        if(_input.right) xa+=speed*1.34;
+        if ((_input.up && d.getX() == 0 
+                && canMoveToDirection(0, -1)) || d.getY() < 0) {
+            ya -= speed;
+            if (d.getY() >= 0) d.setY(d.getY() - Sprite.SCALED_SIZE);
+        }
+        if ((_input.down && d.getX() == 0 
+                && canMoveToDirection(0, 1)) || d.getY() > 0) {
+            ya += speed;
+            if (d.getY() <= 0) d.setY(d.getY() + Sprite.SCALED_SIZE);
+        }
+        if ((_input.left && d.getY() == 0 
+                && canMoveToDirection(-1, 0)) || d.getX() < 0) {
+            xa -= speed;
+            if (d.getX() >= 0) d.setX(d.getX() - Sprite.SCALED_SIZE);
+        }
+        if ((_input.right && d.getY() == 0 
+                && canMoveToDirection(1, 0)) || d.getX() > 0) {
+            xa += speed;
+            if (d.getX() <= 0) d.setX(d.getX() + Sprite.SCALED_SIZE);
+        }
 
-        if(xa != 0 || ya != 0)  {
+        if (d.getX() != 0 || d.getY() != 0) {
             move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-
+            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
+            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
             _moving = true;
         } else {
+            if (_input.up) {
+                _direction = DIRECTION.UP;
+            }
+            if (_input.right) {
+                _direction = DIRECTION.RIGHT;
+            }
+            if (_input.down) {
+                _direction = DIRECTION.DOWN;
+            }
+            if (_input.left) {
+                _direction = DIRECTION.LEFT;
+            }
             _moving = false;
         }
 
@@ -108,26 +133,7 @@ public class Bomber extends DynamicEntity {
 
     @Override
     protected void move(double xa, double ya) {
-        if(xa > 0) _direction = 1;
-        if(xa < 0) _direction = 3;
-        if(ya > 0) _direction = 2;
-        if(ya < 0) _direction = 0;
-
-        if(canMove(this.rectangle)) { //separate the moves for the player can slide when is colliding
-            if (canMove(new Rectangle(x, (int) (y + ya), (int) img.getWidth(), (int) img.getHeight())) ) {
-                y += ya;
-                this.rectangle = new Rectangle(x, y , (int) img.getWidth(), (int) img.getHeight());
-            }
-
-        }
-
-        if(canMove(this.rectangle)) {
-            if (canMove(new Rectangle((int) (x + xa), y, (int) img.getWidth(), (int) img.getHeight())) ) {
-                x += xa;
-                this.rectangle = new Rectangle(x, y , (int) img.getWidth(), (int) img.getHeight());
-            }
-
-        }
+        super.move(xa, ya);
     }
 
     @Override
@@ -145,73 +151,87 @@ public class Bomber extends DynamicEntity {
     }
 
     @Override
-    protected boolean canMove(Rectangle rec) {
-        /*Entity a = game.getEntity(rec);
-        if (a != null && (a instanceof Wall || a instanceof Brick)) {
-            return false;
-        }
-        else */return true;
+    protected boolean canMoveToDirection(int x, int y) {
+        return super.canMoveToDirection(x, y);
     }
 
-    //thêm bom vào stillobjects
+    //thÃªm bom vÃ o stillObjects
     public void showBom() {
-        /*if (_input.space) {
-            if (listBom.size() < max_bomb) {
-                Bomb bom = new Bomb(rounding(x*1.0 / Sprite.SCALED_SIZE), rounding(y*1.0 / Sprite.SCALED_SIZE)
+        if (_input.space) {
+            if (listBomb.size() < max_bomb) {
+                Coordinates tmp = new Coordinates(rounding(tile.getX()), rounding(tile.getY()));
+                Bomb bomb = new Bomb(tmp
                         , Sprite.bomb.getFxImage(), 200);
-                if (listBom.size() == 0 ) {
-                    listBom.add(bom);
-                    BombermanGame.stillObjects.add(bom);
+                if (listBomb.size() == 0) {
+                    listBomb.add(bomb);
+                    BombermanGame.stillObjects.add(bomb);
                 } else {
-                    if (checkListBom(bom) == false) {
-                        listBom.add(bom);
-                        BombermanGame.stillObjects.add(bom);
+                    if (checkListBom(bomb) == false) {
+                        listBomb.add(bomb);
+                        BombermanGame.stillObjects.add(bomb);
                     }
                 }
 
             }
 
-        }*/
+        }
     }
 
-    //ki?m tra nh?ng v? trí qu? bom hi?n t?i
-    //public boolean checkListBom(Bomb b) {
-        /*for (int i = 0; i < listBom.size(); i++) {
-            if (b.getRectangle().intersects(listBom.get(i).rectangle)) {
+    public void placeBomb() {
+        if (bombRemain > 0) {
+            int xB = (int) Math.round((pixel.getX() + 4) / (double) Sprite.SCALED_SIZE);
+            int yB = (int) Math.round((pixel.getY() + 4) / (double) Sprite.SCALED_SIZE);
+            Coordinates pixel_tileB = new Coordinates(xB, yB);
+
+            for (Bomb bomb : bombs) {
+                if (xB * Sprite.SCALED_SIZE == bomb.pixel.getX() && yB * Sprite.SCALED_SIZE
+                        == bomb.pixel.getY()) {
+                    return;
+                }
+            }
+            bombs.add(new Bomb(pixel_tileB, Sprite.bomb.getFxImage()));
+            bombRemain--;
+        }
+    }
+
+    //kiá»ƒm tra nhá»¯ng vá»‹ trÃ­ quáº£ bom hiá»‡n táº¡i
+    public boolean checkListBom(Bomb b) {
+        for (int i = 0; i < listBomb.size(); i++) {
+            if (b.getRectangle().intersects(listBomb.get(i).rectangle)) {
                 return true;
             }
         }
 
-        return false;*/
-    //}
+        return false;
+    }
 
-    //set ??m ng??c cho bom và t?o bom n?
+    //set ??m ng??c cho bom vï¿½ t?o bom n?
     public static void deadLineAllBom() {
-       /* for (int i = 0; i < listBom.size(); i++) {
-            Bomb t = listBom.get(i);
+       /* for (int i = 0; i < listBomb.size(); i++) {
+            Bomb t = listBomb.get(i);
             if (t.time > 0) {
-                listBom.get(i).deadLineBom();
+                listBomb.get(i).deadLineBom();
             } else {
-                listBom.remove(i);
+                listBomb.remove(i);
                 BombermanGame.stillObjects.remove(t);
                 if (flame == false) {
-                    listBomBang.add(new BomBang(t.x, t.y,25));
+                    listBombBang.add(new BomBang(t.x, t.y,25));
                 } else {
-                    listBomBang.add(new BomBang(t.x, t.y,25, 0));
+                    listBombBang.add(new BomBang(t.x, t.y,25, 0));
                 }
 
-                BombermanGame.stillObjects.addAll(listBomBang);
+                BombermanGame.stillObjects.addAll(listBombBang);
             }
 
         }*/
 
-        /*for (int i = 0; i < listBomBang.size(); i++) {
-            BomBang t = listBomBang.get(i);
+        /*for (int i = 0; i < listBombBang.size(); i++) {
+            BomBang t = listBombBang.get(i);
 
             if (t.time > 0) {
-                listBomBang.get(i).deadLineBomBang();
+                listBombBang.get(i).deadLineBomBang();
             } else {
-                listBomBang.remove(i);
+                listBombBang.remove(i);
                 BombermanGame.stillObjects.remove(t);
             }
         }*/
@@ -250,7 +270,7 @@ public class Bomber extends DynamicEntity {
         }*/
     }
 
-    //làm tròn s? ?? ??t bom
+    //lï¿½m trï¿½n s? ?? ??t bom
     public int rounding(double s) {
         if (s - (int) s > 0.5) {
             return (int) (s + 1);

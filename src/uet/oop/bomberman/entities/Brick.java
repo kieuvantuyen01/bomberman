@@ -4,18 +4,18 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Wall extends StaticEntity {
+public class Brick extends Entity {
 
-    public Wall() {
-        this.img=Sprite.wall.getFxImage();
+    public Brick() {
+        this.img=Sprite.brick.getFxImage();
     }
 
-    public Wall(Coordinates tile) {
+    public Brick(Coordinates tile) {
         super(tile);
-        this.img=Sprite.wall.getFxImage();
+        this.img=Sprite.brick.getFxImage();
     }
 
-    public Wall(Coordinates tile, Image img) {
+    public Brick(Coordinates tile, Image img) {
         super(tile, img);
     }
 

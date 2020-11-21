@@ -9,28 +9,27 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.Grass;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.enemy.Balloom;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
 public class BombermanGame extends Application {
 
-    public static final int WIDTH = (int) (31 / 2);
+    public static final int WIDTH = (int) (31);
     public static final int HEIGHT = 13;
 
     private GraphicsContext gc;
     private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private static List<Entity> stillObjects = new ArrayList<>();
+
+    private static List<Entity> entities = new ArrayList<>();
+    private static Bomber bomber;
+    public static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
-    private Keyboard input = new Keyboard();
+    public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -53,46 +52,14 @@ public class BombermanGame extends Application {
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        input.setUp(true);
-                        break;
-                    case DOWN:
-                        input.setDown(true);
-                        break;
-                    case LEFT:
-                        input.setLeft(true);
-                        break;
-                    case RIGHT:
-                        input.setRight(true);
-                        break;
-                    case SPACE:
-                        input.setSpace(true);
-                        break;
-                }
+                input.keyPressed(event);
             }
         });
 
         scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                switch (event.getCode()) {
-                    case UP:
-                        input.setUp(false);
-                        break;
-                    case DOWN:
-                        input.setDown(false);
-                        break;
-                    case LEFT:
-                        input.setLeft(false);
-                        break;
-                    case RIGHT:
-                        input.setRight(false);
-                        break;
-                    case SPACE:
-                        input.setSpace(false);
-                        break;
-                }
+                input.keyRelease(event);
             }
         });
         // Them scene vao stage
@@ -109,33 +76,36 @@ public class BombermanGame extends Application {
         timer.start();
 
         createMap();
-
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage(), input);
-        //Entity testBalloom = new Balloom(6,6,Sprite.balloom_right1.getFxImage());
-        entities.add(bomberman);
-        //entities.add(testBalloom);
     }
 
     public void createMap() {
-        Entity[][] map = instance.loadMap(1);
+        Stack<Entity>[][] map = instance.loadMap(1);
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
-                if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1) {
-                    map[i][j] = new Wall(j, i, Sprite.wall.getFxImage());
-                }
-                stillObjects.add(map[i][j]);
+                while (!map[i][j].empty())
+                    stillObjects.add(map[i][j].pop());
             }
         }
     }
 
+    public static Bomber getBomber() {
+        return bomber;
+    }
+
+    public static void setBomber(Bomber bomber) {
+        BombermanGame.bomber = bomber;
+    }
+
     public void update() {
         entities.forEach(Entity::update);
+        bomber.update();
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         stillObjects.forEach(g -> g.render(gc));
         entities.forEach(g -> g.render(gc));
+        bomber.render(gc);
     }
 
     public static Entity getEntity(Rectangle rec) {
@@ -176,9 +146,9 @@ public class BombermanGame extends Application {
         return null;
     }
 
-    //ki?m tra ch?m qu�i
+    //kiểm tra va chạm với quái
     public static boolean checkCollisionEnemy(Rectangle rec) {
-        /*//System.out.println(stillObjects.size());
+        //System.out.println(stillObjects.size());
         for (int i = 0; i < entities.size(); i++) {
             Entity t = entities.get(i);
             if (!(t instanceof Bomber)) {
@@ -186,7 +156,7 @@ public class BombermanGame extends Application {
                     return true;
                 }
             }
-        }*/
+        }
         return false;
     }
 
@@ -202,5 +172,24 @@ public class BombermanGame extends Application {
             }
         }*/
         return null;
+    }
+
+    public static void setEntity(Entity entity) {
+        entities.add(entity);
+    }
+
+    public static Entity getEntityAt(int x, int y) {
+        Coordinates coordinates = new Coordinates(x, y);
+        Iterator<Entity> itr = stillObjects.iterator();
+        Entity cur;
+        Entity entity = null;
+        while (itr.hasNext()) {
+            cur = itr.next();
+            if (cur.getTile().getY() == coordinates.getY()
+                    && cur.getTile().getX() == coordinates.getX()) {
+                entity = cur;
+            }
+        }
+        return entity;
     }
 }
