@@ -12,7 +12,7 @@ public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _moving = false;
     protected DIRECTION _direction = DIRECTION.NONE;
 
-    enum DIRECTION {
+    public enum DIRECTION {
         NONE, UP, RIGHT, DOWN, LEFT
     }
 

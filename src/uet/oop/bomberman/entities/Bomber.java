@@ -7,8 +7,6 @@ import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.*;
-
 public class Bomber extends MovableEntity {
 
     protected BombermanGame game = new BombermanGame();
