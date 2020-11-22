@@ -27,8 +27,8 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
-    private static List<Bomb> bombs = new ArrayList<>();
-    private static List<Entity> stillObjects = new ArrayList<>();
+    public static List<Bomb> bombs = new ArrayList<>();
+    public static List<Entity> stillObjects = new ArrayList<>();
     private LevelLoader instance = LevelLoader.getInstance();
     public static Keyboard input = new Keyboard();
 
@@ -119,6 +119,8 @@ public class BombermanGame extends Application {
     public static void setBomb(Bomb bomb) {
         bombs.add(bomb);
     }
+
+    public static void removeBomb() {bombs.remove(0);}
 
     public static void setEntity(Entity entity) {
         entities.add(entity);

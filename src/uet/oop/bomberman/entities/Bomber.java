@@ -15,7 +15,6 @@ public class Bomber extends MovableEntity {
     protected Keyboard _input = new Keyboard();
 
 
-
     protected static double speed = 1.0;
     protected static int max_bomb = 1;
     protected static boolean flame = false;
@@ -46,7 +45,7 @@ public class Bomber extends MovableEntity {
     public Bomber(Coordinates tile, Image img, Keyboard _input) {
         super(tile, img);
         this._input = _input;
-  //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
+        //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
 
 
@@ -68,10 +67,11 @@ public class Bomber extends MovableEntity {
                 Sprite.player_down,Sprite.player_down_1,Sprite.player_down_2);
 
     }
-
     protected void putBomb(){
-        if (_input.space){
-            BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(),tile.getY())));
+        if (_input.space) {
+            if(BombermanGame.getBombs().size() < 1) {
+                BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(), tile.getY())));
+            }
         }
     }
 

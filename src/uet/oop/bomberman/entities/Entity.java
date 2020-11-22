@@ -23,6 +23,7 @@ public abstract class Entity {
     protected Rectangle rectangle;
 
     protected String name;
+    protected boolean _removed = false;
 
     public Entity() {
 
@@ -33,6 +34,14 @@ public abstract class Entity {
     public Entity(Coordinates tile) {
         this.tile = tile;
         pixel = tile.convertTileToPixel();
+    }
+
+    public boolean is_removed() {
+        return _removed;
+    }
+
+    public void removed() {
+        _removed = true;
     }
 
     public Entity(Coordinates tile, Image img) {
