@@ -127,7 +127,9 @@ public class Balloom extends Enemy {
         return super.canMoveToDirection(x, y);
     }
 
-    protected boolean canSeeBomber(){
-        return true;
+    @Override
+    protected void handleCollision() {
+
     }
+
 }

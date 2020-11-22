@@ -4,12 +4,9 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-import javax.xml.parsers.SAXParser;
-import java.nio.channels.spi.SelectorProvider;
-
 public class Bomb extends StaticEntity implements Animated {
 
-
+    protected int timeLeft=120;
     protected int _animate = 0;
 
     public Bomb() {
@@ -28,6 +25,7 @@ public class Bomb extends StaticEntity implements Animated {
     public void animate() {
         if (_animate > 90) _animate = 0;
         else _animate++;
+        timeLeft--;
     }
 
     @Override

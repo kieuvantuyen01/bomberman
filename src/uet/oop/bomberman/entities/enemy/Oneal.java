@@ -100,6 +100,11 @@ public class Oneal extends Enemy {
     }
 
     @Override
+    protected void handleCollision() {
+
+    }
+
+    @Override
     protected void move(double xa, double ya) {
         super.move(xa, ya);
     }
@@ -110,6 +115,9 @@ public class Oneal extends Enemy {
     }
 
     private void findBomber() {
+        if (BombermanGame.getBomber()==null){
+            return;
+        }
         double xtemp=0,ytemp=0;
         int low, high;
         speed=1;

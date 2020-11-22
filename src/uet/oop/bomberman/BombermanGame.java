@@ -10,10 +10,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Enemy;
+import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -27,9 +27,13 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
-    private static List<Bomb> bombs = new ArrayList<>();
-    private static List<Entity> stillObjects = new ArrayList<>();
-    private LevelLoader instance = LevelLoader.getInstance();
+    private static Queue<Bomb> bombs = new LinkedList<>();
+    private static List<Entity> walls=new ArrayList<>();
+    private static List<Entity> portals=new ArrayList<>();
+    private static List<Entity> bricks=new ArrayList<>();
+    private static List<Entity> items=new ArrayList<>();
+    private static List<Entity> enemies=new ArrayList<>();
+    private static List<Grass> grasses=new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
@@ -81,13 +85,7 @@ public class BombermanGame extends Application {
     }
 
     public void createMap() {
-        Stack<Entity>[][] map = instance.loadMap(1);
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                while (!map[i][j].empty())
-                stillObjects.add(map[i][j].pop());
-            }
-        }
+        LevelLoader.getInstance().loadMap(1);
     }
 
     public static Bomber getBomber() {
@@ -99,33 +97,117 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
-        entities.forEach(Entity::update);
+        enemies.forEach(Entity::update);
         bombs.forEach(Bomb::update);
-        bomber.update();
+        if (bomber!=null){
+            bomber.update();
+        }
     }
 
     public void render() {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
+        grasses.forEach(grass -> grass.render(gc));
+        walls.forEach(wall -> wall.render(gc));
+        items.forEach(item -> item.render(gc));
+        bricks.forEach(brick -> brick.render(gc));
+        enemies.forEach(enemy -> enemy.render(gc));
         bombs.forEach(g->g.render(gc));
-        bomber.render(gc);
+        if (bomber!=null){
+            bomber.render(gc);
+        }
     }
 
-    public static List<Bomb> getBombs() {
+    public static Queue<Bomb> getBombs() {
         return bombs;
     }
 
+    public static List<Entity> getWalls() {
+        return walls;
+    }
+
+    public static void setWall(Wall wall) {
+        BombermanGame.walls.add(wall);
+    }
+
+    public static List<Entity> getBricks() {
+        return bricks;
+    }
+
+    public static void setBrick(Brick brick) {
+        BombermanGame.bricks.add(brick);
+    }
+
+    public static List<Entity> getPortals() {
+        return portals;
+    }
+
+    public static void setPortal(Portal portal) {
+        BombermanGame.portals.add(portal);
+    }
+
+    public static List<Entity> getItems() {
+        return items;
+    }
+
+    public static void setItem(Item item) {
+        BombermanGame.items.add(item);
+    }
+
+    public static List<Entity> getEnemies() {
+        return enemies;
+    }
+
+    public static void setEnemy(Enemy enemy) {
+        BombermanGame.enemies.add(enemy);
+    }
+
+    public static List<Grass> getGrasses() {
+        return grasses;
+    }
+
+    public static void setGrass(Grass grass) {
+        BombermanGame.grasses.add(grass);
+    }
+
     public static void setBomb(Bomb bomb) {
-        bombs.add(bomb);
+        BombermanGame.bombs.add(bomb);
+    }
+
+    public static void removeBomb(){
+        if (!BombermanGame.bombs.isEmpty()){
+            BombermanGame.bombs.remove();
+        }
     }
 
     public static void setEntity(Entity entity) {
         entities.add(entity);
     }
+
     public static Entity getEntityAt(int x,int y){
+        Entity entity=null;
+        entity=get(walls,x,y);
+        if (entity!=null){
+            return entity;
+        }
+        entity=get(bricks,x,y);
+        if (entity!=null){
+            return entity;
+        }
+        entity=get(portals,x,y);
+        if (entity!=null){
+            return entity;
+        }
+        entity=get(items,x,y);
+        if (entity!=null){
+            return entity;
+        }
+        entity=get(enemies,x,y);
+        return entity;
+    }
+
+    public static Entity get(List<Entity> entities, int x,int y){
         Coordinates coordinates=new Coordinates(x,y);
-        Iterator<Entity> itr=stillObjects.iterator();
+        Iterator<Entity> itr=entities.iterator();
         Entity cur;
         Entity entity = null;
         while (itr.hasNext()){
@@ -135,5 +217,13 @@ public class BombermanGame extends Application {
             }
         }
         return entity;
+    }
+
+    public static void removeBomber(){
+        bomber=null;
+    }
+
+    public static void removeItem(Item item){
+        items.remove(item);
     }
 }

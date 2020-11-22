@@ -52,14 +52,6 @@ public abstract class Entity {
 
     public abstract void update();
 
-    public boolean isCollision(Entity other) {
-        if (this.tile.getX() != other.tile.getX()
-                || this.tile.getY() != other.tile.getY()) {
-            return false;
-        }
-        return true;
-    }
-
     public Coordinates getTile() {
         return tile;
     }

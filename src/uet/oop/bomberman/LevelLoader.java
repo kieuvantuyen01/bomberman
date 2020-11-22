@@ -4,6 +4,7 @@ import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Balloom;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.FlamesItem;
+import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.exception.LevelLoaderException;
 
@@ -14,7 +15,6 @@ import java.util.Stack;
 
 public class LevelLoader {
     public static LevelLoader instance = null;
-    private Stack<Entity>[][] matrix;
     public String LEVEL_TEMPLATE = "/levels/Level%d.txt";
 
     private int level;
@@ -32,7 +32,7 @@ public class LevelLoader {
         return instance;
     }
 
-    public Stack<Entity>[][] loadMap(int level) {
+    public void loadMap(int level) {
 
         try {
             InputStream is = this.getClass().getResourceAsStream(
@@ -49,56 +49,42 @@ public class LevelLoader {
             rows = Integer.parseInt(line[1]);
             cols = Integer.parseInt(line[2]);
             System.out.println(rows + " " + cols);
-            Stack<Entity>[][] matrix = new Stack[rows][cols];
             for (int i = 0; i < rows; i++) {
                 String map = br.readLine();
                 System.out.println(map);
                 for (int j = 0; j < cols; j++) {
-                    matrix[i][j]=new Stack<Entity>();
+                    BombermanGame.setGrass(new Grass(new Coordinates(j,i)));
                     switch (map.charAt(j)) {
                         case '#':
-                            matrix[i][j].push(new Wall(new Coordinates(j,i)));
+                            BombermanGame.setWall(new Wall(new Coordinates(j,i)));
                             break;
                         case '*':
-                            matrix[i][j].push(new Brick(new Coordinates(j,i)));
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 'x':
-                            matrix[i][j].push(new Portal(new Coordinates(j,i)));
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setPortal(new Portal(new Coordinates(j,i)));
                             break;
                         case 'p':
-                            matrix[i][j].push(new Bomber(new Coordinates(j,i),BombermanGame.input));
-                            BombermanGame.setBomber((Bomber) matrix[i][j].peek());
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setBomber(new Bomber(new Coordinates(j,i),BombermanGame.input));
                             break;
                         case 'f':
-                            matrix[i][j].push(new FlamesItem(new Coordinates(j,i)));
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setItem(new FlamesItem(new Coordinates(j,i)));
                             break;
                         case 's':
-                            matrix[i][j].push(new SpeedItem(new Coordinates(j,i)));
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setItem(new SpeedItem(new Coordinates(j,i)));
                             break;
                         case '1':
-                            matrix[i][j].push(new Balloom(new Coordinates(j,i),true));
-                            BombermanGame.setEntity(matrix[i][j].peek());
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setEnemy(new Balloom(new Coordinates(j,i),true));
                             break;
                         case '2':
-                            matrix[i][j].push(new Oneal(new Coordinates(j,i)));
-                            BombermanGame.setEntity(matrix[i][j].peek());
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
+                            BombermanGame.setEnemy(new Oneal(new Coordinates(j,i)));
                         default:
-                            matrix[i][j].push(new Grass(new Coordinates(j,i)));
                             break;
                     }
                 }
             }
             br.close();
             is.close();
-            return matrix;
-
 
         } catch (LevelLoaderException e) {
             System.err.println(e.getMessage());
@@ -106,12 +92,8 @@ public class LevelLoader {
             e.printStackTrace();
         }
 
-        return null;
     }
 
-    public Stack<Entity>[][] getMatrix() {
-        return matrix;
-    }
 
     public int getLevel() {
         return level;
