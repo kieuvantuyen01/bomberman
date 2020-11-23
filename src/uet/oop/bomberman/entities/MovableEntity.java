@@ -57,7 +57,7 @@ public abstract class MovableEntity extends Entity implements Animated {
 
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall || entity instanceof Brick) {
+        if (entity instanceof Wall || entity instanceof Brick || entity instanceof Bomb) {
             return false;
         }
         return true;

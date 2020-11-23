@@ -194,6 +194,10 @@ public class BombermanGame extends Application {
         if (entity!=null){
             return entity;
         }
+        entity=get(bombs,x,y);
+        if (entity!=null){
+            return entity;
+        }
         entity=get(portals,x,y);
         if (entity!=null){
             return entity;

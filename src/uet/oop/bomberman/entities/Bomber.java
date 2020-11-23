@@ -88,7 +88,7 @@ public class Bomber extends MovableEntity {
     }
 
     protected void putBomb() {
-        if (_input.space && distance<0 && bomb > 0) {
+        if (_input.space && distance<0 && bomb > 0 && !(BombermanGame.getEntityAt(tile.getX(),tile.getY()) instanceof Bomb)) {
             BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(), tile.getY())));
             bomb--;
             distance=10;
@@ -167,7 +167,6 @@ public class Bomber extends MovableEntity {
 
     public void addBomb(){
         bomb++;
-        System.out.println(bomb);
     }
 
 
