@@ -22,7 +22,7 @@ public class Bomb extends StaticEntity implements Animated {
 
     public Bomb(Coordinates tile) {
         super(tile);
-        img = Sprite.bomb.getFxImage();
+        //img = Sprite.bomb.getFxImage();
 
     }
 
