@@ -166,7 +166,7 @@ public class Oneal extends Enemy {
             for (int i = low + 1; i < high; i++) {
                 if (BombermanGame.getEntityAt(i, tile.getY()) instanceof Wall
                         || BombermanGame.getEntityAt(i, tile.getY()) instanceof Brick
-                        || BombermanGame.getEntityAt(tile.getX(), i) instanceof Bomb) {
+                        || BombermanGame.getEntityAt(i, tile.getY()) instanceof Bomb) {
                     return;
                 }
             }
