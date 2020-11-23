@@ -26,7 +26,7 @@ public class Flame extends Entity {
     public void createFlameSegments() {
         int x = tile.getX();
         int y = tile.getY();
-        _flameSegments = new FlameSegment[4];
+        _flameSegments = new FlameSegment[_radius];
         boolean last = false;
         for (int i = 0; i < _flameSegments.length; i++) {
             if (i == _flameSegments.length - 1)
