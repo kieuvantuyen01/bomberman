@@ -25,6 +25,14 @@ public abstract class Entity {
     protected String name;
     protected boolean _removed = false;
 
+    public boolean is_removed() {
+        return _removed;
+    }
+
+    public void removed() {
+        _removed = true;
+    }
+
     public Entity() {
 
     }
@@ -34,14 +42,6 @@ public abstract class Entity {
     public Entity(Coordinates tile) {
         this.tile = tile;
         pixel = tile.convertTileToPixel();
-    }
-
-    public boolean is_removed() {
-        return _removed;
-    }
-
-    public void removed() {
-        _removed = true;
     }
 
     public Entity(Coordinates tile, Image img) {
@@ -60,14 +60,6 @@ public abstract class Entity {
     }
 
     public abstract void update();
-
-    public boolean isCollision(Entity other) {
-        if (this.tile.getX() != other.tile.getX()
-                || this.tile.getY() != other.tile.getY()) {
-            return false;
-        }
-        return true;
-    }
 
     public Coordinates getTile() {
         return tile;

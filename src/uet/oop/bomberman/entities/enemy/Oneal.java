@@ -3,6 +3,7 @@ package uet.oop.bomberman.entities.enemy;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.entities.Bomb;
 import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
@@ -25,39 +26,39 @@ public class Oneal extends Enemy {
 
     @Override
     protected void handleMove() {
-        if (d.getY()==0&&d.getX()==0){
+        if (d.getY() == 0 && d.getX() == 0) {
             findBomber();
         }
-        if (d.getX()==0&&ya==0){
-            if (xa<0){
-                if (canMoveToDirection(-1,0)){
+        if (d.getX() == 0 && ya == 0) {
+            if (xa < 0) {
+                if (canMoveToDirection(-1, 0)) {
                     d.setX(-Sprite.SCALED_SIZE);
-                } else if (canMoveToDirection(1,0)) {
-                    xa=speed;
+                } else if (canMoveToDirection(1, 0)) {
+                    xa = speed;
                     d.setX(Sprite.SCALED_SIZE);
                 }
-            } else if (xa>0) {
-                if (canMoveToDirection(1,0)){
+            } else if (xa > 0) {
+                if (canMoveToDirection(1, 0)) {
                     d.setX(Sprite.SCALED_SIZE);
-                } else if (canMoveToDirection(-1,0)){
-                    xa=-speed;
+                } else if (canMoveToDirection(-1, 0)) {
+                    xa = -speed;
                     d.setX(-Sprite.SCALED_SIZE);
                 }
             }
         }
-        if (d.getY()==0&&xa==0){
-            if (ya<0){
-                if (canMoveToDirection(0,-1)){
+        if (d.getY() == 0 && xa == 0) {
+            if (ya < 0) {
+                if (canMoveToDirection(0, -1)) {
                     d.setY(-Sprite.SCALED_SIZE);
-                } else if (canMoveToDirection(0,1)){
-                    ya=speed;
+                } else if (canMoveToDirection(0, 1)) {
+                    ya = speed;
                     d.setY(Sprite.SCALED_SIZE);
                 }
-            } else if (ya>0) {
-                if (canMoveToDirection(0,1)){
+            } else if (ya > 0) {
+                if (canMoveToDirection(0, 1)) {
                     d.setY(Sprite.SCALED_SIZE);
-                } else if (canMoveToDirection(0,-1)){
-                    ya=-speed;
+                } else if (canMoveToDirection(0, -1)) {
+                    ya = -speed;
                     d.setY(-Sprite.SCALED_SIZE);
                 }
             }
@@ -100,6 +101,11 @@ public class Oneal extends Enemy {
     }
 
     @Override
+    protected void handleCollision() {
+
+    }
+
+    @Override
     protected void move(double xa, double ya) {
         super.move(xa, ya);
     }
@@ -110,11 +116,14 @@ public class Oneal extends Enemy {
     }
 
     private void findBomber() {
-        double xtemp=0,ytemp=0;
+        if (BombermanGame.getBomber() == null) {
+            return;
+        }
+        double xtemp = 0, ytemp = 0;
         int low, high;
-        speed=1;
+        speed = 1;
         if (tile.getX() == BombermanGame.getBomber().getTile().getX()) {
-            xtemp=0;
+            xtemp = 0;
             if (tile.getY() < BombermanGame.getBomber().getTile().getY()) {
                 ytemp = speed;
                 low = tile.getY();
@@ -124,45 +133,47 @@ public class Oneal extends Enemy {
                 low = BombermanGame.getBomber().getTile().getY();
                 high = tile.getY();
             } else {
-                xa=xtemp;
-                ya=ytemp;
+                xa = xtemp;
+                ya = ytemp;
                 return;
             }
             for (int i = low + 1; i < high; i++) {
                 if (BombermanGame.getEntityAt(tile.getX(), i) instanceof Wall
-                        || BombermanGame.getEntityAt(tile.getX(), i) instanceof Brick) {
+                        || BombermanGame.getEntityAt(tile.getX(), i) instanceof Brick
+                        || BombermanGame.getEntityAt(tile.getX(), i) instanceof Bomb) {
                     return;
                 }
             }
-            xa=xtemp;
-            ya=ytemp;
+            xa = xtemp;
+            ya = ytemp;
             return;
         } else if (tile.getY() == BombermanGame.getBomber().getTile().getY()) {
-            ytemp=0;
+            ytemp = 0;
             if (tile.getX() < BombermanGame.getBomber().getTile().getX()) {
-                xtemp=speed;
+                xtemp = speed;
                 low = tile.getX();
                 high = BombermanGame.getBomber().getTile().getX();
             } else if (tile.getX() > BombermanGame.getBomber().getTile().getX()) {
-                xtemp=-speed;
+                xtemp = -speed;
                 low = BombermanGame.getBomber().getTile().getX();
                 high = tile.getX();
             } else {
-                ya=ytemp;
-                xa=xtemp;
+                ya = ytemp;
+                xa = xtemp;
                 return;
             }
 
             for (int i = low + 1; i < high; i++) {
                 if (BombermanGame.getEntityAt(i, tile.getY()) instanceof Wall
-                        || BombermanGame.getEntityAt(i, tile.getY()) instanceof Brick) {
+                        || BombermanGame.getEntityAt(i, tile.getY()) instanceof Brick
+                        || BombermanGame.getEntityAt(tile.getX(), i) instanceof Bomb) {
                     return;
                 }
             }
-            xa=xtemp;
-            ya=ytemp;
+            xa = xtemp;
+            ya = ytemp;
         }
-        speed=1;
+        speed = 1;
         return;
     }
 }

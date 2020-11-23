@@ -12,7 +12,7 @@ public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _moving = false;
     protected DIRECTION _direction = DIRECTION.NONE;
 
-    public enum DIRECTION {
+    enum DIRECTION {
         NONE, UP, RIGHT, DOWN, LEFT
     }
 
@@ -57,7 +57,7 @@ public abstract class MovableEntity extends Entity implements Animated {
 
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall || entity instanceof Brick) {
+        if (entity instanceof Wall || entity instanceof Brick || entity instanceof Bomb) {
             return false;
         }
         return true;
@@ -85,9 +85,9 @@ public abstract class MovableEntity extends Entity implements Animated {
 
     @Override
     public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {
-        img=sprite1.getFxImage();
-        if (_moving){
-            img=Sprite.movingSprite(sprite2.getFxImage(),sprite3.getFxImage(),_animate,20);
+        img = sprite1.getFxImage();
+        if (_moving) {
+            img = Sprite.movingSprite(sprite2.getFxImage(), sprite3.getFxImage(), _animate, 20);
         }
     }
 
@@ -98,21 +98,23 @@ public abstract class MovableEntity extends Entity implements Animated {
                                 Sprite down1, Sprite down2, Sprite down3) {
         switch (_direction) {
             case UP:
-                loadAnimated(up1,up2,up3);
+                loadAnimated(up1, up2, up3);
                 break;
             case RIGHT:
-                loadAnimated(right1,right2,right3);
+                loadAnimated(right1, right2, right3);
                 break;
             case DOWN:
-                loadAnimated(down1,down2,down3);
+                loadAnimated(down1, down2, down3);
                 break;
             case LEFT:
-                loadAnimated(left1,left2,left3);
+                loadAnimated(left1, left2, left3);
                 break;
             default:
                 img = default1.getFxImage();
                 break;
         }
     }
+
+    protected abstract void handleCollision();
 
 }
