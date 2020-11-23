@@ -18,7 +18,8 @@ public class Bomber extends MovableEntity {
 
 
     protected static double speed = 1.0;
-    protected static int max_bomb = 1;
+    protected static int bomb = 1;
+    protected static int distance=0;
     protected static boolean flame = false;
 
     public Bomber() {
@@ -56,7 +57,7 @@ public class Bomber extends MovableEntity {
         animate();
         if (_alive == false) {
             afterDie();
-            if (_animate==120){
+            if (_animate == 120) {
                 BombermanGame.removeBomber();
             }
             return;
@@ -80,14 +81,19 @@ public class Bomber extends MovableEntity {
         if (BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Enemy) {
             die();
         }
-        if (BombermanGame.getEntityAt(tile.getX(),tile.getY()) instanceof Item){
-            BombermanGame.removeItem((Item) BombermanGame.getEntityAt(tile.getX(),tile.getY()));
+        if (BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Item) {
+            BombermanGame.removeItem((Item) BombermanGame.getEntityAt(tile.getX(), tile.getY()));
+            bomb++;
         }
     }
 
     protected void putBomb() {
-        if (_input.space) {
+        if (_input.space && distance<0 && bomb > 0) {
             BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(), tile.getY())));
+            bomb--;
+            distance=10;
+            System.out.println(BombermanGame.getBombs().size());
+
         }
     }
 
@@ -95,6 +101,7 @@ public class Bomber extends MovableEntity {
     public void animate() {
         if (_animate > 120) _animate = 0;
         else _animate++;
+        distance--;
     }
 
 
@@ -142,7 +149,7 @@ public class Bomber extends MovableEntity {
     public void die() {
         if (!_alive) return;
         this._alive = false;
-        _animate=0;
+        _animate = 0;
     }
 
     @Override
@@ -156,6 +163,11 @@ public class Bomber extends MovableEntity {
     @Override
     protected boolean canMoveToDirection(int x, int y) {
         return super.canMoveToDirection(x, y);
+    }
+
+    public void addBomb(){
+        bomb++;
+        System.out.println(bomb);
     }
 
 

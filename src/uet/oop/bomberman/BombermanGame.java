@@ -27,7 +27,7 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
-    private static Queue<Bomb> bombs = new LinkedList<>();
+    private static List<Entity> bombs = new ArrayList<>();
     private static List<Entity> walls=new ArrayList<>();
     private static List<Entity> portals=new ArrayList<>();
     private static List<Entity> bricks=new ArrayList<>();
@@ -98,7 +98,9 @@ public class BombermanGame extends Application {
 
     public void update() {
         enemies.forEach(Entity::update);
-        bombs.forEach(Bomb::update);
+        for (int i=0;i<bombs.size();i++){
+            if (bombs.get(i)!=null) bombs.get(i).update();
+        }
         if (bomber!=null){
             bomber.update();
         }
@@ -117,7 +119,7 @@ public class BombermanGame extends Application {
         }
     }
 
-    public static Queue<Bomb> getBombs() {
+    public static List<Entity> getBombs() {
         return bombs;
     }
 
@@ -174,9 +176,8 @@ public class BombermanGame extends Application {
     }
 
     public static void removeBomb(){
-        if (!BombermanGame.bombs.isEmpty()){
-            BombermanGame.bombs.remove();
-        }
+        bombs.remove(0);
+        bomber.addBomb();
     }
 
     public static void setEntity(Entity entity) {

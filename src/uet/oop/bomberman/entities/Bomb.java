@@ -1,6 +1,7 @@
 package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -36,6 +37,11 @@ public class Bomb extends StaticEntity implements Animated {
     @Override
     public void update() {
         animate();
+        if (timeLeft<0){
+            BombermanGame.removeBomb();
+            return;
+        }
         loadAnimated(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2);
+
     }
 }
