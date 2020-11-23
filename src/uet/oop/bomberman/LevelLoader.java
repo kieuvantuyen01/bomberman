@@ -2,6 +2,7 @@ package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Ghost;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.Item;
@@ -11,6 +12,7 @@ import uet.oop.bomberman.exception.LevelLoaderException;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Struct;
 import java.util.Stack;
 
 public class LevelLoader {
@@ -78,6 +80,10 @@ public class LevelLoader {
                             break;
                         case '2':
                             BombermanGame.setEnemy(new Oneal(new Coordinates(j,i)));
+                            break;
+                        case '3':
+                            BombermanGame.setEnemy(new Ghost(new Coordinates(j,i), true));
+                            break;
                         default:
                             break;
                     }
