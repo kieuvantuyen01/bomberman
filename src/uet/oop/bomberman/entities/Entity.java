@@ -23,6 +23,15 @@ public abstract class Entity {
     protected Rectangle rectangle;
 
     protected String name;
+    protected boolean _removed = false;
+
+    public boolean is_removed() {
+        return _removed;
+    }
+
+    public void removed() {
+        _removed = true;
+    }
 
     public Entity() {
 
