@@ -27,6 +27,7 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
+    private static Flame flame;
     private static List<Entity> bombs = new ArrayList<>();
     private static List<Entity> walls=new ArrayList<>();
     private static List<Entity> portals=new ArrayList<>();
@@ -97,6 +98,9 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
+        if (flame!=null){
+            flame.update();
+        }
         enemies.forEach(Entity::update);
         for (int i=0;i<bombs.size();i++){
             if (bombs.get(i)!=null) bombs.get(i).update();
@@ -111,6 +115,13 @@ public class BombermanGame extends Application {
         grasses.forEach(grass -> grass.render(gc));
         walls.forEach(wall -> wall.render(gc));
         items.forEach(item -> item.render(gc));
+        if (flame!=null){
+            for (int i=0;i<flame.get_flameSegments().size();i++){
+                if (flame.get_flameSegments().get(i)!=null){
+                    flame.get_flameSegments().get(i).render(gc);
+                }
+            }
+        }
         bricks.forEach(brick -> brick.render(gc));
         enemies.forEach(enemy -> enemy.render(gc));
         bombs.forEach(g->g.render(gc));
@@ -230,5 +241,13 @@ public class BombermanGame extends Application {
 
     public static void removeItem(Item item){
         items.remove(item);
+    }
+
+    public static Flame getFlame() {
+        return flame;
+    }
+
+    public static void setFlame(Flame flame) {
+        BombermanGame.flame = flame;
     }
 }

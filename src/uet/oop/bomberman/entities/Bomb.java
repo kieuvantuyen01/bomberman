@@ -66,7 +66,7 @@ public class Bomb extends StaticEntity implements Animated {
         if (!_exploded) {
             loadAnimated(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2);
         } else {
-            loadAnimated(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2);
+            BombermanGame.setFlame(new Flame(new Coordinates(tile.getX(),tile.getY()),1));
         }
     }
 }

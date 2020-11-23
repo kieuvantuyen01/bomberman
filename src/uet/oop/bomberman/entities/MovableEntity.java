@@ -10,11 +10,6 @@ import java.awt.*;
 public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _alive = true;
     protected boolean _moving = false;
-    protected DIRECTION _direction = DIRECTION.NONE;
-
-    enum DIRECTION {
-        NONE, UP, RIGHT, DOWN, LEFT
-    }
 
     ;
     protected int _animate = 0;
@@ -43,10 +38,8 @@ public abstract class MovableEntity extends Entity implements Animated {
         if (d.getY() < 0) _direction = DIRECTION.UP;
 
         pixel.setY((int) (pixel.getY() + ya));
-        this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
 
         pixel.setX((int) (pixel.getX() + xa));
-        this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
 
         tile = pixel.convertPixelToTile();
     }
