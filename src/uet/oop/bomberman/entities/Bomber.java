@@ -6,7 +6,9 @@ import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.entities.enemy.Enemy;
+import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.Item;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
 import java.awt.*;
@@ -78,12 +80,18 @@ public class Bomber extends MovableEntity {
 
     @Override
     protected void handleCollision() {
-        if (BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Enemy) {
+        Entity entity=BombermanGame.getEntityAt(tile.getX(), tile.getY());
+        if (entity instanceof Enemy) {
             die();
         }
-        if (BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Item) {
-            BombermanGame.removeItem((Item) BombermanGame.getEntityAt(tile.getX(), tile.getY()));
-            bomb++;
+        if (entity instanceof Item) {
+            BombermanGame.removeItem((Item) entity);
+            if (entity instanceof BombsItem){
+                bomb++;
+            }
+            if (entity instanceof SpeedItem){
+                speed++;
+            }
         }
     }
 
