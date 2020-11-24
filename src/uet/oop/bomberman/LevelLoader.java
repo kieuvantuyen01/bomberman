@@ -4,6 +4,7 @@ import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Balloom;
 import uet.oop.bomberman.entities.enemy.Ghost;
 import uet.oop.bomberman.entities.enemy.Oneal;
+import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;

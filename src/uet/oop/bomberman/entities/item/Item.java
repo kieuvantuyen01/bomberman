@@ -16,4 +16,5 @@ public abstract class Item extends Entity {
     public Item(Coordinates tile, Image img) {
         super(tile, img);
     }
+
 }

@@ -2,12 +2,13 @@ package uet.oop.bomberman.entities;
 
 import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class FlameSegment extends Entity {
+public class FlameSegment extends Entity implements Animated{
     protected boolean _last;
-    protected int _animate = 0;
+    protected int _animate = -1;
 
     public FlameSegment(Coordinates tile, MovableEntity.DIRECTION direction, boolean last) {
         super(tile);
@@ -17,7 +18,7 @@ public class FlameSegment extends Entity {
 
 
     public void animate() {
-        if (_animate > 90) _animate = 0;
+        if (_animate > 30) _animate = 0;
         else _animate++;
     }
 
@@ -63,21 +64,22 @@ public class FlameSegment extends Entity {
 
 
     public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {
-        img = Sprite.movingSprite(sprite1.getFxImage(), sprite2.getFxImage(), sprite3.getFxImage(), _animate, 30);
+        img = Sprite.movingSprite(sprite2.getFxImage(), sprite3.getFxImage(), sprite1.getFxImage(), _animate, 10);
     }
 
     @Override
     public void update() {
         animate();
         chooseSprite();
+        handleCollision();
     }
 
 
-    public boolean collide(Entity e) {
-        // TODO: xử lý khi FlameSegment va chạm với MovableEntity
-        if(e instanceof MovableEntity){
-            ((MovableEntity) e).die();
+    public void handleCollision(){
+        Entity entity= BombermanGame.getEntityAt(tile.getX(), tile.getY());
+        if (entity instanceof MovableEntity){
+            ((MovableEntity) entity).die();
+            System.out.println(entity);
         }
-        return true;
     }
 }

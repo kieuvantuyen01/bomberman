@@ -19,9 +19,4 @@ public class Grass extends StaticEntity {
         super(tile, img);
     }
 
-    @Override
-    public void update() {
-
-    }
-
 }

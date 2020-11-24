@@ -44,7 +44,11 @@ public abstract class MovableEntity extends Entity implements Animated {
         tile = pixel.convertPixelToTile();
     }
 
-    public abstract void die();
+    public void die() {
+        if (!_alive) return;
+        this._alive = false;
+        _animate = 0;
+    }
 
     protected abstract void afterDie();
 
@@ -68,13 +72,6 @@ public abstract class MovableEntity extends Entity implements Animated {
         return _direction;
     }
 
-    /*protected double getXMessage() {
-        return (_x * Game.SCALE) + (_sprite.SIZE / 2 * Game.SCALE);
-    }
-
-    protected double getYMessage() {
-        return (_y* Game.SCALE) - (_sprite.SIZE / 2 * Game.SCALE);
-    }*/
 
     @Override
     public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {

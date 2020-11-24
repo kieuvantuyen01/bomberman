@@ -19,8 +19,4 @@ public class Wall extends StaticEntity {
         super(tile, img);
     }
 
-    @Override
-    public void update() {
-
-    }
 }

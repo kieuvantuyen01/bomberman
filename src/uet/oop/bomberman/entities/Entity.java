@@ -24,15 +24,6 @@ public abstract class Entity {
         NONE, UP, RIGHT, DOWN, LEFT, CENTER
     }
 
-    protected boolean _removed = false;
-
-    public boolean is_removed() {
-        return _removed;
-    }
-
-    public void removed() {
-        _removed = true;
-    }
 
     public Entity() {
 
@@ -54,9 +45,6 @@ public abstract class Entity {
     public void render(GraphicsContext gc) {
         gc.drawImage(img, pixel.getX(), pixel.getY());
     }
-
-
-    public abstract void update();
 
     public Coordinates getTile() {
         return tile;

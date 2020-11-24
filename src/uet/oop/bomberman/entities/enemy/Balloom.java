@@ -94,18 +94,11 @@ public class Balloom extends Enemy {
     }
 
     @Override
-    public void animate() {
-        if (_animate > 6000) _animate = 0;
-        else _animate++;
-    }
-
-    @Override
     public void update() {
-        if (_alive == false) {
-            afterDie();
+        super.update();
+        if (!_alive){
             return;
         }
-        animate();
 
         handleMove();
 
@@ -132,4 +125,8 @@ public class Balloom extends Enemy {
 
     }
 
+    @Override
+    protected void afterDie() {
+        img=Sprite.balloom_dead.getFxImage();
+    }
 }

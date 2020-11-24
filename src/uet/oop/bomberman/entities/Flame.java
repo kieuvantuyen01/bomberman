@@ -7,20 +7,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flame extends Entity {
+    protected int time=30;
+    protected int frame=-1;
     protected List<FlameSegment> _flameSegments;
     protected int _radius;
 
     public Flame(Coordinates tile, int radius) {
         super(tile);
-        createFlameSegments();
         _radius = radius;
         createFlameSegments();
     }
 
-    @Override
     public void update() {
-        _flameSegments.forEach(FlameSegment::animate);
-        _flameSegments.forEach(FlameSegment::update);
+        time--;
+        if (time>0){
+            _flameSegments.forEach(FlameSegment::update);
+        } else {
+            BombermanGame.removeFlame();
+        }
     }
 
     public void createSpark(DIRECTION direction) {
@@ -40,11 +44,11 @@ public class Flame extends Entity {
                     yt = y+i;
                     break;
                 case LEFT:
-                    xt = x-1;
+                    xt = x-i;
                     yt = y;
                     break;
                 case RIGHT:
-                    xt = x+1;
+                    xt = x+i;
                     yt = y;
                     break;
             }
@@ -53,7 +57,9 @@ public class Flame extends Entity {
                 radius = i - 1;
             } else if (entity instanceof Brick) {
                 radius = i;
-                _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, false));
+                _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
+                Brick brick=(Brick) entity;
+                brick.remove();
             } else {
                 if (i == radius) {
                     _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
@@ -79,7 +85,4 @@ public class Flame extends Entity {
         return _flameSegments;
     }
 
-    public void set_flameSegments(List<FlameSegment> _flameSegments) {
-        this._flameSegments = _flameSegments;
-    }
 }

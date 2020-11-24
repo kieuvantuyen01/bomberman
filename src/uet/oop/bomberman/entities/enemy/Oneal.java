@@ -75,20 +75,11 @@ public class Oneal extends Enemy {
     }
 
     @Override
-    public void animate() {
-        if (_animate > 6000) _animate = 0;
-        else _animate++;
-    }
-
-
-    @Override
     public void update() {
-        if (_alive == false) {
-            afterDie();
+        super.update();
+        if (!_alive) {
             return;
         }
-        animate();
-
         handleMove();
 
         chooseSprite(Sprite.oneal_left1,
@@ -175,6 +166,11 @@ public class Oneal extends Enemy {
         }
         speed = 1;
         return;
+    }
+
+    @Override
+    protected void afterDie() {
+        img=Sprite.oneal_dead.getFxImage();
     }
 }
 

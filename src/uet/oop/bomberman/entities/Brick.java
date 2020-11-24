@@ -1,26 +1,48 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.image.Image;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Brick extends Entity {
+public class Brick extends StaticEntity implements Animated {
+    protected int frame=-1;
+    protected boolean destroyed=false;
 
-    public Brick() {
-        this.img=Sprite.brick.getFxImage();
-    }
 
     public Brick(Coordinates tile) {
         super(tile);
-        this.img=Sprite.brick.getFxImage();
+        this.img = Sprite.brick.getFxImage();
     }
 
-    public Brick(Coordinates tile, Image img) {
-        super(tile, img);
+    public void remove() {
+        destroyed=true;
+    }
+
+
+    @Override
+    public void animate() {
+        frame++;
+    }
+
+    @Override
+    public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {
+        img = Sprite.movingSprite(
+                sprite1.getFxImage(),
+                sprite2.getFxImage(),
+                sprite3.getFxImage(),
+                frame, 10);
     }
 
     @Override
     public void update() {
+        if (destroyed){
+            animate();
+            if (frame==30){
+                BombermanGame.removeBrick(this);
+                return;
+            }
+            loadAnimated(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2);
 
+        }
     }
 }

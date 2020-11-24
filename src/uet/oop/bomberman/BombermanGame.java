@@ -16,6 +16,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BombermanGame extends Application {
 
@@ -27,14 +28,14 @@ public class BombermanGame extends Application {
 
     private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
-    private static Flame flame;
-    private static List<Entity> bombs = new ArrayList<>();
-    private static List<Entity> walls=new ArrayList<>();
-    private static List<Entity> portals=new ArrayList<>();
-    private static List<Entity> bricks=new ArrayList<>();
-    private static List<Entity> items=new ArrayList<>();
-    private static List<Entity> enemies=new ArrayList<>();
-    private static List<Grass> grasses=new ArrayList<>();
+    private static List<Flame> flames = new CopyOnWriteArrayList<>();
+    private static List<Entity> bombs = new CopyOnWriteArrayList<>();
+    private static List<Entity> walls = new ArrayList<>();
+    private static List<Entity> portals = new ArrayList<>();
+    private static List<Entity> bricks = new CopyOnWriteArrayList<>();
+    private static List<Entity> items = new CopyOnWriteArrayList<>();
+    private static List<Entity> enemies = new CopyOnWriteArrayList<>();
+    private static List<Grass> grasses = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
@@ -98,14 +99,22 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
-        if (flame!=null){
-            flame.update();
+        flames.forEach(Flame::update);
+        for (Entity _brick : bricks) {
+            Brick brick = (Brick) _brick;
+            brick.update();
         }
-        enemies.forEach(Entity::update);
-        for (int i=0;i<bombs.size();i++){
-            if (bombs.get(i)!=null) bombs.get(i).update();
+        for (Entity _enemy : enemies) {
+            MovableEntity enemy = (MovableEntity) _enemy;
+            enemy.update();
         }
-        if (bomber!=null){
+
+        for (Entity _bomb : bombs) {
+            Bomb bomb = (Bomb) _bomb;
+            bomb.update();
+        }
+
+        if (bomber != null) {
             bomber.update();
         }
     }
@@ -115,17 +124,13 @@ public class BombermanGame extends Application {
         grasses.forEach(grass -> grass.render(gc));
         walls.forEach(wall -> wall.render(gc));
         items.forEach(item -> item.render(gc));
-        if (flame!=null){
-            for (int i=0;i<flame.get_flameSegments().size();i++){
-                if (flame.get_flameSegments().get(i)!=null){
-                    flame.get_flameSegments().get(i).render(gc);
-                }
-            }
+        for (Flame flame : flames) {
+            flame.get_flameSegments().forEach(flameSegment -> flameSegment.render(gc));
         }
         bricks.forEach(brick -> brick.render(gc));
         enemies.forEach(enemy -> enemy.render(gc));
-        bombs.forEach(g->g.render(gc));
-        if (bomber!=null){
+        bombs.forEach(g -> g.render(gc));
+        if (bomber != null) {
             bomber.render(gc);
         }
     }
@@ -186,7 +191,7 @@ public class BombermanGame extends Application {
         BombermanGame.bombs.add(bomb);
     }
 
-    public static void removeBomb(){
+    public static void removeBomb() {
         bombs.remove(0);
         bomber.addBomb();
     }
@@ -195,59 +200,76 @@ public class BombermanGame extends Application {
         entities.add(entity);
     }
 
-    public static Entity getEntityAt(int x,int y){
-        Entity entity=null;
-        entity=get(walls,x,y);
+    public static Entity getEntityAt(int x, int y) {
+        Entity entity = null;
+        entity = get(walls, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(bricks, x, y);
+        if (entity != null) {
+            return entity;
+        }
+
+        entity = get(bombs, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(portals, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(items, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(enemies, x, y);
         if (entity!=null){
             return entity;
         }
-        entity=get(bricks,x,y);
-        if (entity!=null){
-            return entity;
+        if (bomber != null
+                && bomber.getTile().getX() == x
+                && bomber.getTile().getY() == y) {
+            entity = bomber;
         }
-        entity=get(bombs,x,y);
-        if (entity!=null){
-            return entity;
-        }
-        entity=get(portals,x,y);
-        if (entity!=null){
-            return entity;
-        }
-        entity=get(items,x,y);
-        if (entity!=null){
-            return entity;
-        }
-        entity=get(enemies,x,y);
         return entity;
     }
 
-    public static Entity get(List<Entity> entities, int x,int y){
-        Coordinates coordinates=new Coordinates(x,y);
-        Iterator<Entity> itr=entities.iterator();
+    public static Entity get(List<Entity> entities, int x, int y) {
+        Coordinates coordinates = new Coordinates(x, y);
+        Iterator<Entity> itr = entities.iterator();
         Entity cur;
         Entity entity = null;
-        while (itr.hasNext()){
-            cur=itr.next();
-            if(cur.getTile().getY()==coordinates.getY()&&cur.getTile().getX()==coordinates.getX()){
-                entity=cur;
+        while (itr.hasNext()) {
+            cur = itr.next();
+            if (cur.getTile().getY() == coordinates.getY() && cur.getTile().getX() == coordinates.getX()) {
+                entity = cur;
             }
         }
         return entity;
     }
 
-    public static void removeBomber(){
-        bomber=null;
+    public static void removeBomber() {
+        bomber = null;
     }
 
-    public static void removeItem(Item item){
+    public static void removeItem(Item item) {
         items.remove(item);
     }
 
-    public static Flame getFlame() {
-        return flame;
+    public static void setFlame(Flame flame) {
+        flames.add(flame);
     }
 
-    public static void setFlame(Flame flame) {
-        BombermanGame.flame = flame;
+    public static void removeFlame() {
+        flames.remove(0);
+    }
+
+    public static void removeBrick(Brick brick) {
+        bricks.remove(brick);
+    }
+
+    public static void removeEnemy(Enemy enemy){
+        enemies.remove(enemy);
     }
 }

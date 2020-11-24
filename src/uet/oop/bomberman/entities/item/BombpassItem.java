@@ -19,8 +19,4 @@ public class BombpassItem extends Item {
         super(tile, img);
     }
 
-    @Override
-    public void update() {
-
-    }
 }

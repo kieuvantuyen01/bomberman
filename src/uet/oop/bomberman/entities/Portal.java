@@ -18,9 +18,4 @@ public class Portal extends Entity {
     public Portal(Coordinates tile, Image img) {
         super(tile, img);
     }
-
-    @Override
-    public void update() {
-
-    }
 }

@@ -102,12 +102,10 @@ public class Ghost extends Enemy {
 
     @Override
     public void update() {
-        if (_alive == false) {
-            afterDie();
+        super.update();
+        if(!_alive){
             return;
         }
-        animate();
-
         handleMove();
 
         chooseSprite(Sprite.ghost_left1,
@@ -137,4 +135,8 @@ public class Ghost extends Enemy {
 
     }
 
+    @Override
+    protected void afterDie() {
+        img=Sprite.ghost_dead.getFxImage();
+    }
 }

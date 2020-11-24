@@ -18,9 +18,5 @@ public class DetonatorItem extends Item {
         super(tile, img);
     }
 
-    @Override
-    public void update() {
-
-        }
 
 }

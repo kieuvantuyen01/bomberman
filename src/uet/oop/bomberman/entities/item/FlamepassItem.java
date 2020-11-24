@@ -20,8 +20,6 @@ public class FlamepassItem extends Item {
         super(tile, img);
     }
 
-    @Override
-    public void update() {}
 
     public boolean collide(Entity e) {return false;}
 }

@@ -18,8 +18,4 @@ public class SpeedItem extends Item {
         super(tile, img);
     }
 
-    @Override
-    public void update() {
-
-    }
 }

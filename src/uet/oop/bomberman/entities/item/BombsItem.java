@@ -17,9 +17,5 @@ public class BombsItem extends Item {
     public BombsItem(Coordinates tile, Image img) {
         super(tile, img);
     }
-
-    @Override
-    public void update() {
-
-    }
+    
 }
