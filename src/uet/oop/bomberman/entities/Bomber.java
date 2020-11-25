@@ -4,6 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
+import uet.oop.bomberman.LevelLoader;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
@@ -78,6 +79,7 @@ public class Bomber extends MovableEntity {
             }
         }
         if (entity instanceof Portal) {
+            BombermanGame.removeOldData();
             if (BombermanGame.load_map_level<5){
                 BombermanGame.createMap(++BombermanGame.load_map_level);
             }
