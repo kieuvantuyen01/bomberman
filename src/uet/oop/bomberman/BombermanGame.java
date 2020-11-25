@@ -193,7 +193,9 @@ public class BombermanGame extends Application {
 
     public static void removeBomb() {
         bombs.remove(0);
-        bomber.addBomb();
+        if (bomber!=null){
+            bomber.addBomb();
+        }
     }
 
     public static void setEntity(Entity entity) {

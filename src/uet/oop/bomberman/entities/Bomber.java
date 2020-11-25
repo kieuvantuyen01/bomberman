@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
@@ -12,11 +11,10 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.*;
 
 public class Bomber extends MovableEntity {
 
-    protected Keyboard _input = new Keyboard();
+    protected Keyboard _input;
 
 
     protected static double speed = 1.0;
@@ -24,33 +22,11 @@ public class Bomber extends MovableEntity {
     protected static int distance = 0;
     protected static boolean flame = false;
 
-    public Bomber() {
-        this.img = Sprite.player_right.getFxImage();
-    }
-
-    public Bomber(Coordinates tile) {
-        super(tile);
-        this.img = Sprite.player_right.getFxImage();
-        this.pixel.setX(this.pixel.getX() + 6);
-    }
-
-    public Bomber(Coordinates tile, Image img) {
-        super(tile, img);
-        this.pixel.setX(this.pixel.getX() + 6);
-    }
-
     public Bomber(Coordinates tile, Keyboard _input) {
         super(tile);
         this.img = Sprite.player_right.getFxImage();
         this.pixel.setX(this.pixel.getX() + 4);
         this._input = _input;
-//        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
-    }
-
-    public Bomber(Coordinates tile, Image img, Keyboard _input) {
-        super(tile, img);
-        this._input = _input;
-        //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
 
     @Override

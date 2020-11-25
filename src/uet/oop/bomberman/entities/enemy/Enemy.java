@@ -1,23 +1,13 @@
 package uet.oop.bomberman.entities.enemy;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.MovableEntity;
 
-import java.awt.*;
-
 public abstract class Enemy extends MovableEntity {
-
-    public Enemy() {
-    }
 
     public Enemy(Coordinates tile) {
         super(tile);
-    }
-
-    public Enemy(Coordinates tile, Image img) {
-        super(tile, img);
     }
 
     public void animate() {

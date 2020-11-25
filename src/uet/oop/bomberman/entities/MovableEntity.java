@@ -1,11 +1,9 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.*;
 
 public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _alive = true;
@@ -15,15 +13,8 @@ public abstract class MovableEntity extends Entity implements Animated {
     protected int _animate = 0;
     protected Coordinates d = new Coordinates(0, 0);
 
-    public MovableEntity() {
-    }
-
     public MovableEntity(Coordinates tile) {
         super(tile);
-    }
-
-    public MovableEntity(Coordinates tile, Image img) {
-        super(tile, img);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities.enemy;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.Bomb;
@@ -12,16 +11,9 @@ public class Oneal extends Enemy {
     protected double speed = 1;
     double xa = -speed, ya = 0;
 
-    public Oneal() {
-    }
-
     public Oneal(Coordinates tile) {
         super(tile);
         img = Sprite.oneal_left1.getFxImage();
-    }
-
-    public Oneal(Coordinates tile, Image img) {
-        super(tile, img);
     }
 
     @Override

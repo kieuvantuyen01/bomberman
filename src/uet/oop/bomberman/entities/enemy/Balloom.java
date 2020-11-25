@@ -1,6 +1,5 @@
 package uet.oop.bomberman.entities.enemy;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -8,9 +7,6 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Balloom extends Enemy {
     protected double speed = 1;
     double xa = 0, ya = 0;
-
-    public Balloom() {
-    }
 
     public Balloom(Coordinates tile, boolean horizontal) {
         super(tile);
@@ -21,12 +17,6 @@ public class Balloom extends Enemy {
             ya = -speed;
         }
     }
-
-    public Balloom(Coordinates tile, Image img) {
-        super(tile, img);
-        this.img = img;
-    }
-
 
     @Override
     protected void handleMove() {
