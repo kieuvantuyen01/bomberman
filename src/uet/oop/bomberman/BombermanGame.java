@@ -26,16 +26,16 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private static List<Entity> entities = new ArrayList<>();
     private static Bomber bomber;
-    private static List<Flame> flames = new CopyOnWriteArrayList<>();
-    private static List<Entity> bombs = new CopyOnWriteArrayList<>();
-    private static List<Entity> walls = new ArrayList<>();
-    private static List<Entity> portals = new ArrayList<>();
-    private static List<Entity> bricks = new CopyOnWriteArrayList<>();
-    private static List<Entity> items = new CopyOnWriteArrayList<>();
-    private static List<Entity> enemies = new CopyOnWriteArrayList<>();
-    private static List<Grass> grasses = new ArrayList<>();
+    private static List<Entity> entities;
+    private static List<Flame> flames;
+    private static List<Entity> bombs;
+    private static List<Entity> walls;
+    private static List<Entity> portals;
+    private static List<Entity> bricks;
+    private static List<Entity> items;
+    private static List<Entity> enemies;
+    private static List<Grass> grasses;
     public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
@@ -87,6 +87,7 @@ public class BombermanGame extends Application {
     }
 
     public static void createMap(int level) {
+        initData();
         LevelLoader.getInstance().loadMap(level);
     }
 
@@ -276,16 +277,15 @@ public class BombermanGame extends Application {
         enemies.remove(enemy);
     }
 
-    public static void removeOldData(){
-        entities.removeAll(entities);
-        bomber=null;
-        flames.removeAll(flames);
-        bombs.removeAll(bombs);
-        walls.removeAll(walls);
-        portals.removeAll(portals);
-        bricks.removeAll(bricks);
-        items.removeAll(items);
-        enemies.removeAll(enemies);
-        grasses.removeAll(grasses);
+    public static void initData(){
+        entities = new ArrayList<>();
+        flames = new CopyOnWriteArrayList<>();
+        bombs = new CopyOnWriteArrayList<>();
+        walls = new ArrayList<>();
+        portals = new ArrayList<>();
+        bricks = new CopyOnWriteArrayList<>();
+        items = new CopyOnWriteArrayList<>();
+        enemies = new CopyOnWriteArrayList<>();
+        grasses = new ArrayList<>();
     }
 }
