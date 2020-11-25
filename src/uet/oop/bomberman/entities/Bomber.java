@@ -4,6 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
+import uet.oop.bomberman.LevelLoader;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
@@ -15,7 +16,7 @@ import uet.oop.bomberman.graphics.Sprite;
 public class Bomber extends MovableEntity {
 
     protected Keyboard _input;
-
+    private int time_exit_game = 60;
 
     protected static double speed = 1.0;
     protected static int bomb = 1;
@@ -72,8 +73,23 @@ public class Bomber extends MovableEntity {
             }
         }
         if (entity instanceof Portal) {
-            System.exit(0);
+            BombermanGame.load_map_level++;
+            switch (BombermanGame.load_map_level) {
+                case 2:
+                    BombermanGame.createMap(2);
+                    break;
+                case 3:
+                    BombermanGame.createMap(3);
+                    break;
+                case 4:
+                    BombermanGame.createMap(4);
+                    break;
+                case 5:
+                    BombermanGame.createMap(5);
+                    break;
+            }
         }
+        System.out.println(BombermanGame.load_map_level);
     }
 
     protected void putBomb() {
@@ -91,6 +107,7 @@ public class Bomber extends MovableEntity {
         if (_animate > 120) _animate = 0;
         else _animate++;
         distance--;
+        if(!_alive) {time_exit_game--;}
     }
 
 
@@ -140,6 +157,9 @@ public class Bomber extends MovableEntity {
                 Sprite.player_dead2.getFxImage(),
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
+        if(time_exit_game <= 0) {
+            System.exit(0);
+        }
     }
 
     @Override

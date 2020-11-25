@@ -22,7 +22,7 @@ public class BombermanGame extends Application {
 
     public static final int WIDTH = (int) (31);
     public static final int HEIGHT = 13;
-
+    public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -83,11 +83,11 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
+        createMap(1);
     }
 
-    public void createMap() {
-        LevelLoader.getInstance().loadMap(1);
+    public static void createMap(int level) {
+        LevelLoader.getInstance().loadMap(level);
     }
 
     public static Bomber getBomber() {

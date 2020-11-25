@@ -66,15 +66,22 @@ public class LevelLoader {
                             break;
                         case 'x':
                             BombermanGame.setPortal(new Portal(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 'p':
                             BombermanGame.setBomber(new Bomber(new Coordinates(j,i),BombermanGame.input));
                             break;
                         case 'f':
                             BombermanGame.setItem(new FlamesItem(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 's':
                             BombermanGame.setItem(new SpeedItem(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            break;
+                        case 'b':
+                            BombermanGame.setItem(new BombsItem(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case '1':
                             BombermanGame.setEnemy(new Balloom(new Coordinates(j,i),true));
