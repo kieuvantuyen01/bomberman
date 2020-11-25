@@ -1,66 +1,40 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.BombsItem;
+import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.graphics.Sprite;
 
-import java.awt.*;
 
 public class Bomber extends MovableEntity {
 
-    protected BombermanGame game = new BombermanGame();
-    protected Keyboard _input = new Keyboard();
-    int timeAfterDieByBomb =30;
+    protected Keyboard _input;
 
 
     protected static double speed = 1.0;
     protected static int bomb = 1;
-    protected static int distance=0;
+    protected static int distance = 0;
     protected static boolean flame = false;
-
-    public Bomber() {
-        this.img = Sprite.player_right.getFxImage();
-    }
-
-    public Bomber(Coordinates tile) {
-        super(tile);
-        this.img = Sprite.player_right.getFxImage();
-        this.pixel.setX(this.pixel.getX() + 6);
-    }
-
-    public Bomber(Coordinates tile, Image img) {
-        super(tile, img);
-        this.pixel.setX(this.pixel.getX() + 6);
-    }
 
     public Bomber(Coordinates tile, Keyboard _input) {
         super(tile);
         this.img = Sprite.player_right.getFxImage();
         this.pixel.setX(this.pixel.getX() + 4);
         this._input = _input;
-//        this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
     }
-
-    public Bomber(Coordinates tile, Image img, Keyboard _input) {
-        super(tile, img);
-        this._input = _input;
-        //      this.rectangle = new Rectangle(this.pixel.getX(), this.pixel.getY(), (int) (img.getWidth()), (int) img.getHeight());
-    }
-
 
     @Override
     public void update() {
         animate();
         if (_alive == false) {
             afterDie();
-            if (_animate == 120) {
+            if (_animate == 60) {
                 BombermanGame.removeBomber();
             }
             return;
@@ -81,33 +55,30 @@ public class Bomber extends MovableEntity {
 
     @Override
     protected void handleCollision() {
-        Entity entity=BombermanGame.getEntityAt(tile.getX(), tile.getY());
+        Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof Enemy) {
             die();
         }
         if (entity instanceof Item) {
             BombermanGame.removeItem((Item) entity);
-            if (entity instanceof BombsItem){
+            if (entity instanceof BombsItem) {
                 bomb++;
             }
-            if (entity instanceof SpeedItem){
+            if (entity instanceof SpeedItem) {
                 speed++;
             }
-        }
-        if(entity instanceof FlameSegment) {
-            timeAfterDieByBomb--;
-            if(timeAfterDieByBomb <=0) {
-                die();
+            if (entity instanceof FlamesItem) {
+                Bomb.damage++;
             }
         }
-        System.out.println(entity + "  " + _alive );
+        System.out.println(entity + " " + _alive);
     }
 
     protected void putBomb() {
-        if (_input.space && distance<0 && bomb > 0 && !(BombermanGame.getEntityAt(tile.getX(),tile.getY()) instanceof Bomb)) {
+        if (_input.space && distance < 0 && bomb > 0 && !(BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Bomb)) {
             BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(), tile.getY())));
             bomb--;
-            distance=10;
+            distance = 10;
             System.out.println(BombermanGame.getBombs().size());
 
         }
@@ -162,18 +133,11 @@ public class Bomber extends MovableEntity {
     }
 
     @Override
-    public void die() {
-        if (!_alive) return;
-        this._alive = false;
-        _animate = 0;
-    }
-
-    @Override
     protected void afterDie() {
-        this.img = Sprite.movingSprite(Sprite.player_dead1.getFxImage(),
+        img = Sprite.movingSprite(Sprite.player_dead1.getFxImage(),
                 Sprite.player_dead2.getFxImage(),
                 Sprite.player_dead3.getFxImage(),
-                _animate, 40);
+                _animate, 20);
     }
 
     @Override
@@ -181,7 +145,7 @@ public class Bomber extends MovableEntity {
         return super.canMoveToDirection(x, y);
     }
 
-    public void addBomb(){
+    public void addBomb() {
         bomb++;
     }
 

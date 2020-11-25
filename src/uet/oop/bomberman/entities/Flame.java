@@ -7,20 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flame extends Entity {
-    protected List<Entity> _flameSegments;
+    protected int time=30;
+    protected int frame=-1;
+    protected List<FlameSegment> _flameSegments;
     protected int _radius;
 
     public Flame(Coordinates tile, int radius) {
         super(tile);
-        createFlameSegments();
         _radius = radius;
         createFlameSegments();
     }
 
-    @Override
     public void update() {
-        for(int i = 0; i < _flameSegments.size(); i++) {
-            _flameSegments.get(i).update();
+        time--;
+        if (time>0){
+            _flameSegments.forEach(FlameSegment::update);
+        } else {
+            BombermanGame.removeFlame();
         }
     }
 
@@ -41,11 +44,11 @@ public class Flame extends Entity {
                     yt = y+i;
                     break;
                 case LEFT:
-                    xt = x-1;
+                    xt = x-i;
                     yt = y;
                     break;
                 case RIGHT:
-                    xt = x+1;
+                    xt = x+i;
                     yt = y;
                     break;
             }
@@ -54,7 +57,9 @@ public class Flame extends Entity {
                 radius = i - 1;
             } else if (entity instanceof Brick) {
                 radius = i;
-                _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, false));
+                _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
+                Brick brick=(Brick) entity;
+                brick.remove();
             } else {
                 if (i == radius) {
                     _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
@@ -76,11 +81,8 @@ public class Flame extends Entity {
         createSpark(DIRECTION.LEFT);
     }
 
-    public List<Entity> get_flameSegments() {
+    public List<FlameSegment> get_flameSegments() {
         return _flameSegments;
     }
 
-    public void set_flameSegments(List<Entity> _flameSegments) {
-        this._flameSegments = _flameSegments;
-    }
 }

@@ -1,10 +1,7 @@
 package uet.oop.bomberman.entities.enemy;
 
-import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.entities.Bomb;
-import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
@@ -23,11 +20,6 @@ public class Ghost extends Enemy {
             ya = -speed;
         }
     }
-
-    public Ghost(Coordinates tile, Image img) {
-        super(tile, img);
-    }
-
 
     @Override
     protected void handleMove() {
@@ -102,12 +94,10 @@ public class Ghost extends Enemy {
 
     @Override
     public void update() {
-        if (_alive == false) {
-            afterDie();
+        super.update();
+        if(!_alive){
             return;
         }
-        animate();
-
         handleMove();
 
         chooseSprite(Sprite.ghost_left1,
@@ -137,4 +127,8 @@ public class Ghost extends Enemy {
 
     }
 
+    @Override
+    protected void afterDie() {
+        img=Sprite.ghost_dead.getFxImage();
+    }
 }
