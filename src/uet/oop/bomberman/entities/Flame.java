@@ -6,7 +6,7 @@ import uet.oop.bomberman.Coordinates;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Flame extends Entity {
+public class Flame extends StaticEntity {
     protected int time=30;
     protected int frame=-1;
     protected List<FlameSegment> _flameSegments;
@@ -48,7 +48,8 @@ public class Flame extends Entity {
                     yt = y;
                     break;
                 case RIGHT:
-                    xt = x+i;
+                    xt = x+i
+                    ;
                     yt = y;
                     break;
             }
