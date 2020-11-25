@@ -71,7 +71,9 @@ public class Bomber extends MovableEntity {
                 Bomb.damage++;
             }
         }
-        System.out.println(entity + " " + _alive);
+        if (entity instanceof Portal) {
+            System.exit(0);
+        }
     }
 
     protected void putBomb() {

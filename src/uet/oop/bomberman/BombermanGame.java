@@ -123,6 +123,7 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         grasses.forEach(grass -> grass.render(gc));
         walls.forEach(wall -> wall.render(gc));
+        portals.forEach(portal -> portal.render(gc));
         items.forEach(item -> item.render(gc));
         for (Flame flame : flames) {
             flame.get_flameSegments().forEach(flameSegment -> flameSegment.render(gc));
