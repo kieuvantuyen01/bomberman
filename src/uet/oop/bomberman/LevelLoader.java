@@ -1,20 +1,25 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.entities.item.Flames;
-import uet.oop.bomberman.entities.item.Speed;
+import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Ghost;
+import uet.oop.bomberman.entities.enemy.Oneal;
+import uet.oop.bomberman.entities.item.BombsItem;
+import uet.oop.bomberman.entities.item.FlamesItem;
+import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.exception.LevelLoaderException;
-import uet.oop.bomberman.graphics.Sprite;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class LevelLoader {
     public static LevelLoader instance = null;
-    private Entity[][] matrix;
     public String LEVEL_TEMPLATE = "/levels/Level%d.txt";
+
+    private int level;
+    private int rows;
+    private int cols;
 
     private LevelLoader() {
 
@@ -27,7 +32,7 @@ public class LevelLoader {
         return instance;
     }
 
-    public Entity[][] loadMap(int level) {
+    public void loadMap(int level) {
 
         try {
             InputStream is = this.getClass().getResourceAsStream(
@@ -37,47 +42,60 @@ public class LevelLoader {
             if (line.length != 3) {
                 throw new LevelLoaderException("Lỗi đọc file: Số hàng, cột");
             }
-            int lv = Integer.parseInt(line[0]);
-            if (lv != level) {
+            this.level = Integer.parseInt(line[0]);
+            if (this.level != level) {
                 throw new LevelLoaderException("Lỗi đọc file: Sai thông số màn chơi");
             }
-            int rows = Integer.parseInt(line[1]);
-            int cols = Integer.parseInt(line[2]);
+            rows = Integer.parseInt(line[1]);
+            cols = Integer.parseInt(line[2]);
             System.out.println(rows + " " + cols);
-            Entity[][] matrix = new Entity[rows][cols];
             for (int i = 0; i < rows; i++) {
                 String map = br.readLine();
                 System.out.println(map);
                 for (int j = 0; j < cols; j++) {
+                    BombermanGame.setGrass(new Grass(new Coordinates(j,i)));
                     switch (map.charAt(j)) {
                         case '#':
-                            matrix[i][j] = new Wall(j, i);
+                            BombermanGame.setWall(new Wall(new Coordinates(j,i)));
                             break;
                         case '*':
-                            matrix[i][j] = new Brick(j, i);
+                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 'x':
-                            matrix[i][j] = new Portal(j, i);
+                            BombermanGame.setPortal(new Portal(new Coordinates(j,i)));
+                            //BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 'p':
-                            matrix[i][j] = new Bomber(j, i);
+                            BombermanGame.setBomber(new Bomber(new Coordinates(j,i),BombermanGame.input));
                             break;
                         case 'f':
-                            matrix[i][j] = new Flames(j, i);
+                            BombermanGame.setItem(new FlamesItem(new Coordinates(j,i)));
+                            //BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 's':
-                            matrix[i][j] = new Speed(j, i);
+                            BombermanGame.setItem(new SpeedItem(new Coordinates(j,i)));
+                            //BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            break;
+                        case 'b':
+                            BombermanGame.setItem(new BombsItem(new Coordinates(j,i)));
+                            //  BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            break;
+                        case '1':
+                            BombermanGame.setEnemy(new Balloom(new Coordinates(j,i),true));
+                            break;
+                        case '2':
+                            BombermanGame.setEnemy(new Oneal(new Coordinates(j,i)));
+                            break;
+                        case '3':
+                            BombermanGame.setEnemy(new Ghost(new Coordinates(j,i), true));
                             break;
                         default:
-                            matrix[i][j] = new Grass(j, i);
                             break;
                     }
                 }
             }
             br.close();
             is.close();
-            return matrix;
-
 
         } catch (LevelLoaderException e) {
             System.err.println(e.getMessage());
@@ -85,6 +103,18 @@ public class LevelLoader {
             e.printStackTrace();
         }
 
-        return null;
+    }
+
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
     }
 }

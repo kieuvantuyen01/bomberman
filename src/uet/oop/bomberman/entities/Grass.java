@@ -1,16 +1,14 @@
 package uet.oop.bomberman.entities;
 
+import javafx.scene.image.Image;
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Grass extends Entity {
+public class Grass extends StaticEntity {
 
-    public Grass(int x, int y) {
-        super(x, y);
-        this.img = Sprite.grass.getFxImage();
+    public Grass(Coordinates tile) {
+        super(tile);
+        this.img=Sprite.grass.getFxImage();
     }
 
-    @Override
-    public void update() {
-
-    }
 }

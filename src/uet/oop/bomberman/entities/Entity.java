@@ -2,32 +2,45 @@ package uet.oop.bomberman.entities;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Coordinates;
 
 public abstract class Entity {
-    //Toạ độ tính từ góc trái trên trong Canvas
-    protected int x;
+    //T?a ?? X t�nh t? g�c tr�i tr�n trong Canvas
+    protected Coordinates pixel;
 
-    //Toạ độ tính từ góc trái trên trong Canvas
-    protected int y;
+    protected Coordinates tile;
 
-    public Image img;
+    protected Image img;
 
-    //Khởi tạo đối tượng, chuy?n t? t?a ?? ??n v? sang t?a ?? trong canvas
-    public Entity(int xUnit, int yUnit) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
+    protected DIRECTION _direction = DIRECTION.NONE;
+
+    enum DIRECTION {
+        NONE, UP, RIGHT, DOWN, LEFT, CENTER
     }
 
-    public Entity(int xUnit, int yUnit, Image img) {
-        this.x = xUnit * Sprite.SCALED_SIZE;
-        this.y = yUnit * Sprite.SCALED_SIZE;
-        this.img = img;
+    public Entity(Coordinates tile) {
+        this.tile = tile;
+        pixel = tile.convertTileToPixel();
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(img, x, y);
+        gc.drawImage(img, pixel.getX(), pixel.getY());
     }
 
-    public abstract void update();
+    public Coordinates getTile() {
+        return tile;
+    }
+
+    public void setTile(Coordinates tile) {
+        this.tile = tile;
+    }
+
+    public Coordinates getPixel() {
+        return pixel;
+    }
+
+    public void setPixel(Coordinates pixel) {
+        this.pixel = pixel;
+    }
+
 }

@@ -1,16 +1,13 @@
 package uet.oop.bomberman.entities;
 
+import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Wall extends Entity {
+public class Wall extends StaticEntity {
 
-    public Wall(int x, int y) {
-        super(x, y);
-        this.img = Sprite.wall.getFxImage();
+    public Wall(Coordinates tile) {
+        super(tile);
+        this.img=Sprite.wall.getFxImage();
     }
 
-    @Override
-    public void update() {
-
-    }
 }

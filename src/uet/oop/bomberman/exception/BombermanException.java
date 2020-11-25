@@ -2,7 +2,6 @@ package uet.oop.bomberman.exception;
 
 public class BombermanException extends Exception {
     public BombermanException() {
-
     }
 
     public BombermanException(String message) {
