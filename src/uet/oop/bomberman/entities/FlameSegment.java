@@ -79,5 +79,8 @@ public class FlameSegment extends Entity implements Animated{
             ((MovableEntity) entity).die();
             System.out.println(entity);
         }
+        if(entity instanceof Brick) {
+            ((Brick) entity).remove();
+        }
     }
 }
