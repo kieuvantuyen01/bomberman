@@ -2,13 +2,13 @@
 ###############################
 #p     ** *  1 * 2 *  * * *   #
 # # # #*# # #*#*# # # #*#*#*# #
-#  2*     ***  *  1   * 2 * * #
+#  **     b**  *  1   * 2 * * #
 # # # # # #*# # #*#*# # # # #*#
-#f   3     x **  *  *   1   * #
-# # # # # # # # # #*# #*# # # #
-#*  *      *  *      *      * #
+#f   3     x **  *  *   1   ###
+# # # # # # # # # #*# #*# # #  
+#*  *      *  *      *      ###
 # # # # #*# # # #*#*# # # # # #
-#*    **  *       *           #
+#*    **  s       *           #
 # #*# # # # # # #*# # # # # # #
 #           *   *  *          #
 ###############################
@@ -30,15 +30,10 @@ Character:
 p - Bomber
 1 - Balloon
 2 - Oneal
-3 - Ghost
 
 Items:
 b - Bomb Item
 f - Flame Item
 s - Speed Item
-d - Detonator Item
-w - Wallpass Item
-o - Bombpass Item
-a - Flamepass Item
 
 Kí tự khác các kí tự trên - Grass

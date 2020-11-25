@@ -77,7 +77,9 @@ public class FlameSegment extends StaticEntity implements Animated{
         Entity entity= BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof MovableEntity){
             ((MovableEntity) entity).die();
-            System.out.println(entity);
+        }
+        if(entity instanceof Brick) {
+            ((Brick) entity).remove();
         }
     }
 }

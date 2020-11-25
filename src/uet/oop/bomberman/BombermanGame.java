@@ -22,7 +22,7 @@ public class BombermanGame extends Application {
 
     public static final int WIDTH = (int) (31);
     public static final int HEIGHT = 13;
-
+    public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -83,11 +83,11 @@ public class BombermanGame extends Application {
         };
         timer.start();
 
-        createMap();
+        createMap(1);
     }
 
-    public void createMap() {
-        LevelLoader.getInstance().loadMap(1);
+    public static void createMap(int level) {
+        LevelLoader.getInstance().loadMap(level);
     }
 
     public static Bomber getBomber() {
@@ -123,6 +123,7 @@ public class BombermanGame extends Application {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         grasses.forEach(grass -> grass.render(gc));
         walls.forEach(wall -> wall.render(gc));
+        portals.forEach(portal -> portal.render(gc));
         items.forEach(item -> item.render(gc));
         for (Flame flame : flames) {
             flame.get_flameSegments().forEach(flameSegment -> flameSegment.render(gc));
@@ -203,7 +204,7 @@ public class BombermanGame extends Application {
     }
 
     public static Entity getEntityAt(int x, int y) {
-        Entity entity = null;
+        Entity entity;
         entity = get(walls, x, y);
         if (entity != null) {
             return entity;
@@ -273,5 +274,18 @@ public class BombermanGame extends Application {
 
     public static void removeEnemy(Enemy enemy){
         enemies.remove(enemy);
+    }
+
+    public static void removeOldData(){
+        entities.removeAll(entities);
+        bomber=null;
+        flames.removeAll(flames);
+        bombs.removeAll(bombs);
+        walls.removeAll(walls);
+        portals.removeAll(portals);
+        bricks.removeAll(bricks);
+        items.removeAll(items);
+        enemies.removeAll(enemies);
+        grasses.removeAll(grasses);
     }
 }
