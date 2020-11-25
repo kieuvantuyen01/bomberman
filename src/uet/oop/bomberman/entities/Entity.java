@@ -18,11 +18,12 @@ public abstract class Entity {
 
     protected Image img;
 
-    protected Sprite _sprite;
+    protected DIRECTION _direction = DIRECTION.NONE;
 
-    protected Rectangle rectangle;
+    enum DIRECTION {
+        NONE, UP, RIGHT, DOWN, LEFT, CENTER
+    }
 
-    protected String name;
     protected boolean _removed = false;
 
     public boolean is_removed() {
@@ -48,16 +49,12 @@ public abstract class Entity {
         this.tile = tile;
         pixel = tile.convertTileToPixel();
         this.img = img;
-        this.rectangle = new Rectangle(pixel.getX(), pixel.getY(), (int) img.getWidth(), (int) img.getHeight());
     }
 
     public void render(GraphicsContext gc) {
         gc.drawImage(img, pixel.getX(), pixel.getY());
     }
 
-    public Rectangle getRectangle() {
-        return this.rectangle;
-    }
 
     public abstract void update();
 

@@ -17,6 +17,7 @@ public class Bomber extends MovableEntity {
 
     protected BombermanGame game = new BombermanGame();
     protected Keyboard _input = new Keyboard();
+    int timeAfterDieByBomb =30;
 
 
     protected static double speed = 1.0;
@@ -93,6 +94,13 @@ public class Bomber extends MovableEntity {
                 speed++;
             }
         }
+        if(entity instanceof FlameSegment) {
+            timeAfterDieByBomb--;
+            if(timeAfterDieByBomb <=0) {
+                die();
+            }
+        }
+        System.out.println(entity + "  " + _alive );
     }
 
     protected void putBomb() {
