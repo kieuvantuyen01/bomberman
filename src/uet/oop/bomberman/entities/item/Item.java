@@ -9,4 +9,5 @@ public abstract class Item extends StaticEntity {
         super(tile);
     }
 
+    public abstract void getItem();
 }

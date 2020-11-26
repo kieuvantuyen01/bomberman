@@ -4,12 +4,8 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
-import uet.oop.bomberman.LevelLoader;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.BombsItem;
-import uet.oop.bomberman.entities.item.FlamesItem;
-import uet.oop.bomberman.entities.item.Item;
-import uet.oop.bomberman.entities.item.SpeedItem;
+import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 
@@ -61,25 +57,9 @@ public class Bomber extends MovableEntity {
             die();
         }
         if (entity instanceof Item) {
-            if (entity instanceof SpeedItem) {
-                if (d.getX()%2==0&&d.getY()%2==0){
-                    speed=2;
-                    BombermanGame.removeItem((Item) entity);
-                }
-            } else {
-                BombermanGame.removeItem((Item) entity);
-            }
-
-            if (entity instanceof BombsItem) {
-                bomb++;
-            }
-
-            if (entity instanceof FlamesItem) {
-                Bomb.damage++;
-            }
+            ((Item) entity).getItem();
         }
         if (entity instanceof Portal) {
-            BombermanGame.removeOldData();
             if (BombermanGame.load_map_level<5){
                 BombermanGame.createMap(++BombermanGame.load_map_level);
             }
@@ -167,5 +147,11 @@ public class Bomber extends MovableEntity {
         bomb++;
     }
 
+    public static int getSpeed() {
+        return speed;
+    }
 
+    public static void setSpeed(int speed) {
+        Bomber.speed = speed;
+    }
 }

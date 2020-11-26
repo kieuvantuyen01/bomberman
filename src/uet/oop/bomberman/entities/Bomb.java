@@ -42,4 +42,12 @@ public class Bomb extends StaticEntity implements Animated {
         BombermanGame.setFlame(new Flame(tile,damage));
         BombermanGame.removeBomb();
     }
+
+    public static int getDamage() {
+        return damage;
+    }
+
+    public static void setDamage(int damage) {
+        Bomb.damage = damage;
+    }
 }
