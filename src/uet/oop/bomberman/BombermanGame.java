@@ -8,11 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.GameSound;
 
 import java.util.*;
 import java.util.List;
@@ -26,16 +30,23 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private static List<Entity> entities = new ArrayList<>();
+    public static int get_points() {
+        return _points;
+    }
+
+    private static int _points = 0;
+
     private static Bomber bomber;
-    private static List<Flame> flames = new CopyOnWriteArrayList<>();
-    private static List<Entity> bombs = new CopyOnWriteArrayList<>();
-    private static List<Entity> walls = new ArrayList<>();
-    private static List<Entity> portals = new ArrayList<>();
-    private static List<Entity> bricks = new CopyOnWriteArrayList<>();
-    private static List<Entity> items = new CopyOnWriteArrayList<>();
-    private static List<Entity> enemies = new CopyOnWriteArrayList<>();
-    private static List<Grass> grasses = new ArrayList<>();
+    private static List<Entity> entities;
+    private static List<Flame> flames;
+    private static List<Entity> bombs;
+    private static List<Entity> walls;
+    private static List<Entity> portals;
+    private static List<Entity> bricks;
+    private static List<Entity> items;
+    private static List<Entity> enemies;
+    private static List<Grass> grasses;
+    private List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
@@ -82,11 +93,27 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-
         createMap(1);
+        GameSound.playMusic(GameSound.PLAYGAME);
+    }
+
+    public static void addPoints(int point) {
+        _points += point;
+    }
+
+    public void renderMessages(GraphicsContext g) {
+        Message m;
+        for (int i = 0; i < _messages.size(); i++) {
+            m = _messages.get(i);
+            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
+            g.setFill(Color.WHITE);
+            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
+            g.fillText(m.getMessage(), (int)m.getPixel().getX() - 2 * 3, (int)m.getPixel().getY());
+        }
     }
 
     public static void createMap(int level) {
+        initData();
         LevelLoader.getInstance().loadMap(level);
     }
 
@@ -134,6 +161,7 @@ public class BombermanGame extends Application {
         if (bomber != null) {
             bomber.render(gc);
         }
+        renderMessages(gc);
     }
 
     public static List<Entity> getBombs() {
@@ -204,7 +232,7 @@ public class BombermanGame extends Application {
     }
 
     public static Entity getEntityAt(int x, int y) {
-        Entity entity = null;
+        Entity entity;
         entity = get(walls, x, y);
         if (entity != null) {
             return entity;
@@ -274,5 +302,17 @@ public class BombermanGame extends Application {
 
     public static void removeEnemy(Enemy enemy){
         enemies.remove(enemy);
+    }
+
+    public static void initData(){
+        entities = new ArrayList<>();
+        flames = new CopyOnWriteArrayList<>();
+        bombs = new CopyOnWriteArrayList<>();
+        walls = new ArrayList<>();
+        portals = new ArrayList<>();
+        bricks = new CopyOnWriteArrayList<>();
+        items = new CopyOnWriteArrayList<>();
+        enemies = new CopyOnWriteArrayList<>();
+        grasses = new ArrayList<>();
     }
 }

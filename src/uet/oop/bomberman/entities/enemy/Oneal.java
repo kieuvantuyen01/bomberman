@@ -12,7 +12,7 @@ public class Oneal extends Enemy {
     double xa = -speed, ya = 0;
 
     public Oneal(Coordinates tile) {
-        super(tile);
+        super(tile, 300);
         img = Sprite.oneal_left1.getFxImage();
     }
 

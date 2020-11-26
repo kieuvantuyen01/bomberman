@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Portal extends Entity {
+public class Portal extends StaticEntity {
 
     public Portal(Coordinates tile) {
         super(tile);

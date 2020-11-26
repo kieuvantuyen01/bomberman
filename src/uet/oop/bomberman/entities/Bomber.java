@@ -4,21 +4,18 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 
-import uet.oop.bomberman.LevelLoader;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.BombsItem;
-import uet.oop.bomberman.entities.item.FlamesItem;
-import uet.oop.bomberman.entities.item.Item;
-import uet.oop.bomberman.entities.item.SpeedItem;
+import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.GameSound;
 
 
 public class Bomber extends MovableEntity {
 
     protected Keyboard _input;
     private int time_exit_game = 60;
-
-    protected static double speed = 1.0;
+    public static int bomber_life = 3;
+    protected static int speed = 1;
     protected static int bomb = 1;
     protected static int distance = 0;
     protected static boolean flame = false;
@@ -59,46 +56,35 @@ public class Bomber extends MovableEntity {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof Enemy) {
             die();
+            GameSound.playMusic(GameSound.BOMBER_DIE);
         }
         if (entity instanceof Item) {
-            BombermanGame.removeItem((Item) entity);
-            if (entity instanceof BombsItem) {
-                bomb++;
-            }
-            if (entity instanceof SpeedItem) {
-                speed++;
-            }
-            if (entity instanceof FlamesItem) {
-                Bomb.damage++;
-            }
+            ((Item) entity).getItem();
+            GameSound.playMusic(GameSound.ITEM);
         }
         if (entity instanceof Portal) {
-            BombermanGame.load_map_level++;
-            switch (BombermanGame.load_map_level) {
-                case 2:
-                    BombermanGame.createMap(2);
-                    break;
-                case 3:
-                    BombermanGame.createMap(3);
-                    break;
-                case 4:
-                    BombermanGame.createMap(4);
-                    break;
-                case 5:
-                    BombermanGame.createMap(5);
-                    break;
+            if (BombermanGame.load_map_level<5){
+                BombermanGame.createMap(++BombermanGame.load_map_level);
+                GameSound.playMusic(GameSound.WIN);
             }
         }
-        System.out.println(BombermanGame.load_map_level);
+        if(_input.previousLevel && BombermanGame.load_map_level > 1) {
+            BombermanGame.createMap(--BombermanGame.load_map_level);
+            _input.previousLevel = false;
+        }
+        if(_input.nextLevel && BombermanGame.load_map_level < 5) {
+            BombermanGame.createMap(++BombermanGame.load_map_level);
+            _input.nextLevel = false;
+        }
     }
 
     protected void putBomb() {
-        if (_input.space && distance < 0 && bomb > 0 && !(BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Bomb)) {
+        if (_input.space && distance < 0 && bomb > 0
+                && !(BombermanGame.getEntityAt(tile.getX(), tile.getY()) instanceof Bomb)) {
             BombermanGame.setBomb(new Bomb(new Coordinates(tile.getX(), tile.getY())));
             bomb--;
             distance = 10;
-            System.out.println(BombermanGame.getBombs().size());
-
+            GameSound.playMusic(GameSound.BOMB);
         }
     }
 
@@ -107,7 +93,9 @@ public class Bomber extends MovableEntity {
         if (_animate > 120) _animate = 0;
         else _animate++;
         distance--;
-        if(!_alive) {time_exit_game--;}
+        if (!_alive) {
+            time_exit_game--;
+        }
     }
 
 
@@ -115,23 +103,24 @@ public class Bomber extends MovableEntity {
     protected void handleMove() {
         double xa = 0, ya = 0;
         if ((_input.up && d.getX() == 0 && canMoveToDirection(0, -1)) || d.getY() < 0) {
-            ya -= speed;
+            ya = -speed;
             if (d.getY() >= 0) d.setY(d.getY() - Sprite.SCALED_SIZE);
         }
         if ((_input.down && d.getX() == 0 && canMoveToDirection(0, 1)) || d.getY() > 0) {
-            ya += speed;
+            ya = speed;
             if (d.getY() <= 0) d.setY(d.getY() + Sprite.SCALED_SIZE);
         }
         if ((_input.left && d.getY() == 0 && canMoveToDirection(-1, 0)) || d.getX() < 0) {
-            xa -= speed;
+            xa = -speed;
             if (d.getX() >= 0) d.setX(d.getX() - Sprite.SCALED_SIZE);
         }
         if ((_input.right && d.getY() == 0 && canMoveToDirection(1, 0)) || d.getX() > 0) {
-            xa += speed;
+            xa = +speed;
             if (d.getX() <= 0) d.setX(d.getX() + Sprite.SCALED_SIZE);
         }
 
         if (d.getX() != 0 || d.getY() != 0) {
+            System.out.println(d.getX()+" "+d.getY());
             move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
             d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
             d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
@@ -157,7 +146,7 @@ public class Bomber extends MovableEntity {
                 Sprite.player_dead2.getFxImage(),
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
-        if(time_exit_game <= 0) {
+        if (time_exit_game <= 0) {
             System.exit(0);
         }
     }
@@ -171,5 +160,11 @@ public class Bomber extends MovableEntity {
         bomb++;
     }
 
+    public static int getSpeed() {
+        return speed;
+    }
 
+    public static void setSpeed(int speed) {
+        Bomber.speed = speed;
+    }
 }

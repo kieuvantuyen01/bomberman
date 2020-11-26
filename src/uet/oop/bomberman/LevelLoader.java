@@ -6,15 +6,12 @@ import uet.oop.bomberman.entities.enemy.Ghost;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
-import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.item.SpeedItem;
 import uet.oop.bomberman.exception.LevelLoaderException;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.sql.Struct;
-import java.util.Stack;
 
 public class LevelLoader {
     public static LevelLoader instance = null;

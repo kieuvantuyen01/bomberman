@@ -3,8 +3,9 @@ package uet.oop.bomberman.entities;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.sound.GameSound;
 
-public class FlameSegment extends Entity implements Animated{
+public class FlameSegment extends StaticEntity implements Animated{
     protected boolean _last;
     protected int _animate = -1;
 
@@ -76,7 +77,9 @@ public class FlameSegment extends Entity implements Animated{
     public void handleCollision(){
         Entity entity= BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof MovableEntity){
-            ((MovableEntity) entity).die();
+            if (((MovableEntity) entity).is_flamepass()==false){
+                ((MovableEntity) entity).die();
+            }
         }
         if(entity instanceof Brick) {
             ((Brick) entity).remove();
