@@ -70,10 +70,12 @@ public class Bomber extends MovableEntity {
         }
         if(_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
+            GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
         }
         if(_input.nextLevel && BombermanGame.load_map_level < 5) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
+            GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
         }
     }
