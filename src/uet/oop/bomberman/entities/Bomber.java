@@ -65,19 +65,29 @@ public class Bomber extends MovableEntity {
         if (entity instanceof Portal) {
             if (BombermanGame.load_map_level<5){
                 BombermanGame.createMap(++BombermanGame.load_map_level);
+                resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
             }
         }
         if(_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
+            resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
         }
         if(_input.nextLevel && BombermanGame.load_map_level < 5) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
+            resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
         }
+        System.out.println(bomb+ "  " + Bomb.getDamage() + "  " + speed);
+    }
+
+    protected void resetBomberAbilityWhenPassLevel() {
+        Bomb.setDamage(1);
+        Bomber.setSpeed(1);
+        bomb = 1;
     }
 
     protected void putBomb() {

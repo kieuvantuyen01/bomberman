@@ -6,6 +6,8 @@ import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 import uet.oop.bomberman.BombermanGame;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.IOException;
 import java.io.InputStream;
 

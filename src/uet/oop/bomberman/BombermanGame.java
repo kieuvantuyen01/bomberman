@@ -9,7 +9,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
@@ -18,13 +17,14 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.GameSound;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BombermanGame extends Application {
 
-    public static final int WIDTH = (int) (31);
+    public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
     private GraphicsContext gc;
@@ -46,70 +46,57 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
-    private List<Message> _messages = new ArrayList<>();
+    private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
 
-    @Override
-    public void start(Stage stage) {
-        // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
-
-        // Tao root container
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
-        // Tao scene
-        Scene scene = new Scene(root);
-
-        // Them scene vao stage
-
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyPressed(event);
-            }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyRelease(event);
-            }
-        });
-        // Them scene vao stage
-        stage.setScene(scene);
-        stage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                render();
-                update();
-            }
-        };
-        timer.start();
-        createMap(1);
-        GameSound.playMusic(GameSound.PLAYGAME);
+    public static void removeBomb() {
+        bombs.remove(0);
+        if (bomber != null) {
+            bomber.addBomb();
+        }
     }
 
     public static void addPoints(int point) {
         _points += point;
     }
 
-    public void renderMessages(GraphicsContext g) {
-        Message m;
-        for (int i = 0; i < _messages.size(); i++) {
-            m = _messages.get(i);
-            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
-            g.setFill(Color.WHITE);
-            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
-            g.fillText(m.getMessage(), (int)m.getPixel().getX() - 2 * 3, (int)m.getPixel().getY());
+    public static Entity getEntityAt(int x, int y) {
+        Entity entity;
+        entity = get(walls, x, y);
+        if (entity != null) {
+            return entity;
         }
+        entity = get(bricks, x, y);
+        if (entity != null) {
+            return entity;
+        }
+
+        entity = get(bombs, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(portals, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(items, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(enemies, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        if (bomber != null
+                && bomber.getTile().getX() == x
+                && bomber.getTile().getY() == y) {
+            entity = bomber;
+        }
+        return entity;
     }
 
     public static void createMap(int level) {
@@ -220,50 +207,24 @@ public class BombermanGame extends Application {
         BombermanGame.bombs.add(bomb);
     }
 
-    public static void removeBomb() {
-        bombs.remove(0);
-        if (bomber!=null){
-            bomber.addBomb();
-        }
+    public static void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
     }
 
     public static void setEntity(Entity entity) {
         entities.add(entity);
     }
 
-    public static Entity getEntityAt(int x, int y) {
-        Entity entity;
-        entity = get(walls, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(bricks, x, y);
-        if (entity != null) {
-            return entity;
-        }
-
-        entity = get(bombs, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(portals, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(items, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(enemies, x, y);
-        if (entity!=null){
-            return entity;
-        }
-        if (bomber != null
-                && bomber.getTile().getX() == x
-                && bomber.getTile().getY() == y) {
-            entity = bomber;
-        }
-        return entity;
+    public static void initData() {
+        entities = new ArrayList<>();
+        flames = new CopyOnWriteArrayList<>();
+        bombs = new CopyOnWriteArrayList<>();
+        walls = new ArrayList<>();
+        portals = new ArrayList<>();
+        bricks = new CopyOnWriteArrayList<>();
+        items = new CopyOnWriteArrayList<>();
+        enemies = new CopyOnWriteArrayList<>();
+        grasses = new ArrayList<>();
     }
 
     public static Entity get(List<Entity> entities, int x, int y) {
@@ -300,19 +261,58 @@ public class BombermanGame extends Application {
         bricks.remove(brick);
     }
 
-    public static void removeEnemy(Enemy enemy){
-        enemies.remove(enemy);
+    @Override
+    public void start(Stage stage) {
+        // Tao Canvas
+        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+
+        // Tao root container
+        Group root = new Group();
+        root.getChildren().add(canvas);
+
+        // Tao scene
+        Scene scene = new Scene(root);
+
+        // Them scene vao stage
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyPressed(event);
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyRelease(event);
+            }
+        });
+        // Them scene vao stage
+        stage.setScene(scene);
+        stage.show();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                render();
+                update();
+            }
+        };
+        timer.start();
+        createMap(1);
+        GameSound.playMusic(GameSound.PLAYGAME);
     }
 
-    public static void initData(){
-        entities = new ArrayList<>();
-        flames = new CopyOnWriteArrayList<>();
-        bombs = new CopyOnWriteArrayList<>();
-        walls = new ArrayList<>();
-        portals = new ArrayList<>();
-        bricks = new CopyOnWriteArrayList<>();
-        items = new CopyOnWriteArrayList<>();
-        enemies = new CopyOnWriteArrayList<>();
-        grasses = new ArrayList<>();
+    public void renderMessages(GraphicsContext g) {
+        Message m;
+        for (int i = 0; i < _messages.size(); i++) {
+            m = _messages.get(i);
+            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
+            g.setFill(Color.WHITE);
+            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
+            g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());
+        }
     }
 }
