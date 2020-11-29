@@ -11,7 +11,7 @@ import uet.oop.bomberman.sound.GameSound;
 
 
 public class Bomber extends MovableEntity {
-
+    BombermanGame game = new BombermanGame();
     protected Keyboard _input;
     private int time_exit_game = 60;
     public static int bomber_life = 3;
@@ -74,14 +74,15 @@ public class Bomber extends MovableEntity {
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
+            BombermanGame.resetPoint();
         }
         if(_input.nextLevel && BombermanGame.load_map_level < 5) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
+            BombermanGame.resetPoint();
         }
-        System.out.println(bomb+ "  " + Bomb.getDamage() + "  " + speed);
     }
 
     protected void resetBomberAbilityWhenPassLevel() {
@@ -159,6 +160,7 @@ public class Bomber extends MovableEntity {
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
         if (time_exit_game <= 0) {
+            game.handleScores();
             System.exit(0);
         }
     }

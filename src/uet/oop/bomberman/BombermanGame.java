@@ -17,22 +17,19 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.GameSound;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BombermanGame extends Application {
+    public HashMap<Integer, String> top_high_scores = new HashMap<>();
+    public ArrayList<Integer> scores= new ArrayList<>();
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
-
-    public static int get_points() {
-        return _points;
-    }
 
     private static int _points = 0;
 
@@ -53,13 +50,76 @@ public class BombermanGame extends Application {
         Application.launch(BombermanGame.class);
     }
 
+    public void getScoreChartFromFile() {
+        try {
+            FileReader fileReader = new FileReader("res\\scores\\scoreChart.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line, name, score;
+            while((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    name = parts[0];
+                    score = parts[1];
+                    scores.add(Integer.parseInt(score));
+                    top_high_scores.put(Integer.parseInt(score), name);
+                }
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void writeToScoreChartFile() {
+        try {
+            FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
+            BufferedWriter bw = new BufferedWriter(fos);
+            for (int score : scores) {
+                bw.write(top_high_scores.get(score) + " " + String.valueOf(score) + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addIntoTopHighScores() {
+        int point = _points;
+        String name = "Tùng";
+        scores.add (point);
+        Comparator c = Collections.reverseOrder();
+        Collections.sort(scores, c);
+        top_high_scores.put(point, name);
+        for(int score : scores) {
+            System.out.println(top_high_scores.get(score) + " " + score);
+        }
+    }
+
+    //Sử dụng hàm này khi số phần tử của mảng scores đạt mức tối đa là 10.
+    public void removeFromTopHighScores() {
+        scores.remove(scores.size() - 1);
+    }
+
+    public void handleScores() {
+        getScoreChartFromFile();
+        addIntoTopHighScores();
+        if(scores.size() > 10) {
+            removeFromTopHighScores();
+        }
+        writeToScoreChartFile();
+    }
+
     public static void removeBomb() {
         bombs.remove(0);
         if (bomber != null) {
             bomber.addBomb();
         }
     }
+    public static int get_points() {
+        return _points;
+    }
 
+    public static void resetPoint() {_points = 0;}
     public static void addPoints(int point) {
         _points += point;
     }

@@ -117,4 +117,12 @@ public class LevelLoader {
     public int getCols() {
         return cols;
     }
+
+//    public static void main (String[] args) {
+//        BombermanGame game = new BombermanGame();
+//        game.getScoreChartFromFile();
+//        for (String score : game.scores) {
+//            System.out.println(game.top_high_scores.get(score) + " " + score);
+//        }
+//    }
 }
