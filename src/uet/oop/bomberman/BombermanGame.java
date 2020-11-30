@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.*;
@@ -17,19 +18,24 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.sound.GameSound;
 
-import java.io.*;
+import javax.sound.sampled.Clip;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class BombermanGame extends Application {
-    public HashMap<Integer, String> top_high_scores = new HashMap<>();
-    public ArrayList<Integer> scores= new ArrayList<>();
+import static uet.oop.bomberman.sound.GameSound.loopPlaySound;
 
-    public static final int WIDTH = 31;
+public class BombermanGame extends Application {
+
+    public static final int WIDTH = (int) (31);
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
+
+    public static int get_points() {
+        return _points;
+    }
 
     private static int _points = 0;
 
@@ -43,120 +49,96 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
-    private final List<Message> _messages = new ArrayList<>();
+    private List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
+
+    public static Clip THREAD_SOUNDTRACK = loopPlaySound("playgame.wav");
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
 
-    public void getScoreChartFromFile() {
-        try {
-            FileReader fileReader = new FileReader("res\\scores\\scoreChart.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line, name, score;
-            while((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts.length == 2) {
-                    name = parts[0];
-                    score = parts[1];
-                    scores.add(Integer.parseInt(score));
-                    top_high_scores.put(Integer.parseInt(score), name);
-                }
+    @Override
+    public void start(Stage stage) {
+        // Tao Canvas
+        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+
+        // Tao root container
+        Group root = new Group();
+        root.getChildren().add(canvas);
+
+        // Tao scene
+        Scene scene = new Scene(root);
+
+        // Them scene vao stage
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyPressed(event);
             }
-            bufferedReader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void writeToScoreChartFile() {
-        try {
-            FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
-            BufferedWriter bw = new BufferedWriter(fos);
-            for (int score : scores) {
-                bw.write(top_high_scores.get(score) + " " + String.valueOf(score) + "\n");
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyRelease(event);
             }
-            bw.flush();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
+        // Them scene vao stage
+        stage.setScene(scene);
+        stage.show();
+
+        initPLayThread();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                render();
+                update();
+            }
+        };
+        timer.start();
+
+        createMap(1);
+        BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
-    public void addIntoTopHighScores() {
-        int point = _points;
-        String name = "Tùng";
-        scores.add (point);
-        Comparator c = Collections.reverseOrder();
-        Collections.sort(scores, c);
-        top_high_scores.put(point, name);
-        for(int score : scores) {
-            System.out.println(top_high_scores.get(score) + " " + score);
-        }
+    public void initPLayThread() {
+        AnimationTimer playThread = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                update();
+            }
+
+            @Override
+            public void start() {
+                THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
+                super.start();
+            }
+
+            @Override
+            public void stop() {
+                THREAD_SOUNDTRACK.stop();
+                super.stop();
+            }
+        };
     }
 
-    //Sử dụng hàm này khi số phần tử của mảng scores đạt mức tối đa là 10.
-    public void removeFromTopHighScores() {
-        scores.remove(scores.size() - 1);
-    }
-
-    public void handleScores() {
-        getScoreChartFromFile();
-        addIntoTopHighScores();
-        if(scores.size() > 10) {
-            removeFromTopHighScores();
-        }
-        writeToScoreChartFile();
-    }
-
-    public static void removeBomb() {
-        bombs.remove(0);
-        if (bomber != null) {
-            bomber.addBomb();
-        }
-    }
-    public static int get_points() {
-        return _points;
-    }
-
-    public static void resetPoint() {_points = 0;}
     public static void addPoints(int point) {
         _points += point;
     }
 
-    public static Entity getEntityAt(int x, int y) {
-        Entity entity;
-        entity = get(walls, x, y);
-        if (entity != null) {
-            return entity;
+    public void renderMessages(GraphicsContext g) {
+        Message m;
+        for (int i = 0; i < _messages.size(); i++) {
+            m = _messages.get(i);
+            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
+            g.setFill(Color.WHITE);
+            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
+            g.fillText(m.getMessage(), (int)m.getPixel().getX() - 2 * 3, (int)m.getPixel().getY());
         }
-        entity = get(bricks, x, y);
-        if (entity != null) {
-            return entity;
-        }
-
-        entity = get(bombs, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(portals, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(items, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(enemies, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        if (bomber != null
-                && bomber.getTile().getX() == x
-                && bomber.getTile().getY() == y) {
-            entity = bomber;
-        }
-        return entity;
     }
 
     public static void createMap(int level) {
@@ -267,24 +249,50 @@ public class BombermanGame extends Application {
         BombermanGame.bombs.add(bomb);
     }
 
-    public static void removeEnemy(Enemy enemy) {
-        enemies.remove(enemy);
+    public static void removeBomb() {
+        bombs.remove(0);
+        if (bomber!=null){
+            bomber.addBomb();
+        }
     }
 
     public static void setEntity(Entity entity) {
         entities.add(entity);
     }
 
-    public static void initData() {
-        entities = new ArrayList<>();
-        flames = new CopyOnWriteArrayList<>();
-        bombs = new CopyOnWriteArrayList<>();
-        walls = new ArrayList<>();
-        portals = new ArrayList<>();
-        bricks = new CopyOnWriteArrayList<>();
-        items = new CopyOnWriteArrayList<>();
-        enemies = new CopyOnWriteArrayList<>();
-        grasses = new ArrayList<>();
+    public static Entity getEntityAt(int x, int y) {
+        Entity entity;
+        entity = get(walls, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(bricks, x, y);
+        if (entity != null) {
+            return entity;
+        }
+
+        entity = get(bombs, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(portals, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(items, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(enemies, x, y);
+        if (entity!=null){
+            return entity;
+        }
+        if (bomber != null
+                && bomber.getTile().getX() == x
+                && bomber.getTile().getY() == y) {
+            entity = bomber;
+        }
+        return entity;
     }
 
     public static Entity get(List<Entity> entities, int x, int y) {
@@ -321,58 +329,19 @@ public class BombermanGame extends Application {
         bricks.remove(brick);
     }
 
-    @Override
-    public void start(Stage stage) {
-        // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
-
-        // Tao root container
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
-        // Tao scene
-        Scene scene = new Scene(root);
-
-        // Them scene vao stage
-
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyPressed(event);
-            }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyRelease(event);
-            }
-        });
-        // Them scene vao stage
-        stage.setScene(scene);
-        stage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                render();
-                update();
-            }
-        };
-        timer.start();
-        createMap(1);
-        GameSound.playMusic(GameSound.PLAYGAME);
+    public static void removeEnemy(Enemy enemy){
+        enemies.remove(enemy);
     }
 
-    public void renderMessages(GraphicsContext g) {
-        Message m;
-        for (int i = 0; i < _messages.size(); i++) {
-            m = _messages.get(i);
-            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
-            g.setFill(Color.WHITE);
-            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
-            g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());
-        }
+    public static void initData(){
+        entities = new ArrayList<>();
+        flames = new CopyOnWriteArrayList<>();
+        bombs = new CopyOnWriteArrayList<>();
+        walls = new ArrayList<>();
+        portals = new ArrayList<>();
+        bricks = new CopyOnWriteArrayList<>();
+        items = new CopyOnWriteArrayList<>();
+        enemies = new CopyOnWriteArrayList<>();
+        grasses = new ArrayList<>();
     }
 }

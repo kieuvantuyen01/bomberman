@@ -6,8 +6,7 @@ import sun.audio.AudioStream;
 import sun.audio.ContinuousAudioDataStream;
 import uet.oop.bomberman.BombermanGame;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,33 +14,43 @@ public class GameSound {
     protected static AudioPlayer player = AudioPlayer.player;
     private static boolean stop_music = false;
 
-    public static final String MENU = "/sound/menu.wav";
-    public static final String PLAYGAME = "/sound/playgame.wav";
-    public static final String BOMB = "/sound/newbomb.wav";
-    public static final String BOMBER_DIE = "/sound/bomber_die.wav";
-    public static final String ENEMY_DIE = "/sound/enemy_die.wav";
-    public static final String BONG_BANG = "/sound/bomb_bang.wav";
-    public static final String ITEM = "/sound/item.wav";
-    public static final String WIN = "/sound/win.wav";
-    public static final String LOSE = "/sound/lose.wav";
+    public static final String MENU = "menu.wav";
+    public static final String PLAYGAME = "playgame.wav";
+    public static final String BOMB = "newbomb.wav";
+    public static final String BOMBER_DIE = "bomber_die.wav";
+    public static final String ENEMY_DIE = "enemy_die.wav";
+    public static final String BONG_BANG = "bomb_bang.wav";
+    public static final String ITEM = "item.wav";
+    public static final String WIN = "win.wav";
+    public static final String LOSE = "lose.wav";
 
-    public static void playMusic(String musicPath) {
-        AudioData data = null;
+    public static String SOUND_TEMPLATE = "/sound/%s";
+
+    public static Clip loopPlaySound(String nameSound){
+        Clip clip = null;
         try {
-            InputStream inputStream = GameSound.class.getResourceAsStream(musicPath);
-            AudioStream audioStream = new AudioStream(inputStream);
-            if (musicPath.equals(PLAYGAME)) {
-                ContinuousAudioDataStream loop;
-                data = audioStream.getData();
-                loop = new ContinuousAudioDataStream(data);
-                player.start(loop);
-            } else {
-                player.start(audioStream);
-            }
-        } catch (Exception e) {
+            AudioInputStream audio = AudioSystem.getAudioInputStream(GameSound.class.getResource("/sound/" + nameSound));
+            clip = AudioSystem.getClip();
+            clip.open(audio);
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
+        }
+        return clip;
+    }
+
+    public static void playMusic(String filePath) {
+        InputStream music;
+        try {
+            music = GameSound.class.getResourceAsStream(String.format(SOUND_TEMPLATE, filePath));
+            AudioStream audio = new AudioStream(music);
+            AudioPlayer.player.start(audio);
+
+        } catch (Exception e) {
+            System.out.println("not here");
         }
     }
 
-    public static void main(String[] args) {}
+    public static void main(String[] args) {
+        playMusic("startLevel.wav");
+    }
 }
