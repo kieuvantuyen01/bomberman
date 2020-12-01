@@ -80,8 +80,12 @@ public class FlameSegment extends StaticEntity implements Animated{
                 ((MovableEntity) entity).die();
             }
         }
-        if(entity instanceof Brick) {
+        if (entity instanceof Brick) {
             ((Brick) entity).remove();
+        }
+
+        if (entity instanceof Bomb){
+            ((Bomb) entity)._timeToExplode=0;
         }
     }
 }
