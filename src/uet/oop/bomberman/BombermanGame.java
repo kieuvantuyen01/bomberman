@@ -7,31 +7,35 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import uet.oop.bomberman.GameHandling.TimeHandling;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.GameHandling.GameSound;
 
+import java.io.*;
 import java.util.*;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BombermanGame extends Application {
+    public HashMap<Integer, String> top_high_scores = new HashMap<>();
+    public ArrayList<Integer> scores= new ArrayList<>();
 
-    public static final int WIDTH = (int) (31);
+    public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
+//    public static int bomber_life = 3;
     private GraphicsContext gc;
     private Canvas canvas;
-
-    public static int get_points() {
-        return _points;
-    }
+//    public static boolean resetScoreDisplay = false;
 
     private static int _points = 0;
 
@@ -45,70 +49,122 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
-    private List<Message> _messages = new ArrayList<>();
+    private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
+    private TimeHandling timer;
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
 
-    @Override
-    public void start(Stage stage) {
-        // Tao Canvas
-        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
-        gc = canvas.getGraphicsContext2D();
-
-        // Tao root container
-        Group root = new Group();
-        root.getChildren().add(canvas);
-
-        // Tao scene
-        Scene scene = new Scene(root);
-
-        // Them scene vao stage
-
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyPressed(event);
+    public void getScoreChartFromFile() {
+        try {
+            FileReader fileReader = new FileReader("res\\scores\\scoreChart.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String line, name, score;
+            while((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    name = parts[0];
+                    score = parts[1];
+                    scores.add(Integer.parseInt(score));
+                    top_high_scores.put(Integer.parseInt(score), name);
+                }
             }
-        });
-
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyRelease(event);
-            }
-        });
-        // Them scene vao stage
-        stage.setScene(scene);
-        stage.show();
-
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long l) {
-                render();
-                update();
-            }
-        };
-        timer.start();
-
-        createMap(1);
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+    public void writeToScoreChartFile() {
+        try {
+            FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
+            BufferedWriter bw = new BufferedWriter(fos);
+            for (int score : scores) {
+                bw.write(top_high_scores.get(score) + " " + String.valueOf(score) + "\n");
+            }
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addIntoTopHighScores() {
+        int point = _points;
+        String name = "Tùng";
+        scores.add (point);
+        Comparator c = Collections.reverseOrder();
+        Collections.sort(scores, c);
+        top_high_scores.put(point, name);
+        for(int score : scores) {
+            System.out.println(top_high_scores.get(score) + " " + score);
+        }
+    }
+
+    //Sử dụng hàm này khi số phần tử của mảng scores đạt mức tối đa là 10.
+    public void removeFromTopHighScores() {
+        scores.remove(scores.size() - 1);
+    }
+
+    public void handleScores() {
+        getScoreChartFromFile();
+        addIntoTopHighScores();
+        if(scores.size() > 10) {
+            removeFromTopHighScores();
+        }
+        writeToScoreChartFile();
+    }
+
+    public static void removeBomb() {
+        bombs.remove(0);
+        if (bomber != null) {
+            bomber.addBomb();
+        }
+    }
+    public static int get_points() {
+        return _points;
+    }
+
+    public static void resetPoint() {_points = 0;}
 
     public static void addPoints(int point) {
         _points += point;
     }
 
-    public void renderMessages(GraphicsContext g) {
-        Message m;
-        for (int i = 0; i < _messages.size(); i++) {
-            m = _messages.get(i);
-            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
-            g.setFill(Color.WHITE);
-            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
-            g.fillText(m.getMessage(), (int)m.getPixel().getX() - 2 * 3, (int)m.getPixel().getY());
+    public static Entity getEntityAt(int x, int y) {
+        Entity entity;
+        entity = get(walls, x, y);
+        if (entity != null) {
+            return entity;
         }
+        entity = get(bricks, x, y);
+        if (entity != null) {
+            return entity;
+        }
+
+        entity = get(bombs, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(portals, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(items, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        entity = get(enemies, x, y);
+        if (entity != null) {
+            return entity;
+        }
+        if (bomber != null
+                && bomber.getTile().getX() == x
+                && bomber.getTile().getY() == y) {
+            entity = bomber;
+        }
+        return entity;
     }
 
     public static void createMap(int level) {
@@ -219,50 +275,24 @@ public class BombermanGame extends Application {
         BombermanGame.bombs.add(bomb);
     }
 
-    public static void removeBomb() {
-        bombs.remove(0);
-        if (bomber!=null){
-            bomber.addBomb();
-        }
+    public static void removeEnemy(Enemy enemy) {
+        enemies.remove(enemy);
     }
 
     public static void setEntity(Entity entity) {
         entities.add(entity);
     }
 
-    public static Entity getEntityAt(int x, int y) {
-        Entity entity;
-        entity = get(walls, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(bricks, x, y);
-        if (entity != null) {
-            return entity;
-        }
-
-        entity = get(bombs, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(portals, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(items, x, y);
-        if (entity != null) {
-            return entity;
-        }
-        entity = get(enemies, x, y);
-        if (entity!=null){
-            return entity;
-        }
-        if (bomber != null
-                && bomber.getTile().getX() == x
-                && bomber.getTile().getY() == y) {
-            entity = bomber;
-        }
-        return entity;
+    public static void initData() {
+        entities = new ArrayList<>();
+        flames = new CopyOnWriteArrayList<>();
+        bombs = new CopyOnWriteArrayList<>();
+        walls = new ArrayList<>();
+        portals = new ArrayList<>();
+        bricks = new CopyOnWriteArrayList<>();
+        items = new CopyOnWriteArrayList<>();
+        enemies = new CopyOnWriteArrayList<>();
+        grasses = new ArrayList<>();
     }
 
     public static Entity get(List<Entity> entities, int x, int y) {
@@ -299,19 +329,106 @@ public class BombermanGame extends Application {
         bricks.remove(brick);
     }
 
-    public static void removeEnemy(Enemy enemy){
-        enemies.remove(enemy);
+    @Override
+    public void start(Stage stage) {
+        // Tao Canvas
+        canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        canvas.setTranslateY(40);
+        gc = canvas.getGraphicsContext2D();
+
+        // Tao thoi gian dem nguoc
+        timer = new TimeHandling();
+
+        //Tao mang cua nguoi choi
+        Label heart_label = new Label("Hearts: ");
+        heart_label.setFont(javafx.scene.text.Font.font(20));
+        heart_label.setTranslateX(330);
+
+        Image image = new Image("/textures/heart.png");
+
+        ImageView img1 = new ImageView(image);
+        img1.setTranslateX(400);
+
+        ImageView img2 = new ImageView(image);
+        img2.setTranslateX(430);
+
+        ImageView img3 = new ImageView(image);
+        img3.setTranslateX(460);
+
+        // Tao diem
+        String score_str = ("Scores: " + String.valueOf(_points));
+        Label score_label = new Label(score_str);
+        score_label.setFont(javafx.scene.text.Font.font(20));
+        score_label.setTranslateX(700);
+
+        // Tao root container
+        Group root = new Group();
+        root.getChildren().add(canvas);
+        root.getChildren().add(timer);
+        root.getChildren().add(heart_label);
+        root.getChildren().add(img1);
+        root.getChildren().add(img2);
+        root.getChildren().add(img3);
+        root.getChildren().add(score_label);
+//        if(resetScoreDisplay) {
+//            root.getChildren().remove(score_label);
+//            root.getChildren().add(score_label);
+//            resetScoreDisplay = false;
+//        }
+//
+//        switch (bomber_life) {
+//            case 2:
+//                root.getChildren().remove(img3);
+//                break;
+//            case 1:
+//                root.getChildren().remove(img2);
+//                break;
+//            case 0:
+//                root.getChildren().remove(img1);
+//                break;
+//        }
+
+        // Tao scene
+        Scene scene = new Scene(root);
+
+        // Them scene vao stage
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyPressed(event);
+            }
+        });
+
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                input.keyRelease(event);
+            }
+        });
+        // Them scene vao stage
+        stage.setScene(scene);
+        stage.show();
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long l) {
+                render();
+                update();
+            }
+        };
+        timer.start();
+        createMap(1);
+        GameSound.playMusic(GameSound.PLAYGAME);
     }
 
-    public static void initData(){
-        entities = new ArrayList<>();
-        flames = new CopyOnWriteArrayList<>();
-        bombs = new CopyOnWriteArrayList<>();
-        walls = new ArrayList<>();
-        portals = new ArrayList<>();
-        bricks = new CopyOnWriteArrayList<>();
-        items = new CopyOnWriteArrayList<>();
-        enemies = new CopyOnWriteArrayList<>();
-        grasses = new ArrayList<>();
+    public void renderMessages(GraphicsContext g) {
+        Message m;
+        for (int i = 0; i < _messages.size(); i++) {
+            m = _messages.get(i);
+            g.setFill(Color.WHITE);
+            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
+            g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());
+        }
     }
 }
