@@ -15,15 +15,17 @@ import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.sound.GameSound;
 
+import javax.sound.sampled.Clip;
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static uet.oop.bomberman.sound.GameSound.loopPlaySound;
+
 public class BombermanGame extends Application {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
-    public ArrayList<Integer> scores= new ArrayList<>();
+    public ArrayList<Integer> scores = new ArrayList<>();
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
@@ -46,6 +48,8 @@ public class BombermanGame extends Application {
     private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
+    public static Clip THREAD_SOUNDTRACK = loopPlaySound("playgame.wav");
+
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
     }
@@ -55,7 +59,7 @@ public class BombermanGame extends Application {
             FileReader fileReader = new FileReader("res\\scores\\scoreChart.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line, name, score;
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(" ");
                 if (parts.length == 2) {
                     name = parts[0];
@@ -69,6 +73,7 @@ public class BombermanGame extends Application {
             e.printStackTrace();
         }
     }
+
     public void writeToScoreChartFile() {
         try {
             FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
@@ -86,11 +91,11 @@ public class BombermanGame extends Application {
     public void addIntoTopHighScores() {
         int point = _points;
         String name = "Tùng";
-        scores.add (point);
+        scores.add(point);
         Comparator c = Collections.reverseOrder();
         Collections.sort(scores, c);
         top_high_scores.put(point, name);
-        for(int score : scores) {
+        for (int score : scores) {
             System.out.println(top_high_scores.get(score) + " " + score);
         }
     }
@@ -103,7 +108,7 @@ public class BombermanGame extends Application {
     public void handleScores() {
         getScoreChartFromFile();
         addIntoTopHighScores();
-        if(scores.size() > 10) {
+        if (scores.size() > 10) {
             removeFromTopHighScores();
         }
         writeToScoreChartFile();
@@ -115,11 +120,15 @@ public class BombermanGame extends Application {
             bomber.addBomb();
         }
     }
+
     public static int get_points() {
         return _points;
     }
 
-    public static void resetPoint() {_points = 0;}
+    public static void resetPoint() {
+        _points = 0;
+    }
+
     public static void addPoints(int point) {
         _points += point;
     }
@@ -353,6 +362,8 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.show();
 
+        initPLayThread();
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -361,8 +372,30 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
+
         createMap(1);
-        GameSound.playMusic(GameSound.PLAYGAME);
+        BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
+    }
+
+    public void initPLayThread() {
+        AnimationTimer playThread = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                update();
+            }
+
+            @Override
+            public void start() {
+                THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
+                super.start();
+            }
+
+            @Override
+            public void stop() {
+                THREAD_SOUNDTRACK.stop();
+                super.stop();
+            }
+        };
     }
 
     public void renderMessages(GraphicsContext g) {
