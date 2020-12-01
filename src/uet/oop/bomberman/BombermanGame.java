@@ -7,10 +7,14 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import uet.oop.bomberman.GameHandling.TimeHandling;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
@@ -21,11 +25,14 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.sound.GameSound.loopPlaySound;
+import static uet.oop.bomberman.GameHandling.GameSound.loopPlaySound;
 
 public class BombermanGame extends Application {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
     public ArrayList<Integer> scores = new ArrayList<>();
+
+//    public static int bomber_life = 3;
+//    public static boolean resetScoreDisplay = false;
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
@@ -334,11 +341,60 @@ public class BombermanGame extends Application {
     public void start(Stage stage) {
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
+        canvas.setTranslateY(40);
         gc = canvas.getGraphicsContext2D();
+
+        // Tao thoi gian dem nguoc
+        TimeHandling time_display = new TimeHandling();
+
+        //Tao mang cua nguoi choi
+        Label heart_label = new Label("Hearts: ");
+        heart_label.setFont(javafx.scene.text.Font.font(20));
+        heart_label.setTranslateX(330);
+
+        Image image = new Image("/textures/heart.png");
+
+        ImageView img1 = new ImageView(image);
+        img1.setTranslateX(400);
+
+        ImageView img2 = new ImageView(image);
+        img2.setTranslateX(430);
+
+        ImageView img3 = new ImageView(image);
+        img3.setTranslateX(460);
+
+        // Tao diem
+        String score_str = ("Scores: " + String.valueOf(_points));
+        Label score_label = new Label(score_str);
+        score_label.setFont(javafx.scene.text.Font.font(20));
+        score_label.setTranslateX(700);
 
         // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
+        root.getChildren().add(time_display);
+        root.getChildren().add(heart_label);
+        root.getChildren().add(img1);
+        root.getChildren().add(img2);
+        root.getChildren().add(img3);
+        root.getChildren().add(score_label);
+//        if(resetScoreDisplay) {
+//            root.getChildren().remove(score_label);
+//            root.getChildren().add(score_label);
+//            resetScoreDisplay = false;
+//        }
+//
+//        switch (bomber_life) {
+//            case 2:
+//                root.getChildren().remove(img3);
+//                break;
+//            case 1:
+//                root.getChildren().remove(img2);
+//                break;
+//            case 0:
+//                root.getChildren().remove(img1);
+//                break;
+//        }
 
         // Tao scene
         Scene scene = new Scene(root);
@@ -358,6 +414,7 @@ public class BombermanGame extends Application {
                 input.keyRelease(event);
             }
         });
+
         // Them scene vao stage
         stage.setScene(scene);
         stage.show();
@@ -372,7 +429,6 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-
         createMap(1);
         BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
     }
@@ -402,7 +458,6 @@ public class BombermanGame extends Application {
         Message m;
         for (int i = 0; i < _messages.size(); i++) {
             m = _messages.get(i);
-            //g.setFont(javafx.scene.text.Font.font("Arial", FontWeight.findByWeight(Font.PLAIN), m.getSize()));
             g.setFill(Color.WHITE);
             g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
             g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());

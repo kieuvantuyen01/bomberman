@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities.enemy;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.MovableEntity;
-import uet.oop.bomberman.sound.GameSound;
+import uet.oop.bomberman.GameHandling.GameSound;
 
 public abstract class Enemy extends MovableEntity {
 
