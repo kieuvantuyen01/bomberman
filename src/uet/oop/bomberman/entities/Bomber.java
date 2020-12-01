@@ -2,16 +2,17 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.GameHandling.TimeHandling;
 import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.sound.GameSound;
+import uet.oop.bomberman.GameHandling.GameSound;
 
 
 public class Bomber extends MovableEntity {
-
+    BombermanGame game = new BombermanGame();
     protected Keyboard _input;
     private int time_exit_game = 60;
     public static int bomber_life = 3;
@@ -30,7 +31,7 @@ public class Bomber extends MovableEntity {
     @Override
     public void update() {
         animate();
-        if (_alive == false) {
+        if (!_alive) {
             afterDie();
             if (_animate == 60) {
                 BombermanGame.removeBomber();
@@ -65,19 +66,31 @@ public class Bomber extends MovableEntity {
         if (entity instanceof Portal) {
             if (BombermanGame.load_map_level<5){
                 BombermanGame.createMap(++BombermanGame.load_map_level);
+                resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
+                TimeHandling.nextLevel = true;
             }
         }
         if(_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
+            resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
+            BombermanGame.resetPoint();
         }
         if(_input.nextLevel && BombermanGame.load_map_level < 5) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
+            resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
+            BombermanGame.resetPoint();
         }
+    }
+
+    protected void resetBomberAbilityWhenPassLevel() {
+        Bomb.setDamage(1);
+        Bomber.setSpeed(1);
+        bomb = 1;
     }
 
     protected void putBomb() {
@@ -149,6 +162,7 @@ public class Bomber extends MovableEntity {
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
         if (time_exit_game <= 0) {
+            game.handleScores();
             System.exit(0);
         }
     }
