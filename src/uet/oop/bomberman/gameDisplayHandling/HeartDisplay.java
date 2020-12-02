@@ -1,4 +1,4 @@
-package uet.oop.bomberman.GameHandling;
+package uet.oop.bomberman.gameDisplayHandling;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,18 +19,18 @@ public class HeartDisplay extends Pane {
     public HeartDisplay() {
         heart_label = new Label("Hearts: ");
         heart_label.setFont(javafx.scene.text.Font.font(20));
-        heart_label.setTranslateX(330);
+        heart_label.setTranslateX(380);
 
         Image image = new Image("/textures/heart.png");
 
         img1 = new ImageView(image);
-        img1.setTranslateX(400);
+        img1.setTranslateX(450);
 
         img2 = new ImageView(image);
-        img2.setTranslateX(430);
+        img2.setTranslateX(480);
 
         img3 = new ImageView(image);
-        img3.setTranslateX(460);
+        img3.setTranslateX(510);
 
         getChildren().add(heart_label);
         getChildren().add(img1);

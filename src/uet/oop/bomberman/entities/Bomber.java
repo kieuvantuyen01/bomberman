@@ -2,13 +2,13 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.GameHandling.TimeHandling;
+import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
 import uet.oop.bomberman.Keyboard;
 
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.*;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.GameHandling.GameSound;
+import uet.oop.bomberman.gameDisplayHandling.GameSound;
 
 
 public class Bomber extends MovableEntity {

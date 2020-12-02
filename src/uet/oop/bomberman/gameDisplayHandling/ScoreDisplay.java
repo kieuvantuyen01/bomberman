@@ -1,4 +1,4 @@
-package uet.oop.bomberman.GameHandling;
+package uet.oop.bomberman.gameDisplayHandling;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,7 +14,7 @@ public class ScoreDisplay extends Pane {
 
     public ScoreDisplay() {
         score_label.setFont(javafx.scene.text.Font.font(20));
-        score_label.setTranslateX(700);
+        score_label.setTranslateX(800);
         getChildren().add(score_label);
         animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> ScoreLabel()));
         animation.setCycleCount(Timeline.INDEFINITE);

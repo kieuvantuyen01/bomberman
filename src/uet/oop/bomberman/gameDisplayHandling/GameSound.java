@@ -1,4 +1,4 @@
-package uet.oop.bomberman.GameHandling;
+package uet.oop.bomberman.gameDisplayHandling;
 
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;

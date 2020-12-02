@@ -1,25 +1,20 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import uet.oop.bomberman.GameHandling.HeartDisplay;
-import uet.oop.bomberman.GameHandling.ScoreDisplay;
-import uet.oop.bomberman.GameHandling.TimeHandling;
+import uet.oop.bomberman.gameDisplayHandling.HeartDisplay;
+import uet.oop.bomberman.gameDisplayHandling.ScoreDisplay;
+import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
@@ -30,7 +25,7 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.GameHandling.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
 
 public class BombermanGame extends Application {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
@@ -230,7 +225,6 @@ public class BombermanGame extends Application {
             bomber.render(gc);
         }
         renderMessages(gc);
-        System.out.println("                    " + BombermanGame.bomber_life + " " + Bomber.time_exit_game);
     }
 
     public static List<Entity> getBombs() {
@@ -387,6 +381,9 @@ public class BombermanGame extends Application {
 
         // Them scene vao stage
         stage.setScene(scene);
+        stage.setTitle("Bomberman game | 60 rate, 1814 fps");
+        Image icon = new Image(getClass().getResourceAsStream("/textures/Bomberman_Icon.png"));
+        stage.getIcons().add(icon);
         stage.show();
 
         initPLayThread();
