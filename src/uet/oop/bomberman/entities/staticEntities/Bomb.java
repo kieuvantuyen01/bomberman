@@ -4,7 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.Animated;
 import uet.oop.bomberman.graphics.Sprite;
-import uet.oop.bomberman.GameHandling.GameSound;
+import uet.oop.bomberman.gameDisplayHandling.GameSound;
 
 
 public class Bomb extends StaticEntity implements Animated {

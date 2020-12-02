@@ -1,4 +1,4 @@
-package uet.oop.bomberman.GameHandling;
+package uet.oop.bomberman.gameDisplayHandling;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
