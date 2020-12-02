@@ -28,7 +28,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java" />
+    <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -233,7 +236,7 @@
       <workItem from="1606697388853" duration="113000" />
       <workItem from="1606817356631" duration="899000" />
       <workItem from="1606819240516" duration="1436000" />
-      <workItem from="1606843947059" duration="3329000" />
+      <workItem from="1606843947059" duration="3760000" />
     </task>
     <servers />
   </component>
@@ -313,22 +316,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1606093525430" />
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1606846642853">
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1606847746227">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606846642853" />
-    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1606846642853">
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606847746227" />
+    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1606847746227">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606846642853" />
-    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1606846642853">
+    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606847746227" />
+    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1606847746227">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606846642853" />
-    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1606846642853">
+    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606847746227" />
+    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1606847746227">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606846642853" />
+    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606847746227" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606379047755">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -349,14 +352,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="104" key="IDE.errors.dialog/0.0.1366.738@0.0.1366.738" timestamp="1605767561231" />
-    <state x="258" y="64" key="MergeDialog" timestamp="1606844599320">
+    <state x="258" y="64" key="MergeDialog" timestamp="1606847500818">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="258" y="64" key="MergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1606844599320" />
-    <state x="524" y="138" key="MultipleFileMergeDialog" timestamp="1606844623485">
+    <state x="258" y="64" key="MergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1606847500818" />
+    <state x="524" y="138" key="MultipleFileMergeDialog" timestamp="1606847505938">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="524" y="138" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1606844623485" />
+    <state x="524" y="138" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1606847505938" />
     <state x="517" y="71" key="RollbackChangesDialog" timestamp="1606844057298">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
