@@ -2,7 +2,7 @@ package uet.oop.bomberman.entities.item;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.entities.Bomb;
+import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class FlamesItem extends Item {

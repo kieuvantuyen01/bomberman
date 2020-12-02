@@ -1,74 +1,70 @@
 package uet.oop.bomberman.entities.enemy;
 
-import uet.oop.bomberman.BombermanGame;
+import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Ghost extends Enemy {
-
+public class Boss1 extends Boss {
     protected double speed = 1;
-    double xa = 0, ya = 0;
+    double xa = -speed, ya = 0;
 
-    public Ghost(Coordinates tile, boolean horizontal) {
-        super(tile, 200);
-        img = Sprite.ghost_left1.getFxImage();
-        if (horizontal) {
-            xa = -speed;
-        } else {
-            ya = -speed;
-        }
+    public Boss1(Coordinates tile) {
+        super(tile, 1000);
+        img = new Image("textures/boss_down1.png");
+        tiles.add(tile);
+        tiles.add(new Coordinates(tile.getX() + 1, tile.getY()));
+        tiles.add(new Coordinates(tile.getX(), tile.getY() + 1));
+        tiles.add(new Coordinates(tile.getX() + 1, tile.getY() + 1));
     }
 
     @Override
     protected void handleMove() {
         if (d.getX() == 0) {
             if (xa == -speed) {
-                if (canMoveToDirection(-1, 0)) {
+                if (canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)) {
                     d.setX(-Sprite.SCALED_SIZE);
                 } else {
                     xa = 0;
-                    if (canMoveToDirection(0,-1)){
+                    if (canMoveToDirection(0, -1) && canMoveToDirection(1, -1)) {
                         ya = -speed;
                     } else {
-                        ya=speed;
+                        ya = speed;
                     }
                 }
             } else if (xa == speed) {
-                if (canMoveToDirection(1, 0)) {
+                if (canMoveToDirection(2, 0) && canMoveToDirection(2, 1)) {
                     d.setX(Sprite.SCALED_SIZE);
                 } else {
                     xa = 0;
-                    if (canMoveToDirection(0,1)){
+                    if (canMoveToDirection(0, 2) && canMoveToDirection(1, 2)) {
                         ya = speed;
                     } else {
-                        ya=-speed;
+                        ya = -speed;
                     }
                 }
             }
         }
         if (d.getY() == 0) {
             if (ya == -speed) {
-                if (canMoveToDirection(0, -1)) {
+                if (canMoveToDirection(0, -1) && canMoveToDirection(1, -1)) {
                     d.setY(-Sprite.SCALED_SIZE);
                 } else {
                     ya = 0;
-                    if (canMoveToDirection(1,0)){
+                    if (canMoveToDirection(2, 0) && canMoveToDirection(2, 1)) {
                         xa = speed;
                     } else {
-                        xa=-speed;
+                        xa = -speed;
                     }
                 }
             } else if (ya == speed) {
-                if (canMoveToDirection(0, 1)) {
+                if (canMoveToDirection(0, 2) && canMoveToDirection(1, 2)) {
                     d.setY(Sprite.SCALED_SIZE);
                 } else {
                     ya = 0;
-                    if (canMoveToDirection(-1,0)){
+                    if (canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)) {
                         xa = -speed;
                     } else {
-                        xa=speed;
+                        xa = speed;
                     }
                 }
             }
@@ -87,39 +83,29 @@ public class Ghost extends Enemy {
     }
 
     @Override
-    public void animate() {
-        if (_animate > 6000) _animate = 0;
-        else _animate++;
-    }
-
-    @Override
     public void update() {
         super.update();
-        if(!_alive){
+        if (!_alive) {
             return;
         }
-        handleMove();
 
-        chooseSprite(Sprite.ghost_left1,
-                Sprite.ghost_left1,Sprite.ghost_left2,Sprite.ghost_left3,
-                Sprite.ghost_right1,Sprite.ghost_right2,Sprite.ghost_right3,
-                Sprite.ghost_left1,Sprite.ghost_left2,Sprite.ghost_left1,
-                Sprite.ghost_right1,Sprite.ghost_right2,Sprite.ghost_right1);
+        handleMove();
 
     }
 
     @Override
     protected void move(double xa, double ya) {
         super.move(xa, ya);
+        tiles.removeAll(tiles);
+        tiles.add(tile);
+        tiles.add(new Coordinates(tile.getX() + 1, tile.getY()));
+        tiles.add(new Coordinates(tile.getX(), tile.getY() + 1));
+        tiles.add(new Coordinates(tile.getX() + 1, tile.getY() + 1));
     }
 
     @Override
     protected boolean canMoveToDirection(int x, int y) {
-        Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall) {
-            return false;
-        }
-        return true;
+        return super.canMoveToDirection(x, y);
     }
 
     @Override
@@ -129,6 +115,5 @@ public class Ghost extends Enemy {
 
     @Override
     protected void afterDie() {
-        img=Sprite.ghost_dead.getFxImage();
     }
 }

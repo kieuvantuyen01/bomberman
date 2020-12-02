@@ -2,11 +2,16 @@ package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Boss1;
 import uet.oop.bomberman.entities.enemy.Ghost;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.SpeedItem;
+import uet.oop.bomberman.entities.staticEntities.Brick;
+import uet.oop.bomberman.entities.staticEntities.Grass;
+import uet.oop.bomberman.entities.staticEntities.Portal;
+import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.exception.LevelLoaderException;
 
 import java.io.BufferedReader;
@@ -66,6 +71,7 @@ public class LevelLoader {
                             BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
                             break;
                         case 'p':
+                            BombermanGame.setEnemy(new Boss1(new Coordinates(2,1)));
                             BombermanGame.setBomber(new Bomber(new Coordinates(j,i),BombermanGame.input));
                             break;
                         case 'f':
