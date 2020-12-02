@@ -6,7 +6,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 
 public abstract class MovableEntity extends Entity implements Animated {
-    protected  boolean _alive = true;
+    protected boolean _alive = true;
     protected boolean _moving = false;
     protected boolean _bombpass = false;
     protected boolean _flamepass=false;

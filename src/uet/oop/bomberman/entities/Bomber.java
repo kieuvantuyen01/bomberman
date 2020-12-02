@@ -14,8 +14,7 @@ import uet.oop.bomberman.GameHandling.GameSound;
 public class Bomber extends MovableEntity {
     BombermanGame game = new BombermanGame();
     protected Keyboard _input;
-    private int time_exit_game = 60;
-    public static int bomber_life = 3;
+    public static int time_exit_game = 60;
     protected static int speed = 1;
     protected static int bomb = 1;
     protected static int distance = 0;
@@ -35,6 +34,11 @@ public class Bomber extends MovableEntity {
             afterDie();
             if (_animate == 60) {
                 BombermanGame.removeBomber();
+
+                if(BombermanGame.bomber_life > 0) {
+                    BombermanGame.setBomber(new Bomber(new Coordinates(1,1),BombermanGame.input));
+                    _alive = true;
+                }
             }
             return;
         }
@@ -56,6 +60,7 @@ public class Bomber extends MovableEntity {
     protected void handleCollision() {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof Enemy) {
+            BombermanGame.bomber_life--;
             die();
             GameSound.playMusic(GameSound.BOMBER_DIE);
         }
@@ -108,7 +113,7 @@ public class Bomber extends MovableEntity {
         if (_animate > 120) _animate = 0;
         else _animate++;
         distance--;
-        if (!_alive) {
+        if (BombermanGame.bomber_life <= 0) {
             time_exit_game--;
         }
     }

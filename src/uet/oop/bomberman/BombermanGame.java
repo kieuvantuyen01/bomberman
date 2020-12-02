@@ -1,6 +1,8 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -14,6 +16,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import uet.oop.bomberman.GameHandling.HeartDisplay;
+import uet.oop.bomberman.GameHandling.ScoreDisplay;
 import uet.oop.bomberman.GameHandling.TimeHandling;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.entities.enemy.Enemy;
@@ -31,8 +36,8 @@ public class BombermanGame extends Application {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
     public ArrayList<Integer> scores = new ArrayList<>();
 
-//    public static int bomber_life = 3;
-//    public static boolean resetScoreDisplay = false;
+    public static int bomber_life = 3;
+
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
@@ -225,6 +230,7 @@ public class BombermanGame extends Application {
             bomber.render(gc);
         }
         renderMessages(gc);
+        System.out.println("                    " + BombermanGame.bomber_life + " " + Bomber.time_exit_game);
     }
 
     public static List<Entity> getBombs() {
@@ -348,53 +354,17 @@ public class BombermanGame extends Application {
         TimeHandling time_display = new TimeHandling();
 
         //Tao mang cua nguoi choi
-        Label heart_label = new Label("Hearts: ");
-        heart_label.setFont(javafx.scene.text.Font.font(20));
-        heart_label.setTranslateX(330);
-
-        Image image = new Image("/textures/heart.png");
-
-        ImageView img1 = new ImageView(image);
-        img1.setTranslateX(400);
-
-        ImageView img2 = new ImageView(image);
-        img2.setTranslateX(430);
-
-        ImageView img3 = new ImageView(image);
-        img3.setTranslateX(460);
+        HeartDisplay heart_label = new HeartDisplay();
 
         // Tao diem
-        String score_str = ("Scores: " + String.valueOf(_points));
-        Label score_label = new Label(score_str);
-        score_label.setFont(javafx.scene.text.Font.font(20));
-        score_label.setTranslateX(700);
+        ScoreDisplay score_label = new ScoreDisplay();
 
         // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
         root.getChildren().add(time_display);
         root.getChildren().add(heart_label);
-        root.getChildren().add(img1);
-        root.getChildren().add(img2);
-        root.getChildren().add(img3);
         root.getChildren().add(score_label);
-//        if(resetScoreDisplay) {
-//            root.getChildren().remove(score_label);
-//            root.getChildren().add(score_label);
-//            resetScoreDisplay = false;
-//        }
-//
-//        switch (bomber_life) {
-//            case 2:
-//                root.getChildren().remove(img3);
-//                break;
-//            case 1:
-//                root.getChildren().remove(img2);
-//                break;
-//            case 0:
-//                root.getChildren().remove(img1);
-//                break;
-//        }
 
         // Tao scene
         Scene scene = new Scene(root);

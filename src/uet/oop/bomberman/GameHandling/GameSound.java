@@ -46,8 +46,4 @@ public class GameSound {
             System.out.println("not here");
         }
     }
-
-    public static void main(String[] args) {
-        playMusic("startLevel.wav");
-    }
 }
