@@ -2,14 +2,13 @@ package uet.oop.bomberman.entities.enemy;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.entities.MovableEntity;
 import uet.oop.bomberman.GameHandling.GameSound;
+import uet.oop.bomberman.entities.MovableEntity;
 
 public abstract class Enemy extends MovableEntity {
-
     protected int _points;
-
     BombermanGame game;
+
     public Enemy(Coordinates tile, int points) {
         super(tile);
         this._points = points;

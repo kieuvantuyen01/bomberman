@@ -2,16 +2,17 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.GameHandling.GameSound;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class FlameSegment extends StaticEntity implements Animated{
+public class FlameSegment extends StaticEntity implements Animated {
     protected boolean _last;
     protected int _animate = -1;
 
     public FlameSegment(Coordinates tile, MovableEntity.DIRECTION direction, boolean last) {
         super(tile);
         _last = last;
-        this._direction=direction;
+        this._direction = direction;
     }
 
 
@@ -20,37 +21,37 @@ public class FlameSegment extends StaticEntity implements Animated{
         else _animate++;
     }
 
-    protected void chooseSprite(){
-        switch (_direction){
+    protected void chooseSprite() {
+        switch (_direction) {
             case CENTER:
-                loadAnimated(Sprite.bomb_exploded,Sprite.bomb_exploded1,Sprite.bomb_exploded2);
+                loadAnimated(Sprite.bomb_exploded, Sprite.bomb_exploded1, Sprite.bomb_exploded2);
                 break;
             case UP:
-                if (_last){
-                    loadAnimated(Sprite.explosion_vertical_top_last,Sprite.explosion_vertical_top_last1,Sprite.explosion_vertical_top_last2);
+                if (_last) {
+                    loadAnimated(Sprite.explosion_vertical_top_last, Sprite.explosion_vertical_top_last1, Sprite.explosion_vertical_top_last2);
                 } else {
-                    loadAnimated(Sprite.explosion_vertical,Sprite.explosion_vertical1, Sprite.explosion_vertical2);
+                    loadAnimated(Sprite.explosion_vertical, Sprite.explosion_vertical1, Sprite.explosion_vertical2);
                 }
                 break;
             case RIGHT:
-                if (_last){
-                    loadAnimated(Sprite.explosion_horizontal_right_last,Sprite.explosion_horizontal_right_last1,Sprite.explosion_horizontal_right_last2);
+                if (_last) {
+                    loadAnimated(Sprite.explosion_horizontal_right_last, Sprite.explosion_horizontal_right_last1, Sprite.explosion_horizontal_right_last2);
                 } else {
-                    loadAnimated(Sprite.explosion_horizontal,Sprite.explosion_horizontal1,Sprite.explosion_horizontal2);
+                    loadAnimated(Sprite.explosion_horizontal, Sprite.explosion_horizontal1, Sprite.explosion_horizontal2);
                 }
                 break;
             case DOWN:
-                if (_last){
-                    loadAnimated(Sprite.explosion_vertical_down_last,Sprite.explosion_vertical_down_last1,Sprite.explosion_vertical_down_last2);
+                if (_last) {
+                    loadAnimated(Sprite.explosion_vertical_down_last, Sprite.explosion_vertical_down_last1, Sprite.explosion_vertical_down_last2);
                 } else {
-                    loadAnimated(Sprite.explosion_vertical,Sprite.explosion_vertical1,Sprite.explosion_vertical2);
+                    loadAnimated(Sprite.explosion_vertical, Sprite.explosion_vertical1, Sprite.explosion_vertical2);
                 }
                 break;
             case LEFT:
-                if (_last){
-                    loadAnimated(Sprite.explosion_horizontal_left_last,Sprite.explosion_horizontal_left_last1,Sprite.explosion_horizontal_left_last2);
+                if (_last) {
+                    loadAnimated(Sprite.explosion_horizontal_left_last, Sprite.explosion_horizontal_left_last1, Sprite.explosion_horizontal_left_last2);
                 } else {
-                    loadAnimated(Sprite.explosion_horizontal,Sprite.explosion_horizontal1,Sprite.explosion_horizontal2);
+                    loadAnimated(Sprite.explosion_horizontal, Sprite.explosion_horizontal1, Sprite.explosion_horizontal2);
                 }
                 break;
             case NONE:
@@ -73,10 +74,14 @@ public class FlameSegment extends StaticEntity implements Animated{
     }
 
 
-    public void handleCollision(){
-        Entity entity= BombermanGame.getEntityAt(tile.getX(), tile.getY());
-        if (entity instanceof MovableEntity){
-            if (((MovableEntity) entity).is_flamepass()==false){
+    public void handleCollision() {
+        Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
+        if (entity instanceof MovableEntity) {
+            if (((MovableEntity) entity).is_flamepass() == false) {
+                if (entity instanceof Bomber && ((Bomber) entity)._alive == true) {
+                    BombermanGame.bomber_life--;
+                    GameSound.playMusic(GameSound.BOMBER_DIE);
+                }
                 ((MovableEntity) entity).die();
             }
         }
@@ -84,8 +89,8 @@ public class FlameSegment extends StaticEntity implements Animated{
             ((Brick) entity).remove();
         }
 
-        if (entity instanceof Bomb){
-            ((Bomb) entity)._timeToExplode=0;
+        if (entity instanceof Bomb) {
+            ((Bomb) entity)._timeToExplode = 0;
         }
     }
 }
