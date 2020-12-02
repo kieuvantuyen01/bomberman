@@ -9,7 +9,7 @@ public class Balloom extends Enemy {
     double xa = 0, ya = 0;
 
     public Balloom(Coordinates tile, boolean horizontal) {
-        super(tile);
+        super(tile, 100);
         img = Sprite.balloom_left1.getFxImage();
         if (horizontal) {
             xa = -speed;

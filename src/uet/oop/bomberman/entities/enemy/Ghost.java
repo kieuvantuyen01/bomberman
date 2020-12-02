@@ -12,7 +12,7 @@ public class Ghost extends Enemy {
     double xa = 0, ya = 0;
 
     public Ghost(Coordinates tile, boolean horizontal) {
-        super(tile);
+        super(tile, 200);
         img = Sprite.ghost_left1.getFxImage();
         if (horizontal) {
             xa = -speed;

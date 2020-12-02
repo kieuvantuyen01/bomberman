@@ -10,4 +10,9 @@ public class WallpassItem extends Item {
         this.img=Sprite.powerup_wallpass.getFxImage();
     }
 
+    @Override
+    public void getItem() {
+
+    }
+
 }

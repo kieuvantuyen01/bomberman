@@ -2,12 +2,16 @@ package uet.oop.bomberman.entities.enemy;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.GameHandling.GameSound;
 import uet.oop.bomberman.entities.MovableEntity;
 
 public abstract class Enemy extends MovableEntity {
+    protected int _points;
+    BombermanGame game;
 
-    public Enemy(Coordinates tile) {
+    public Enemy(Coordinates tile, int points) {
         super(tile);
+        this._points = points;
     }
 
     public void animate() {
@@ -20,8 +24,12 @@ public abstract class Enemy extends MovableEntity {
         animate();
         if (_alive == false) {
             afterDie();
+
             if (_animate == 60) {
+                BombermanGame.addPoints(_points);
+                System.out.println(BombermanGame.get_points());
                 BombermanGame.removeEnemy(this);
+                GameSound.playMusic(GameSound.ENEMY_DIE);
             }
         }
 

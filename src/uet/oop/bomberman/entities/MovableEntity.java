@@ -8,6 +8,8 @@ import uet.oop.bomberman.graphics.Sprite;
 public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _alive = true;
     protected boolean _moving = false;
+    protected boolean _bombpass = false;
+    protected boolean _flamepass=false;
 
     ;
     protected int _animate = 0;
@@ -45,7 +47,7 @@ public abstract class MovableEntity extends Entity implements Animated {
 
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall || entity instanceof Brick || entity instanceof Bomb) {
+        if (entity instanceof Wall || entity instanceof Brick || (!_bombpass && entity instanceof Bomb)) {
             return false;
         }
         return true;
@@ -94,6 +96,30 @@ public abstract class MovableEntity extends Entity implements Animated {
                 img = default1.getFxImage();
                 break;
         }
+    }
+
+    public boolean is_flamepass() {
+        return _flamepass;
+    }
+
+    public boolean is_bombpass() {
+        return _bombpass;
+    }
+
+    public void set_bombpass(boolean _bombpass) {
+        this._bombpass = _bombpass;
+    }
+
+    public void set_flamepass(boolean _flamepass) {
+        this._flamepass = _flamepass;
+    }
+
+    public Coordinates getD() {
+        return d;
+    }
+
+    public void setD(Coordinates d) {
+        this.d = d;
     }
 
     protected abstract void handleCollision();
