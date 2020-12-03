@@ -1,6 +1,8 @@
 package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -12,16 +14,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import uet.oop.bomberman.gameDisplayHandling.Fps;
-import uet.oop.bomberman.gameDisplayHandling.HeartDisplay;
-import uet.oop.bomberman.gameDisplayHandling.ScoreDisplay;
-import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
-import uet.oop.bomberman.entities.*;
+import javafx.util.Duration;
+import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.entities.MovableEntities;
 import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
-import uet.oop.bomberman.gameDisplayHandling.LevelDisplay;
+import uet.oop.bomberman.gameDisplayHandling.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
@@ -285,7 +286,11 @@ public class BombermanGame extends Application {
         // Them scene vao stage
 
         stage.setScene(scene);
-        stage.setTitle("Bomberman game | "+String.valueOf(Fps.get())+" fps");
+        stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
+        Timeline animation;
+        animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> fpsDisplay(stage)));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
         Image icon = new Image(getClass().getResourceAsStream("/textures/Bomberman_Icon.png"));
         stage.getIcons().add(icon);
         stage.show();
@@ -444,5 +449,9 @@ public class BombermanGame extends Application {
 
     public static void setBomber(Bomber bomber) {
         BombermanGame.bomber = bomber;
+    }
+
+    public void fpsDisplay(Stage stage) {
+        stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
     }
 }
