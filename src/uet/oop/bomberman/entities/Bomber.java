@@ -80,7 +80,7 @@ public class Bomber extends MovableEntities {
                 LevelDisplay.changeLevel = true;
             }
         }
-        if (_input.previousLevel && BombermanGame.load_map_level > 0) {
+        if (_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
