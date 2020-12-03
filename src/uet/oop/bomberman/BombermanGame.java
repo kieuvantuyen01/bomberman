@@ -12,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import uet.oop.bomberman.gameDisplayHandling.Fps;
 import uet.oop.bomberman.gameDisplayHandling.HeartDisplay;
 import uet.oop.bomberman.gameDisplayHandling.ScoreDisplay;
 import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
@@ -162,6 +163,7 @@ public class BombermanGame extends Application {
     }
 
     public void update() {
+        Fps.update();
         flames.forEach(Flame::update);
         for (Entity _brick : bricks) {
             Brick brick = (Brick) _brick;
@@ -281,8 +283,9 @@ public class BombermanGame extends Application {
         });
 
         // Them scene vao stage
+
         stage.setScene(scene);
-        stage.setTitle("Bomberman game | 60 rate, 1814 fps");
+        stage.setTitle("Bomberman game | "+String.valueOf(Fps.get())+" fps");
         Image icon = new Image(getClass().getResourceAsStream("/textures/Bomberman_Icon.png"));
         stage.getIcons().add(icon);
         stage.show();
