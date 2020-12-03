@@ -2,9 +2,9 @@ package uet.oop.bomberman.entities.enemy;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.entities.Bomb;
-import uet.oop.bomberman.entities.Brick;
-import uet.oop.bomberman.entities.Wall;
+import uet.oop.bomberman.entities.staticEntities.Bomb;
+import uet.oop.bomberman.entities.staticEntities.Brick;
+import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Oneal extends Enemy {

@@ -3,9 +3,9 @@ package uet.oop.bomberman.entities.enemy;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
-import uet.oop.bomberman.entities.MovableEntity;
+import uet.oop.bomberman.entities.MovableEntities;
 
-public abstract class Enemy extends MovableEntity {
+public abstract class Enemy extends MovableEntities {
     protected int _points;
     BombermanGame game;
 

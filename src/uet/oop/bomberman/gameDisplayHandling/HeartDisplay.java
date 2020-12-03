@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.entities.Bomber;
 
 public class HeartDisplay extends Pane {
     private Timeline animation;
@@ -43,7 +44,7 @@ public class HeartDisplay extends Pane {
     }
 
     public void heartImg() {
-        switch (BombermanGame.bomber_life) {
+        switch (Bomber.bomber_life) {
             case 2:
                 getChildren().remove(img3);
                 break;

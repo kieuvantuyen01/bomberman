@@ -12,9 +12,9 @@ public abstract class Entity {
 
     protected Image img;
 
-    protected DIRECTION _direction = DIRECTION.NONE;
+    public DIRECTION _direction = DIRECTION.NONE;
 
-    enum DIRECTION {
+    public enum DIRECTION {
         NONE, UP, RIGHT, DOWN, LEFT, CENTER
     }
 

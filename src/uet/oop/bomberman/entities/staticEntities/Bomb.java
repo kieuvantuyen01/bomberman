@@ -1,7 +1,8 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.staticEntities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.entities.Animated;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
 

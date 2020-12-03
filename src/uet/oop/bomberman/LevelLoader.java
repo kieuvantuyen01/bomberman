@@ -1,12 +1,17 @@
 package uet.oop.bomberman;
 
-import uet.oop.bomberman.entities.*;
+import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.enemy.Balloom;
+import uet.oop.bomberman.entities.enemy.Boss1;
 import uet.oop.bomberman.entities.enemy.Ghost;
 import uet.oop.bomberman.entities.enemy.Oneal;
 import uet.oop.bomberman.entities.item.BombsItem;
 import uet.oop.bomberman.entities.item.FlamesItem;
 import uet.oop.bomberman.entities.item.SpeedItem;
+import uet.oop.bomberman.entities.staticEntities.Brick;
+import uet.oop.bomberman.entities.staticEntities.Grass;
+import uet.oop.bomberman.entities.staticEntities.Portal;
+import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.exception.LevelLoaderException;
 
 import java.io.BufferedReader;
@@ -53,38 +58,41 @@ public class LevelLoader {
                 String map = br.readLine();
                 System.out.println(map);
                 for (int j = 0; j < cols; j++) {
-                    BombermanGame.setGrass(new Grass(new Coordinates(j,i)));
+                    BombermanGame.setGrass(new Grass(new Coordinates(j, i)));
                     switch (map.charAt(j)) {
                         case '#':
-                            BombermanGame.setWall(new Wall(new Coordinates(j,i)));
+                            BombermanGame.setWall(new Wall(new Coordinates(j, i)));
                             break;
                         case '*':
-                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case 'x':
-                            BombermanGame.setPortal(new Portal(new Coordinates(j,i)));
-                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            BombermanGame.setPortal(new Portal(new Coordinates(j, i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case 'p':
-                            BombermanGame.setBomber(new Bomber(new Coordinates(j,i),BombermanGame.input));
+                            BombermanGame.setBomber(new Bomber(new Coordinates(j, i), BombermanGame.input));
                             break;
                         case 'f':
-                            BombermanGame.setItem(new FlamesItem(new Coordinates(j,i)));
-                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            BombermanGame.setItem(new FlamesItem(new Coordinates(j, i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case 's':
-                            BombermanGame.setItem(new SpeedItem(new Coordinates(j,i)));
-                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            BombermanGame.setItem(new SpeedItem(new Coordinates(j, i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
+                            break;
+                        case 'k':
+                            BombermanGame.setEnemy(new Boss1(new Coordinates(5, 5)));
                             break;
                         case 'b':
-                            BombermanGame.setItem(new BombsItem(new Coordinates(j,i)));
-                            BombermanGame.setBrick(new Brick(new Coordinates(j,i)));
+                            BombermanGame.setItem(new BombsItem(new Coordinates(j, i)));
+                            BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case '1':
-                            BombermanGame.setEnemy(new Balloom(new Coordinates(j,i),true));
+                            BombermanGame.setEnemy(new Balloom(new Coordinates(j, i), true));
                             break;
                         case '2':
-                            BombermanGame.setEnemy(new Oneal(new Coordinates(j,i)));
+                            BombermanGame.setEnemy(new Oneal(new Coordinates(j, i)));
                             break;
                         case '3':
                             BombermanGame.setEnemy(new Ghost(new Coordinates(j,i), true));

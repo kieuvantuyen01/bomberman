@@ -1,15 +1,16 @@
-package uet.oop.bomberman.entities;
+package uet.oop.bomberman.entities.staticEntities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
+import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class FlameSegment extends StaticEntity implements Animated {
     protected boolean _last;
     protected int _animate = -1;
 
-    public FlameSegment(Coordinates tile, MovableEntity.DIRECTION direction, boolean last) {
+    public FlameSegment(Coordinates tile, Entity.DIRECTION direction, boolean last) {
         super(tile);
         _last = last;
         this._direction = direction;
@@ -76,13 +77,13 @@ public class FlameSegment extends StaticEntity implements Animated {
 
     public void handleCollision() {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
-        if (entity instanceof MovableEntity) {
-            if (((MovableEntity) entity).is_flamepass() == false) {
-                if (entity instanceof Bomber && ((Bomber) entity)._alive == true) {
-                    BombermanGame.bomber_life--;
+        if (entity instanceof MovableEntities) {
+            if (((MovableEntities) entity).is_flamepass() == false) {
+                if (entity instanceof Bomber && ((Bomber) entity).is_alive() == true) {
+                    Bomber.bomber_life--;
                     GameSound.playMusic(GameSound.BOMBER_DIE);
                 }
-                ((MovableEntity) entity).die();
+                ((MovableEntities) entity).die();
             }
         }
         if (entity instanceof Brick) {

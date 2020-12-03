@@ -2,17 +2,20 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
 import uet.oop.bomberman.Keyboard;
-
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.*;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.entities.item.Item;
+import uet.oop.bomberman.entities.staticEntities.Bomb;
+import uet.oop.bomberman.entities.staticEntities.Portal;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
+import uet.oop.bomberman.gameDisplayHandling.LevelDisplay;
+import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
+import uet.oop.bomberman.graphics.Sprite;
 
 
-public class Bomber extends MovableEntity {
+public class Bomber extends MovableEntities {
     BombermanGame game = new BombermanGame();
+    public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;
     protected static int speed = 1;
@@ -35,7 +38,7 @@ public class Bomber extends MovableEntity {
             if (_animate == 60) {
                 BombermanGame.removeBomber();
 
-                if(BombermanGame.bomber_life > 0) {
+                if(bomber_life > 0) {
                     BombermanGame.setBomber(new Bomber(new Coordinates(1,1),BombermanGame.input));
                     _alive = true;
                 }
@@ -60,7 +63,7 @@ public class Bomber extends MovableEntity {
     protected void handleCollision() {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof Enemy) {
-            BombermanGame.bomber_life--;
+            bomber_life--;
             die();
             GameSound.playMusic(GameSound.BOMBER_DIE);
         }
@@ -69,26 +72,29 @@ public class Bomber extends MovableEntity {
             GameSound.playMusic(GameSound.ITEM);
         }
         if (entity instanceof Portal) {
-            if (BombermanGame.load_map_level<5){
+            if (BombermanGame.load_map_level < 6) {
                 BombermanGame.createMap(++BombermanGame.load_map_level);
                 resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
                 TimeHandling.nextLevel = true;
+                LevelDisplay.changeLevel = true;
             }
         }
-        if(_input.previousLevel && BombermanGame.load_map_level > 1) {
+        if (_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
             BombermanGame.resetPoint();
+            LevelDisplay.changeLevel = true;
         }
-        if(_input.nextLevel && BombermanGame.load_map_level < 5) {
+        if (_input.nextLevel && BombermanGame.load_map_level < 6) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
             BombermanGame.resetPoint();
+            LevelDisplay.changeLevel = true;
         }
     }
 
@@ -113,7 +119,7 @@ public class Bomber extends MovableEntity {
         if (_animate > 120) _animate = 0;
         else _animate++;
         distance--;
-        if (BombermanGame.bomber_life <= 0) {
+        if (bomber_life <= 0) {
             time_exit_game--;
         }
     }

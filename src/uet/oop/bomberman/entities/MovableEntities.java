@@ -2,10 +2,13 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.entities.staticEntities.Bomb;
+import uet.oop.bomberman.entities.staticEntities.Brick;
+import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
 
-public abstract class MovableEntity extends Entity implements Animated {
+public abstract class MovableEntities extends Entity implements Animated {
     protected boolean _alive = true;
     protected boolean _moving = false;
     protected boolean _bombpass = false;
@@ -15,7 +18,7 @@ public abstract class MovableEntity extends Entity implements Animated {
     protected int _animate = 0;
     protected Coordinates d = new Coordinates(0, 0);
 
-    public MovableEntity(Coordinates tile) {
+    public MovableEntities(Coordinates tile) {
         super(tile);
     }
 
@@ -124,4 +127,19 @@ public abstract class MovableEntity extends Entity implements Animated {
 
     protected abstract void handleCollision();
 
+    public boolean is_alive() {
+        return _alive;
+    }
+
+    public void set_alive(boolean _alive) {
+        this._alive = _alive;
+    }
+
+    public boolean is_moving() {
+        return _moving;
+    }
+
+    public void set_moving(boolean _moving) {
+        this._moving = _moving;
+    }
 }
