@@ -143,7 +143,6 @@ public class Bomber extends MovableEntities {
         }
 
         if (d.getX() != 0 || d.getY() != 0) {
-            System.out.println(d.getX()+" "+d.getY());
             move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
             d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
             d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
