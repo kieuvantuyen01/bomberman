@@ -2,15 +2,15 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
 import uet.oop.bomberman.Keyboard;
-
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.*;
+import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
-import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
+import uet.oop.bomberman.gameDisplayHandling.LevelDisplay;
+import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
+import uet.oop.bomberman.graphics.Sprite;
 
 
 public class Bomber extends MovableEntities {
@@ -72,26 +72,29 @@ public class Bomber extends MovableEntities {
             GameSound.playMusic(GameSound.ITEM);
         }
         if (entity instanceof Portal) {
-            if (BombermanGame.load_map_level<5){
+            if (BombermanGame.load_map_level < 6) {
                 BombermanGame.createMap(++BombermanGame.load_map_level);
                 resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
                 TimeHandling.nextLevel = true;
+                LevelDisplay.changeLevel = true;
             }
         }
-        if(_input.previousLevel && BombermanGame.load_map_level > 0) {
+        if (_input.previousLevel && BombermanGame.load_map_level > 0) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
             BombermanGame.resetPoint();
+            LevelDisplay.changeLevel = true;
         }
-        if(_input.nextLevel && BombermanGame.load_map_level < 5) {
+        if (_input.nextLevel && BombermanGame.load_map_level < 6) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
             BombermanGame.resetPoint();
+            LevelDisplay.changeLevel = true;
         }
     }
 

@@ -41,7 +41,7 @@ public class TimeHandling extends Pane {
         str = ("Time: " + minutes + ":" + seconds);
         if (nextLevel) {
             time += 180;
-            str = ("Time: " + minutes + ":" + seconds + "+3p");
+            str = ("Time: " + minutes + ":" + seconds + " +3p");
             nextLevel = false;
         }
         label.setText(str);

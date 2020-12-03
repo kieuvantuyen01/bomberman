@@ -20,6 +20,7 @@ import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
+import uet.oop.bomberman.gameDisplayHandling.LevelDisplay;
 import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
@@ -35,7 +36,7 @@ public class BombermanGame extends Application {
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
-    public static int load_map_level = 0;
+    public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
 
@@ -197,7 +198,6 @@ public class BombermanGame extends Application {
             bomber.render(gc);
         }
         renderMessages(gc);
-        //System.out.println("                    " + bomber.bomber_life + " " + Bomber.time_exit_game);
     }
 
     public static void initData() {
@@ -250,12 +250,16 @@ public class BombermanGame extends Application {
         // Tao diem
         ScoreDisplay score_label = new ScoreDisplay();
 
+        // Hien thi level truoc moi man choi
+        LevelDisplay level_label = new LevelDisplay();
+
         // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
         root.getChildren().add(time_display);
         root.getChildren().add(heart_label);
         root.getChildren().add(score_label);
+        root.getChildren().add(level_label);
 
         // Tao scene
         Scene scene = new Scene(root);
@@ -293,7 +297,7 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-        createMap(0);
+        createMap(load_map_level);
         BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
