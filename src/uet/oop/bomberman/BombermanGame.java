@@ -244,25 +244,13 @@ public class BombermanGame extends Application {
         canvas.setTranslateY(40);
         gc = canvas.getGraphicsContext2D();
 
-        // Tao thoi gian dem nguoc
-        TimeHandling time_display = new TimeHandling();
-
-        //Tao mang cua nguoi choi
-        HeartDisplay heart_label = new HeartDisplay();
-
-        // Tao diem
-        ScoreDisplay score_label = new ScoreDisplay();
-
-        // Hien thi level truoc moi man choi
-        LevelDisplay level_label = new LevelDisplay();
+        // Tạo các thông số hiển thị trong game.
+       MessageDisplay messageDisplay = new MessageDisplay();
 
         // Tao root container
         Group root = new Group();
         root.getChildren().add(canvas);
-        root.getChildren().add(time_display);
-        root.getChildren().add(heart_label);
-        root.getChildren().add(score_label);
-        root.getChildren().add(level_label);
+        root.getChildren().add(messageDisplay);
 
         // Tao scene
         Scene scene = new Scene(root);

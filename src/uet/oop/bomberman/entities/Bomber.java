@@ -8,8 +8,7 @@ import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
-import uet.oop.bomberman.gameDisplayHandling.LevelDisplay;
-import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
+import uet.oop.bomberman.gameDisplayHandling.MessageDisplay;
 import uet.oop.bomberman.graphics.Sprite;
 
 
@@ -76,8 +75,8 @@ public class Bomber extends MovableEntities {
                 BombermanGame.createMap(++BombermanGame.load_map_level);
                 resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
-                TimeHandling.nextLevel = true;
-                LevelDisplay.changeLevel = true;
+                MessageDisplay.nextLevel = true;
+                MessageDisplay.changeLevel = true;
             }
         }
         if (_input.previousLevel && BombermanGame.load_map_level > 1) {
@@ -86,7 +85,7 @@ public class Bomber extends MovableEntities {
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
             BombermanGame.resetPoint();
-            LevelDisplay.changeLevel = true;
+            MessageDisplay.changeLevel = true;
         }
         if (_input.nextLevel && BombermanGame.load_map_level < 6) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
@@ -94,7 +93,7 @@ public class Bomber extends MovableEntities {
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
             BombermanGame.resetPoint();
-            LevelDisplay.changeLevel = true;
+            MessageDisplay.changeLevel = true;
         }
     }
 
