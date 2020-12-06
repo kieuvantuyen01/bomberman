@@ -58,7 +58,7 @@ public class BombermanGame extends Application {
     private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
-    public static Clip THREAD_SOUNDTRACK = loopPlaySound("playgame.wav");
+    public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);

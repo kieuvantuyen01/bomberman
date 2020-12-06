@@ -8,6 +8,11 @@ package uet.oop.bomberman.gui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.gameDisplayHandling.GameSound;
+
+import javax.sound.sampled.Clip;
+
+import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
 
 /**
  *
@@ -15,10 +20,12 @@ import uet.oop.bomberman.BombermanGame;
  */
 public class MenuGameJframe extends javax.swing.JFrame {
     public static boolean isApplicationRunFirstTime = false;
+    public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
     /**
      * Creates new form MenuGameJframe
      */
     public MenuGameJframe() {
+        THREAD_SOUNDTRACK1.loop(Clip.LOOP_CONTINUOUSLY);
         initComponents();
     }
 
@@ -144,6 +151,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        THREAD_SOUNDTRACK1.stop();
         if(!isApplicationRunFirstTime) {
             this.dispose();
             Application.launch(BombermanGame.class);
