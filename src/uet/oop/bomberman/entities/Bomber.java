@@ -10,6 +10,7 @@ import uet.oop.bomberman.entities.staticEntities.Portal;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
 import uet.oop.bomberman.gameDisplayHandling.MessageDisplay;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.gui.MenuGameJframe;
 
 
 public class Bomber extends MovableEntities {
@@ -172,8 +173,10 @@ public class Bomber extends MovableEntities {
                 _animate, 20);
         if (time_exit_game <= 0) {
             game.handleScores();
-            System.exit(0);
+            BombermanGame.THREAD_SOUNDTRACK.stop();
+            new MenuGameJframe().setVisible(true);
         }
+        System.out.println("         " + time_exit_game);
     }
 
     @Override

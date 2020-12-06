@@ -35,6 +35,7 @@ import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
 public class BombermanGame extends Application {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
     public ArrayList<Integer> scores = new ArrayList<>();
+    public static Stage stage = new Stage();
 
     public static final int WIDTH = 31;
     public static final int HEIGHT = 13;
@@ -201,6 +202,10 @@ public class BombermanGame extends Application {
             bomber.render(gc);
         }
         renderMessages(gc);
+
+        if(Bomber.time_exit_game <= 0) {
+            stage.hide();
+        }
     }
 
     public static void initData() {
@@ -238,7 +243,8 @@ public class BombermanGame extends Application {
 
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage1) {
+        stage = stage1;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         canvas.setTranslateY(40);
