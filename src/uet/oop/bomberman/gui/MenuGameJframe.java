@@ -142,7 +142,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void highScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreButtonActionPerformed
-        // TODO add your handling code here:
+        new highScoreJframe().setVisible(true);
     }//GEN-LAST:event_highScoreButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
@@ -152,8 +152,8 @@ public class MenuGameJframe extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         THREAD_SOUNDTRACK1.stop();
+        this.dispose();
         if(!isApplicationRunFirstTime) {
-            this.dispose();
             Application.launch(BombermanGame.class);
             isApplicationRunFirstTime = true;
         }
