@@ -7,8 +7,7 @@ package uet.oop.bomberman.gui;
 
 import java.awt.*;
 
-import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.gameDisplayHandling.TopHighScoreManagement;
+import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
 
 /**
  *
@@ -29,6 +28,7 @@ public class highScoreJframe extends javax.swing.JFrame {
     }
 
     public void setJframeIconImage() {
+        setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
     }
     /**

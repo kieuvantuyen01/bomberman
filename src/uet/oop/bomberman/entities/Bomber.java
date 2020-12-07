@@ -7,9 +7,9 @@ import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
-import uet.oop.bomberman.gameDisplayHandling.GameSound;
-import uet.oop.bomberman.gameDisplayHandling.MessageDisplay;
-import uet.oop.bomberman.gameDisplayHandling.TopHighScoreManagement;
+import uet.oop.bomberman.gameManagement.GameSound;
+import uet.oop.bomberman.gameManagement.MessageDisplay;
+import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gui.MenuGameJframe;
 

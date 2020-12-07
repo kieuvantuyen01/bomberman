@@ -1,4 +1,4 @@
-package uet.oop.bomberman.gameDisplayHandling;
+package uet.oop.bomberman.gameManagement;
 
 public class Fps {
     private static int frame = 0;

@@ -30,12 +30,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
+      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Message.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/item/WallpassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/item/BrickpassItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/Fps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/Fps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/GameSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/GameSound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/MessageDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/TopHighScoreManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +149,7 @@
       <recent name="uet.oop.bomberman.entities" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MenuGameJframe">
+  <component name="RunManager" selected="Application.BombermanGame">
     <configuration name="BombermanGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="bomberman" />
@@ -336,42 +348,42 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1606844047123" />
-    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1606900127899">
+    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1607361472532">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1606900127899" />
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1607332780234">
+    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607361472532" />
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1607365738937">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
-    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1607332780234">
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607365738937" />
+    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1607365738937">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
-    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1607332780234">
+    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607365738937" />
+    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1607365738936">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
-    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1607332780234">
+    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607365738936" />
+    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1607365738937">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606379047755">
+    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607365738937" />
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1607359426595">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606379047755" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1606379047754">
+    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607359426595" />
+    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1607359426595">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1606379047754" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1606379047754">
+    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1607359426595" />
+    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1607359426594">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1606379047754" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1606379047755">
+    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1607359426594" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1607359426595">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1606379047755" />
+    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1607359426595" />
     <state x="263" y="104" key="IDE.errors.dialog" timestamp="1605767561231">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -408,10 +420,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="554" y="281" key="git4idea.rebase.GitUnstructuredEditor/0.0.1366.738@0.0.1366.738" timestamp="1606844583444" />
-    <state x="274" y="0" key="new project wizard" timestamp="1606900130708">
+    <state x="274" y="0" key="new project wizard" timestamp="1607361473933">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="274" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1606900130708" />
+    <state x="274" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1607361473933" />
     <state x="526" y="126" key="refactoring.ChangeSignatureDialog" timestamp="1606903136578">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
