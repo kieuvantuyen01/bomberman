@@ -11,8 +11,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
@@ -27,6 +25,7 @@ import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
@@ -41,7 +40,6 @@ public class BombermanGame extends Application {
     private Canvas canvas;
 
     private static int _points = 0;
-
     private static Bomber bomber;
     private static List<Entity> entities;
     private static List<Flame> flames;
@@ -56,9 +54,7 @@ public class BombermanGame extends Application {
 
     public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
 
-    public static void main(String[] args) {
-        Application.launch(BombermanGame.class);
-    }
+    public static void main(String[] args) { Application.launch(BombermanGame.class);}
 
     public static Entity getEntityAt(int x, int y) {
         Entity entity;
@@ -180,7 +176,6 @@ public class BombermanGame extends Application {
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         canvas.setTranslateY(40);
         gc = canvas.getGraphicsContext2D();
-
         // Tạo các thông số hiển thị trong game.
        MessageDisplay messageDisplay = new MessageDisplay();
 

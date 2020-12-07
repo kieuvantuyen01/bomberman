@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
@@ -47,6 +46,10 @@ public class MessageDisplay extends Pane {
     // Dùng để hiển thị trạng thái music
     private Timeline music_status_animation;
     private Label music_status_Label = new Label("Music: On");
+
+    // Dùng để pause game
+    private Timeline game_status_animation;
+    private Label game_status_Label = new Label("   Pause   ");
 
 
     public MessageDisplay() {
@@ -115,13 +118,23 @@ public class MessageDisplay extends Pane {
         music_status_Label.setFont(Font.font(20));
         music_status_Label.setTranslateX(994);
         music_status_Label.setTranslateY(420);
-        music_status_Label.borderProperty();
         music_status_Label.setTextFill(Color.web("#fffdfd"));
         music_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
         getChildren().add(music_status_Label);
         music_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> changeMusicStatus()));
         music_status_animation.setCycleCount(Timeline.INDEFINITE);
         music_status_animation.play();
+
+        // Dùng để pause game
+        game_status_Label.setFont(Font.font(20));
+        game_status_Label.setTranslateX(994);
+        game_status_Label.setTranslateY(386);
+        game_status_Label.setTextFill(Color.web("#fffdfd"));
+        game_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
+        getChildren().add(game_status_Label);
+        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
+        game_status_animation.setCycleCount(Timeline.INDEFINITE);
+        game_status_animation.play();
     }
 
     public void heartImg() {
@@ -190,19 +203,32 @@ public class MessageDisplay extends Pane {
             winOrLose_label.setText("YOU LOSE!");
         }
     }
-    boolean isClicked = true;
+    boolean isStopMusic = true;
     public void changeMusicStatus() {
         if(BombermanGame.input.changeMusicStatus) {
-            if(isClicked) {
+            if(isStopMusic) {
                 music_status_Label.setText("Music: Off");
                 BombermanGame.THREAD_SOUNDTRACK.stop();
-                isClicked = false;
+                isStopMusic = false;
             } else {
                 music_status_Label.setText("Music: On");
                 BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
-                isClicked = true;
+                isStopMusic = true;
+            }
+            BombermanGame.input.changeMusicStatus = false;
+        }
+    }
+
+    boolean isPauseGame = true;
+    public void pauseGame() {
+        if(BombermanGame.input.pause) {
+            if(isPauseGame) {
+                game_status_Label.setText(" Continue ");
+                isPauseGame = false;
+            } else {
+                game_status_Label.setText("   Pause   ");
+                isPauseGame = true;
             }
         }
-        BombermanGame.input.changeMusicStatus = false;
     }
 }
