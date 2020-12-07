@@ -24,9 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +70,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BombermanGame">
+  <component name="RunManager" selected="Application.CurrentGamePlaySummarizationJframe">
     <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="Bomberman3" />
@@ -84,12 +84,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameSound" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.GameHandling.GameSound" />
-      <module name="Bomberman3" />
+    <configuration name="CurrentGamePlaySummarizationJframe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe" />
+      <module name="bomberman" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="uet.oop.bomberman.GameHandling.*" />
+          <option name="PATTERN" value="uet.oop.bomberman.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,19 +103,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sound.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LevelLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.LevelLoader" />
-      <module name="Bomberman3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="uet.oop.bomberman.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,19 +151,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.GameSound" />
-      <item itemvalue="Application.LevelLoader" />
       <item itemvalue="Application.BombermanGame" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.highScoreJframe" />
       <item itemvalue="Application.MenuGameJframe" />
+      <item itemvalue="Application.CurrentGamePlaySummarizationJframe" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CurrentGamePlaySummarizationJframe" />
+        <item itemvalue="Application.highScoreJframe" />
         <item itemvalue="Application.BombermanGame" />
         <item itemvalue="Application.MenuGameJframe" />
-        <item itemvalue="Application.highScoreJframe" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.LevelLoader" />
       </list>
     </recent_temporary>
   </component>
@@ -250,6 +237,10 @@
       <workItem from="1607327299797" duration="2457000" />
       <workItem from="1607338133467" duration="1333000" />
       <workItem from="1607339970611" duration="1669000" />
+      <workItem from="1607346587286" duration="24000" />
+      <workItem from="1607347013722" duration="851000" />
+      <workItem from="1607348787188" duration="1176000" />
+      <workItem from="1607350304101" duration="34000" />
     </task>
     <servers />
   </component>
@@ -284,30 +275,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607328315762" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607329780085">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607346595346">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607329780085" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607346595346" />
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1606900127899" />
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom" timestamp="1607341653917">
+    <state width="1237" height="167" key="GridCell.Tab.0.bottom" timestamp="1607350121728">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607341653917" />
+    <state width="1237" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
     <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.center" timestamp="1607341653917">
+    <state width="1237" height="167" key="GridCell.Tab.0.center" timestamp="1607350121728">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607341653917" />
+    <state width="1237" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
     <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.left" timestamp="1607341653917">
+    <state width="1237" height="167" key="GridCell.Tab.0.left" timestamp="1607350121728">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607341653917" />
+    <state width="1237" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
     <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.right" timestamp="1607341653917">
+    <state width="1237" height="167" key="GridCell.Tab.0.right" timestamp="1607350121728">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607341653917" />
+    <state width="1237" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
     <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606379047755">
       <screen x="0" y="0" width="1366" height="738" />

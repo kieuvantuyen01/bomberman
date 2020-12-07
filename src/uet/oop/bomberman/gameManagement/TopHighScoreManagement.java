@@ -12,6 +12,7 @@ public class TopHighScoreManagement {
     public HashMap<Integer, String> top_high_scores = new HashMap<>();
     public ArrayList<Integer> scores = new ArrayList<>();
     public ArrayList<String> high_scores_jframe = new ArrayList<>();
+    public static int point = 0;
 
     public void getScoreChartFromFile() {
         try {
@@ -56,8 +57,8 @@ public class TopHighScoreManagement {
     }
 
     public void addIntoTopHighScores() {
-        int point = BombermanGame.get_points();
-        String name = "TÃ¹ng";
+        String name = "Tùng";
+        point = BombermanGame.get_points();
         scores.add(point);
         Comparator c = Collections.reverseOrder();
         Collections.sort(scores, c);
