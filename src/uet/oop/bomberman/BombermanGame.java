@@ -183,7 +183,8 @@ public class BombermanGame extends Application {
         }
     }
 
-    public void render() {
+    public void render(Stage stage) {
+        stage.setTitle("Bomberman game | "+String.valueOf(Fps.get())+" fps");
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         grasses.forEach(grass -> grass.render(gc));
         walls.forEach(wall -> wall.render(gc));
@@ -281,7 +282,7 @@ public class BombermanGame extends Application {
         // Them scene vao stage
 
         stage.setScene(scene);
-        stage.setTitle("Bomberman game | "+String.valueOf(Fps.get())+" fps");
+
         Image icon = new Image(getClass().getResourceAsStream("/textures/Bomberman_Icon.png"));
         stage.getIcons().add(icon);
         stage.show();
@@ -291,7 +292,7 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                render();
+                render(stage);
                 update();
             }
         };
