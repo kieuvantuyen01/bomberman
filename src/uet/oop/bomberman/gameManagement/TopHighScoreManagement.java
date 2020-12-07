@@ -45,7 +45,6 @@ public class TopHighScoreManagement {
         try {
             FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
             BufferedWriter bw = new BufferedWriter(fos);
-            int high_score_order = 1;
             for (int score : scores) {
                 bw.write(top_high_scores.get(score) + " " + String.valueOf(score) + "\n");
             }
@@ -57,21 +56,21 @@ public class TopHighScoreManagement {
     }
 
     public void addIntoTopHighScores() {
-        String name = "T�ng";
+        String name = "Tùng";
         point = BombermanGame.get_points();
         scores.add(point);
         Comparator c = Collections.reverseOrder();
         Collections.sort(scores, c);
         top_high_scores.put(point, name);
         high_scores_jframe.removeAll(high_scores_jframe);
-        int high_score_order = 0;
+        int high_score_order = 1;
         for (int score : scores) {
             high_scores_jframe.add(String.format("%-6s %-18s %-18s", String.valueOf(high_score_order) + ".", top_high_scores.get(score), String.valueOf(score)));
             high_score_order++;
         }
     }
 
-    //Sử dụng hàm này khi số phần tử của mảng scores đạt mức tối đa là 10.
+    //Sá»­ dá»¥ng hÃ m nÃ y khi sá»‘ pháº§n tá»­ cá»§a máº£ng scores Ä‘áº¡t má»©c tá»‘i Ä‘a lÃ  10.
     public void removeFromTopHighScores() {
         scores.remove(scores.size() - 1);
     }
