@@ -2,19 +2,20 @@ package uet.oop.bomberman.entities;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.gameDisplayHandling.TimeHandling;
 import uet.oop.bomberman.Keyboard;
-
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.*;
+import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
-import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gameDisplayHandling.GameSound;
+import uet.oop.bomberman.gameDisplayHandling.MessageDisplay;
+import uet.oop.bomberman.gameDisplayHandling.TopHighScoreManagement;
+import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.gui.MenuGameJframe;
 
 
 public class Bomber extends MovableEntities {
-    BombermanGame game = new BombermanGame();
+   TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;
@@ -72,26 +73,29 @@ public class Bomber extends MovableEntities {
             GameSound.playMusic(GameSound.ITEM);
         }
         if (entity instanceof Portal) {
-            if (BombermanGame.load_map_level<5){
+            if (BombermanGame.load_map_level < 6) {
                 BombermanGame.createMap(++BombermanGame.load_map_level);
                 resetBomberAbilityWhenPassLevel();
                 GameSound.playMusic(GameSound.WIN);
-                TimeHandling.nextLevel = true;
+                MessageDisplay.nextLevel = true;
+                MessageDisplay.changeLevel = true;
             }
         }
-        if(_input.previousLevel && BombermanGame.load_map_level > 0) {
+        if (_input.previousLevel && BombermanGame.load_map_level > 1) {
             BombermanGame.createMap(--BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.previousLevel = false;
             BombermanGame.resetPoint();
+            MessageDisplay.changeLevel = true;
         }
-        if(_input.nextLevel && BombermanGame.load_map_level < 5) {
+        if (_input.nextLevel && BombermanGame.load_map_level < 6) {
             BombermanGame.createMap(++BombermanGame.load_map_level);
             resetBomberAbilityWhenPassLevel();
             GameSound.playMusic(GameSound.ITEM);
             _input.nextLevel = false;
             BombermanGame.resetPoint();
+            MessageDisplay.changeLevel = true;
         }
     }
 
@@ -169,8 +173,10 @@ public class Bomber extends MovableEntities {
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
         if (time_exit_game <= 0) {
-            game.handleScores();
-            System.exit(0);
+            topHighScoreManagement.handleScores();
+            BombermanGame.THREAD_SOUNDTRACK.stop();
+            BombermanGame.stage.hide();
+            new MenuGameJframe().setVisible(true);
         }
     }
 
