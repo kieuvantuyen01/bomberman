@@ -143,6 +143,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
 
     private void highScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreButtonActionPerformed
         new highScoreJframe().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_highScoreButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
