@@ -12,6 +12,8 @@ import uet.oop.bomberman.gameDisplayHandling.GameSound;
 
 import javax.sound.sampled.Clip;
 
+import java.awt.*;
+
 import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
 
 /**
@@ -27,8 +29,12 @@ public class MenuGameJframe extends javax.swing.JFrame {
     public MenuGameJframe() {
         THREAD_SOUNDTRACK1.loop(Clip.LOOP_CONTINUOUSLY);
         initComponents();
+        setJframeIconImage();
     }
-
+    
+    public void setJframeIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +52,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Game");
         setPreferredSize(new java.awt.Dimension(911, 580));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

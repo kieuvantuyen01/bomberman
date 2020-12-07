@@ -1,3 +1,4 @@
+Tùng 1100
 Tùng 1000
 Tùng 1000
 Tùng 300
@@ -5,6 +6,5 @@ Tùng 300
 Tùng 200
 Tùng 200
 Tùng 200
-Tùng 6
-Tùng 5
-Tùng 4
+Tùng 200
+Tùng 200

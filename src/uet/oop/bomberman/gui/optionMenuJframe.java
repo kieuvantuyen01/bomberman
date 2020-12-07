@@ -5,7 +5,7 @@
  */
 package uet.oop.bomberman.gui;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  *
@@ -18,6 +18,11 @@ public class optionMenuJframe extends javax.swing.JFrame {
      */
     public optionMenuJframe() {
         initComponents();
+        setJframeIconImage();
+    }
+
+    public void setJframeIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
     }
 
     /**
@@ -34,6 +39,7 @@ public class optionMenuJframe extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Option Menu");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 0));
 

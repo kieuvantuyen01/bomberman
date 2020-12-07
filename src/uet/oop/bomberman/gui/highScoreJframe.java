@@ -5,7 +5,8 @@
  */
 package uet.oop.bomberman.gui;
 
-import java.awt.Color;
+import java.awt.*;
+
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.gameDisplayHandling.TopHighScoreManagement;
 
@@ -24,8 +25,12 @@ public class highScoreJframe extends javax.swing.JFrame {
             System.out.println(i);
         }
         initComponents();
+        setJframeIconImage();
     }
 
+    public void setJframeIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,6 +56,7 @@ public class highScoreJframe extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("High Scores");
 
         jPanel2.setBackground(new java.awt.Color(242, 242, 242));
 
