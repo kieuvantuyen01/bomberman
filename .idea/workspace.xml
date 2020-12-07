@@ -22,38 +22,20 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:vp" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/daotung" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
-      <change afterPath="$PROJECT_DIR$/lib/unknown/binary/AbsoluteLayout/SNAPSHOT/AbsoluteLayout-SNAPSHOT.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/textures/backGroundMenu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/MessageDisplay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/TopHighScoreManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level6.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/background_Menu.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/Fps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/Fps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/HeartDisplay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/ScoreDisplay.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameDisplayHandling/TimeHandling.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/sample/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/sample/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/item/WallpassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/item/BrickpassItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +137,7 @@
       <recent name="uet.oop.bomberman.entities" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BombermanGame">
+  <component name="RunManager" selected="Application.MenuGameJframe">
     <configuration name="BombermanGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="bomberman" />
@@ -182,12 +164,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MenuGameJframe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.gui.MenuGameJframe" />
+      <module name="bomberman" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uet.oop.bomberman.gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.BombermanGame" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MenuGameJframe" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MenuGameJframe" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
@@ -252,6 +260,7 @@
       <workItem from="1606882341878" duration="15244000" />
       <workItem from="1606921098130" duration="104000" />
       <workItem from="1606977530197" duration="5718000" />
+      <workItem from="1607350653716" duration="510000" />
     </task>
     <servers />
   </component>
@@ -269,7 +278,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="vp" />
+                        <option value="origin/daotung" />
                       </list>
                     </value>
                   </entry>
@@ -295,10 +304,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="24" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1606921085675" />
-    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser" timestamp="1606910903659">
+    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser" timestamp="1607330904059">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1606910903659" />
+    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1607330904059" />
     <state x="412" y="159" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606921191632">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -331,22 +340,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1606900127899" />
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1606982973880">
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1607332780234">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606982973880" />
-    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1606982973880">
+    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
+    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1607332780234">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606982973880" />
-    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1606982973880">
+    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
+    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1607332780234">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606982973880" />
-    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1606982973880">
+    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
+    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1607332780234">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606982973880" />
+    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607332780234" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606379047755">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

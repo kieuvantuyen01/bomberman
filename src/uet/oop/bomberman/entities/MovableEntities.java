@@ -13,6 +13,7 @@ public abstract class MovableEntities extends Entity implements Animated {
     protected boolean _moving = false;
     protected boolean _bombpass = false;
     protected boolean _flamepass=false;
+    protected boolean _brickpass=false;
 
     ;
     protected int _animate = 0;
@@ -50,7 +51,7 @@ public abstract class MovableEntities extends Entity implements Animated {
 
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall || entity instanceof Brick || (!_bombpass && entity instanceof Bomb)) {
+        if (entity instanceof Wall || (!_brickpass && entity instanceof Brick) || (!_bombpass && entity instanceof Bomb)) {
             return false;
         }
         return true;
@@ -115,6 +116,10 @@ public abstract class MovableEntities extends Entity implements Animated {
 
     public void set_flamepass(boolean _flamepass) {
         this._flamepass = _flamepass;
+    }
+
+    public void set_brickpass(boolean _brickpass){
+        this._brickpass=_brickpass;
     }
 
     public Coordinates getD() {

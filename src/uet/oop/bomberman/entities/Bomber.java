@@ -196,4 +196,5 @@ public class Bomber extends MovableEntities {
     public static void setSpeed(int speed) {
         Bomber.speed = speed;
     }
+
 }

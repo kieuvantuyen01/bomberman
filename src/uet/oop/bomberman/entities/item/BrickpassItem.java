@@ -1,0 +1,21 @@
+package uet.oop.bomberman.entities.item;
+
+import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Coordinates;
+import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.graphics.Sprite;
+
+public class BrickpassItem extends Item {
+
+    public BrickpassItem(Coordinates tile) {
+        super(tile);
+        this.img=Sprite.powerup_wallpass.getFxImage();
+    }
+
+    @Override
+    public void getItem() {
+        BombermanGame.getBomber().set_brickpass(true);
+        BombermanGame.removeItem(this);
+    }
+
+}
