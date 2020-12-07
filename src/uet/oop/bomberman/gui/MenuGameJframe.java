@@ -6,15 +6,14 @@
 package uet.oop.bomberman.gui;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.gameDisplayHandling.GameSound;
+import uet.oop.bomberman.gameManagement.GameSound;
 
 import javax.sound.sampled.Clip;
 
 import java.awt.*;
 
-import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
 
 /**
  *
@@ -33,7 +32,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }
     
     public void setJframeIconImage() {
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
+        setResizable(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.

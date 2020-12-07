@@ -22,20 +22,19 @@ import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
-import uet.oop.bomberman.gameDisplayHandling.*;
+import uet.oop.bomberman.gameManagement.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
-import java.io.*;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
 
 public class BombermanGame extends Application {
     public static Stage stage = new Stage();
 
-    public static final int WIDTH = 31;
+    public static final int WIDTH = 34;
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
     private GraphicsContext gc;
@@ -53,7 +52,6 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
-    private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
     public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
@@ -139,7 +137,6 @@ public class BombermanGame extends Application {
         if (bomber != null) {
             bomber.render(gc);
         }
-        renderMessages(gc);
     }
 
     public static void initData() {
@@ -256,16 +253,6 @@ public class BombermanGame extends Application {
                 super.stop();
             }
         };
-    }
-
-    public void renderMessages(GraphicsContext g) {
-        Message m;
-        for (int i = 0; i < _messages.size(); i++) {
-            m = _messages.get(i);
-            g.setFill(Color.WHITE);
-            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
-            g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());
-        }
     }
 
     public static void removeBomb() {

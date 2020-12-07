@@ -5,7 +5,7 @@ import javafx.scene.input.KeyEvent;
 
 public class Keyboard {
 
-    public boolean up, down, left, right, space, previousLevel, nextLevel;
+    public boolean up, down, left, right, space, previousLevel, nextLevel , changeMusicStatus;
 
     public Keyboard() {
         up = false;
@@ -15,6 +15,7 @@ public class Keyboard {
         space = false;
         previousLevel = false;
         nextLevel = false;
+        changeMusicStatus = false;
     }
 
     public void keyPressed(KeyEvent event) {
@@ -39,6 +40,9 @@ public class Keyboard {
         if (event.getCode() == KeyCode.I) {
             nextLevel = true;
         }
+        if (event.getCode() == KeyCode.O) {
+            changeMusicStatus = true;
+        }
     }
 
     public void keyRelease(KeyEvent event) {
@@ -62,6 +66,9 @@ public class Keyboard {
         }
         if (event.getCode() == KeyCode.I) {
             nextLevel = false;
+        }
+        if (event.getCode() == KeyCode.O) {
+            changeMusicStatus = false;
         }
     }
 }

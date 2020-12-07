@@ -1,4 +1,4 @@
-package uet.oop.bomberman.gameDisplayHandling;
+package uet.oop.bomberman.gameManagement;
 
 import uet.oop.bomberman.BombermanGame;
 

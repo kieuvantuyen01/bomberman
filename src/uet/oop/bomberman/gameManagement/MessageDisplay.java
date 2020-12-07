@@ -1,4 +1,4 @@
-package uet.oop.bomberman.gameDisplayHandling;
+package uet.oop.bomberman.gameManagement;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -7,9 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Bomber;
+
+import javax.sound.sampled.Clip;
 
 public class MessageDisplay extends Pane {
     // Dùng cho hiển thị mạng người chơi.
@@ -40,10 +44,15 @@ public class MessageDisplay extends Pane {
     private Timeline winOrLose_animation;
     Label winOrLose_label = new Label();
 
+    // Dùng để hiển thị trạng thái music
+    private Timeline music_status_animation;
+    private Label music_status_Label = new Label("Music: On");
+
+
     public MessageDisplay() {
         // Dùng cho hiển thị mạng người chơi.
         heart_label = new Label("Hearts: ");
-        heart_label.setFont(javafx.scene.text.Font.font(20));
+        heart_label.setFont(Font.font(20));
         heart_label.setTranslateX(380);
 
         Image image = new Image("/textures/heart.png");
@@ -67,17 +76,17 @@ public class MessageDisplay extends Pane {
         heart_animation.play();
 
         // Dùng cho hiển thị level hiện tại.
-        level_label.setFont(javafx.scene.text.Font.font(40));
+        level_label.setFont(Font.font(40));
         level_label.setTextFill(Color.web("#cc1414"));
         level_label.setTranslateX(370);
         level_label.setTranslateY(208);
         getChildren().add(level_label);
-        level_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> level_label()));
+        level_animation = new Timeline(new KeyFrame(Duration.millis(600), e -> level_label()));
         level_animation.setCycleCount(Timeline.INDEFINITE);
         level_animation.play();
 
         // Dùng cho hiển thị điểm.
-        score_label.setFont(javafx.scene.text.Font.font(20));
+        score_label.setFont(Font.font(20));
         score_label.setTranslateX(800);
         getChildren().add(score_label);
         score_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> ScoreLabel()));
@@ -85,7 +94,7 @@ public class MessageDisplay extends Pane {
         score_animation.play();
 
         // Dùng cho hiển thị thời gian chơi.
-        time_label.setFont(javafx.scene.text.Font.font(20));
+        time_label.setFont(Font.font(20));
         time_label.setTranslateX(70);
         getChildren().add(time_label);
         time_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> timelabel()));
@@ -93,7 +102,7 @@ public class MessageDisplay extends Pane {
         time_animation.play();
 
         // Dùng cho hiển thị thông báo thắng hoặc thua.
-        winOrLose_label.setFont(javafx.scene.text.Font.font(40));
+        winOrLose_label.setFont(Font.font(40));
         winOrLose_label.setTextFill(Color.web("#cc1414"));
         winOrLose_label.setTranslateX(370);
         winOrLose_label.setTranslateY(208);
@@ -101,6 +110,18 @@ public class MessageDisplay extends Pane {
         winOrLose_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> winOrLose_label()));
         winOrLose_animation.setCycleCount(Timeline.INDEFINITE);
         winOrLose_animation.play();
+
+        // Dùng để stop music
+        music_status_Label.setFont(Font.font(20));
+        music_status_Label.setTranslateX(994);
+        music_status_Label.setTranslateY(420);
+        music_status_Label.borderProperty();
+        music_status_Label.setTextFill(Color.web("#fffdfd"));
+        music_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
+        getChildren().add(music_status_Label);
+        music_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> changeMusicStatus()));
+        music_status_animation.setCycleCount(Timeline.INDEFINITE);
+        music_status_animation.play();
     }
 
     public void heartImg() {
@@ -133,7 +154,6 @@ public class MessageDisplay extends Pane {
             changeLevel = false;
         }
     }
-
     public void ScoreLabel() {
         String score = ("Scores: " + String.valueOf(BombermanGame.get_points()));
         score_label.setText(score);
@@ -169,5 +189,20 @@ public class MessageDisplay extends Pane {
         if(Bomber.bomber_life <= 0) {
             winOrLose_label.setText("YOU LOSE!");
         }
+    }
+    boolean isClicked = true;
+    public void changeMusicStatus() {
+        if(BombermanGame.input.changeMusicStatus) {
+            if(isClicked) {
+                music_status_Label.setText("Music: Off");
+                BombermanGame.THREAD_SOUNDTRACK.stop();
+                isClicked = false;
+            } else {
+                music_status_Label.setText("Music: On");
+                BombermanGame.THREAD_SOUNDTRACK.loop(Clip.LOOP_CONTINUOUSLY);
+                isClicked = true;
+            }
+        }
+        BombermanGame.input.changeMusicStatus = false;
     }
 }

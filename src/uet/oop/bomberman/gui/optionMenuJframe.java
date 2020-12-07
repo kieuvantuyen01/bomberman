@@ -22,6 +22,7 @@ public class optionMenuJframe extends javax.swing.JFrame {
     }
 
     public void setJframeIconImage() {
+        setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
     }
 
