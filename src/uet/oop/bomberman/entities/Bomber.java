@@ -7,14 +7,16 @@ import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
-import uet.oop.bomberman.gameDisplayHandling.GameSound;
-import uet.oop.bomberman.gameDisplayHandling.MessageDisplay;
+import uet.oop.bomberman.gameManagement.GameSound;
+import uet.oop.bomberman.gameManagement.MessageDisplay;
+import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 import uet.oop.bomberman.gui.MenuGameJframe;
 
 
 public class Bomber extends MovableEntities {
-    BombermanGame game = new BombermanGame();
+   TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;
@@ -172,11 +174,10 @@ public class Bomber extends MovableEntities {
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
         if (time_exit_game <= 0) {
-            game.handleScores();
             BombermanGame.THREAD_SOUNDTRACK.stop();
-            new MenuGameJframe().setVisible(true);
+            BombermanGame.stage.hide();
+            new CurrentGamePlaySummarizationJframe().setVisible(true);
         }
-        System.out.println("         " + time_exit_game);
     }
 
     @Override

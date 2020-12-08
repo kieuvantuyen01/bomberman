@@ -11,8 +11,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
@@ -22,29 +20,26 @@ import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
-import uet.oop.bomberman.gameDisplayHandling.*;
+import uet.oop.bomberman.gameManagement.*;
 import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
-import java.io.*;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.gameDisplayHandling.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
 
 public class BombermanGame extends Application {
-    public HashMap<Integer, String> top_high_scores = new HashMap<>();
-    public ArrayList<Integer> scores = new ArrayList<>();
     public static Stage stage = new Stage();
 
-    public static final int WIDTH = 31;
+    public static final int WIDTH = 34;
     public static final int HEIGHT = 13;
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private static int _points = 0;
-
+    public static int _points = 0;
     private static Bomber bomber;
     private static List<Entity> entities;
     private static List<Flame> flames;
@@ -55,74 +50,11 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
-    private final List<Message> _messages = new ArrayList<>();
     public static Keyboard input = new Keyboard();
 
-    public static Clip THREAD_SOUNDTRACK = loopPlaySound("playgame.wav");
+    public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
 
-    public static void main(String[] args) {
-        Application.launch(BombermanGame.class);
-    }
-
-    public void getScoreChartFromFile() {
-        try {
-            FileReader fileReader = new FileReader("res\\scores\\scoreChart.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line, name, score;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(" ");
-                if (parts.length == 2) {
-                    name = parts[0];
-                    score = parts[1];
-                    scores.add(Integer.parseInt(score));
-                    top_high_scores.put(Integer.parseInt(score), name);
-                }
-            }
-            bufferedReader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void writeToScoreChartFile() {
-        try {
-            FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
-            BufferedWriter bw = new BufferedWriter(fos);
-            for (int score : scores) {
-                bw.write(top_high_scores.get(score) + " " + String.valueOf(score) + "\n");
-            }
-            bw.flush();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addIntoTopHighScores() {
-        int point = _points;
-        String name = "Tùng";
-        scores.add(point);
-        Comparator c = Collections.reverseOrder();
-        Collections.sort(scores, c);
-        top_high_scores.put(point, name);
-        for (int score : scores) {
-            System.out.println(top_high_scores.get(score) + " " + score);
-        }
-    }
-
-    //Sử dụng hàm này khi số phần tử của mảng scores đạt mức tối đa là 10.
-    public void removeFromTopHighScores() {
-        scores.remove(scores.size() - 1);
-    }
-
-    public void handleScores() {
-        getScoreChartFromFile();
-        addIntoTopHighScores();
-        if (scores.size() > 10) {
-            removeFromTopHighScores();
-        }
-        writeToScoreChartFile();
-    }
+    public static void main(String[] args) { Application.launch(BombermanGame.class);}
 
     public static Entity getEntityAt(int x, int y) {
         Entity entity;
@@ -201,11 +133,6 @@ public class BombermanGame extends Application {
         if (bomber != null) {
             bomber.render(gc);
         }
-        renderMessages(gc);
-
-        if(Bomber.time_exit_game <= 0) {
-            stage.hide();
-        }
     }
 
     public static void initData() {
@@ -240,13 +167,15 @@ public class BombermanGame extends Application {
         }
         return entity;
     }
-    
-    public Scene createScene() {
+
+
+    @Override
+    public void start(Stage stage1) {
+        stage = stage1;
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         canvas.setTranslateY(40);
         gc = canvas.getGraphicsContext2D();
-
         // Tạo các thông số hiển thị trong game.
        MessageDisplay messageDisplay = new MessageDisplay();
 
@@ -273,17 +202,10 @@ public class BombermanGame extends Application {
                 input.keyRelease(event);
             }
         });
-        return scene;
-    }
 
-    @Override
-    public void start(Stage stage1) {
-        stage = stage1;
-        
         // Them scene vao stage
-       
 
-        stage.setScene(createScene());
+        stage.setScene(scene);
         stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
         Timeline animation;
         animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> fpsDisplay(stage)));
@@ -326,16 +248,6 @@ public class BombermanGame extends Application {
                 super.stop();
             }
         };
-    }
-
-    public void renderMessages(GraphicsContext g) {
-        Message m;
-        for (int i = 0; i < _messages.size(); i++) {
-            m = _messages.get(i);
-            g.setFill(Color.WHITE);
-            g.setFont(javafx.scene.text.Font.font("Tahoma", FontWeight.SEMI_BOLD, m.getSize()));
-            g.fillText(m.getMessage(), m.getPixel().getX() - 2 * 3, m.getPixel().getY());
-        }
     }
 
     public static void removeBomb() {

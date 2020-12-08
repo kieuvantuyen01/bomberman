@@ -5,7 +5,7 @@
  */
 package uet.oop.bomberman.gui;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  *
@@ -18,6 +18,15 @@ public class optionMenuJframe extends javax.swing.JFrame {
      */
     public optionMenuJframe() {
         initComponents();
+        setJframeIconImage();
+    }
+
+    public void setJframeIconImage() {
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
+        setResizable(false);
     }
 
     /**
@@ -34,6 +43,7 @@ public class optionMenuJframe extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Option Menu");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 0));
 
@@ -95,7 +105,6 @@ public class optionMenuJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        this.dispose();
         new MenuGameJframe().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed

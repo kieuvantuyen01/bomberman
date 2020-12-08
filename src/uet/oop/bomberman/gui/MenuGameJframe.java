@@ -6,9 +6,14 @@
 package uet.oop.bomberman.gui;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.stage.Stage;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.gameManagement.GameSound;
+
+import javax.sound.sampled.Clip;
+
+import java.awt.*;
+
+import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
 
 /**
  *
@@ -16,13 +21,23 @@ import uet.oop.bomberman.BombermanGame;
  */
 public class MenuGameJframe extends javax.swing.JFrame {
     public static boolean isApplicationRunFirstTime = false;
+    public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
     /**
      * Creates new form MenuGameJframe
      */
     public MenuGameJframe() {
+        THREAD_SOUNDTRACK1.loop(Clip.LOOP_CONTINUOUSLY);
         initComponents();
+        setJframeIconImage();
     }
-
+    
+    public void setJframeIconImage() {
+        Toolkit toolkit = getToolkit();
+        Dimension size = toolkit.getScreenSize();
+        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
+        setResizable(false);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,10 +55,10 @@ public class MenuGameJframe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Game");
         setPreferredSize(new java.awt.Dimension(911, 580));
-        getContentPane().setLayout(new java.awt.CardLayout());
 
-        jPanel1.setLayout(null);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         playButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Play.png"))); // NOI18N
         playButton.setPreferredSize(new java.awt.Dimension(240, 60));
@@ -62,8 +77,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 playButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(playButton);
-        playButton.setBounds(370, 250, 140, 50);
+        jPanel1.add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 140, 50));
 
         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option.png"))); // NOI18N
         optionButton.setPreferredSize(new java.awt.Dimension(240, 60));
@@ -82,8 +96,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 optionButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(optionButton);
-        optionButton.setBounds(370, 320, 140, 50);
+        jPanel1.add(optionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 140, 50));
 
         highScoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/HightScore.png"))); // NOI18N
         highScoreButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -101,8 +114,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 highScoreButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(highScoreButton);
-        highScoreButton.setBounds(370, 390, 140, 50);
+        jPanel1.add(highScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 140, 50));
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Exit.png"))); // NOI18N
         exitButton.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -120,20 +132,28 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(exitButton);
-        exitButton.setBounds(370, 460, 140, 50);
+        jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 140, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/backGroundMenu.png"))); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, -10, 910, 590);
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 910, 590));
 
-        getContentPane().add(jPanel1, "card2");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void highScoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highScoreButtonActionPerformed
-        // TODO add your handling code here:
+        new highScoreJframe().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_highScoreButtonActionPerformed
 
     private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
@@ -142,20 +162,14 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_optionButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+        THREAD_SOUNDTRACK1.stop();
+        this.dispose();
         if(!isApplicationRunFirstTime) {
-            this.dispose();
             Application.launch(BombermanGame.class);
             isApplicationRunFirstTime = true;
         }
         else if(isApplicationRunFirstTime){
-            System.out.println(isApplicationRunFirstTime);
-            Platform.runLater(() -> {
-                Stage stage = new Stage();
-                stage.setScene(new BombermanGame().createScene());
-                stage.show();
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            });
-            
+            BombermanGame.stage.show();
         }
     }//GEN-LAST:event_playButtonActionPerformed
 
