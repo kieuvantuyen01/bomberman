@@ -16,7 +16,7 @@ import uet.oop.bomberman.gui.MenuGameJframe;
 
 
 public class Bomber extends MovableEntities {
-   TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
+    //TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;

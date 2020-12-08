@@ -198,7 +198,7 @@ public class MessageDisplay extends Pane {
     }
 
     public void winOrLose_label() {
-        System.out.println(Bomber.bomber_life);
+        //System.out.println(Bomber.bomber_life);
         if(Bomber.bomber_life <= 0) {
             winOrLose_label.setText("YOU LOSE!");
         }

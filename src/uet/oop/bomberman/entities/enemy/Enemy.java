@@ -27,7 +27,7 @@ public abstract class Enemy extends MovableEntities {
 
             if (_animate == 60) {
                 BombermanGame.addPoints(_points);
-                System.out.println(BombermanGame.get_points());
+                //System.out.println(BombermanGame.get_points());
                 BombermanGame.removeEnemy(this);
                 GameSound.playMusic(GameSound.ENEMY_DIE);
             }

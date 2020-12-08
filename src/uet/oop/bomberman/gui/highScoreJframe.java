@@ -21,7 +21,7 @@ public class highScoreJframe extends javax.swing.JFrame {
     public highScoreJframe() {
         topHighScoreManagement.getScoreChartFromFile();
         for (String i : topHighScoreManagement.high_scores_jframe) {
-            System.out.println(i);
+            //System.out.println(i);
         }
         initComponents();
         setJframeIconImage();

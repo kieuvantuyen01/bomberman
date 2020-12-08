@@ -1,10 +1,5 @@
-Tùng	1100
-alo alo alo	1000
-alo alo alo	1000
-alo alo alo	1000
-Tuyen	200
-Tuyen	200
-Tuyen	200
-haha ha	100
-haha ha	100
-Tùng	99
+O	300
+N	200
+X	200
+Z	200
+Y	200
