@@ -14,10 +14,12 @@ import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
  * @author Admin
  */
 public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
+    TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     /**
      * Creates new form CurrentGamePlaySummarizationJframe
      */
     public CurrentGamePlaySummarizationJframe() {
+        TopHighScoreManagement.updatePoint();
         initComponents();
         setJframeIconImage();
     }
@@ -42,7 +44,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
         playerNameTextField = new javax.swing.JTextField();
         confirmButton = new javax.swing.JButton();
 
@@ -71,10 +73,10 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
         jLabel3.setText("Last Score:");
         jLabel3.setOpaque(true);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText(String.valueOf(TopHighScoreManagement.point));
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        scoreLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreLabel.setText(String.valueOf(TopHighScoreManagement.point));
+        scoreLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         playerNameTextField.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         playerNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -105,7 +107,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scoreLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
@@ -121,7 +123,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(playerNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,8 +156,9 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_playerNameTextFieldMouseClicked
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        String name = playerNameTextField.getText();
-        new highScoreJframe().setVisible(true);
+            String name = playerNameTextField.getText();
+            topHighScoreManagement.handleScores(name);
+            new highScoreJframe().setVisible(true);
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
@@ -198,8 +201,8 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField playerNameTextField;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
 }

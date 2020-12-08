@@ -1,10 +1,10 @@
-T�ng 2700
-Tùng 1100
-T�ng 1000
-T�ng 1000
-T�ng 1000
-T�ng 300
-T�ng 300
-T�ng 200
-T�ng 200
-T�ng 200
+Tùng	1100
+alo alo alo	1000
+alo alo alo	1000
+alo alo alo	1000
+chắc dc	200
+chắc dc	200
+haha ha	100
+haha ha	100
+Tùng	99
+Tùng	98
