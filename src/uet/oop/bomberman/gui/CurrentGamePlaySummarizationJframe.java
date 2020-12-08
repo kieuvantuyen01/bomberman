@@ -159,6 +159,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
             String name = playerNameTextField.getText();
             topHighScoreManagement.handleScores(name);
             new highScoreJframe().setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
