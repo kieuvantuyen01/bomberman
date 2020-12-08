@@ -39,7 +39,7 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
-    private static int _points = 0;
+    public static int _points = 0;
     private static Bomber bomber;
     private static List<Entity> entities;
     private static List<Flame> flames;

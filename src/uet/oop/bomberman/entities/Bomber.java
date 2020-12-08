@@ -11,6 +11,7 @@ import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.gameManagement.MessageDisplay;
 import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 import uet.oop.bomberman.gui.MenuGameJframe;
 
 
@@ -173,10 +174,9 @@ public class Bomber extends MovableEntities {
                 Sprite.player_dead3.getFxImage(),
                 _animate, 20);
         if (time_exit_game <= 0) {
-            topHighScoreManagement.handleScores();
             BombermanGame.THREAD_SOUNDTRACK.stop();
             BombermanGame.stage.hide();
-            new MenuGameJframe().setVisible(true);
+            new CurrentGamePlaySummarizationJframe().setVisible(true);
         }
     }
 

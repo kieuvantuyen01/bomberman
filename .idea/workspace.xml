@@ -23,9 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +78,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CurrentGamePlaySummarizationJframe">
+  <component name="RunManager" selected="Application.MenuGameJframe">
     <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="Bomberman3" />
@@ -159,10 +167,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CurrentGamePlaySummarizationJframe" />
+        <item itemvalue="Application.MenuGameJframe" />
         <item itemvalue="Application.highScoreJframe" />
         <item itemvalue="Application.BombermanGame" />
-        <item itemvalue="Application.MenuGameJframe" />
+        <item itemvalue="Application.CurrentGamePlaySummarizationJframe" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -241,6 +249,13 @@
       <workItem from="1607347013722" duration="851000" />
       <workItem from="1607348787188" duration="1176000" />
       <workItem from="1607350304101" duration="34000" />
+      <workItem from="1607351308820" duration="130000" />
+      <workItem from="1607416686207" duration="1974000" />
+      <workItem from="1607419039922" duration="416000" />
+      <workItem from="1607419546115" duration="624000" />
+      <workItem from="1607420196338" duration="104000" />
+      <workItem from="1607420586428" duration="15000" />
+      <workItem from="1607420667641" duration="210000" />
     </task>
     <servers />
   </component>
@@ -275,30 +290,30 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607328315762" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607346595346">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607420599599">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607346595346" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607420599599" />
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1606900127899" />
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom" timestamp="1607350121728">
+    <state width="1237" height="241" key="GridCell.Tab.0.bottom" timestamp="1607420879103">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
+    <state width="1237" height="241" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607420879103" />
     <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.center" timestamp="1607350121728">
+    <state width="1237" height="241" key="GridCell.Tab.0.center" timestamp="1607420879103">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
+    <state width="1237" height="241" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607420879103" />
     <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.left" timestamp="1607350121728">
+    <state width="1237" height="241" key="GridCell.Tab.0.left" timestamp="1607420879103">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
+    <state width="1237" height="241" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607420879103" />
     <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
-    <state width="1237" height="167" key="GridCell.Tab.0.right" timestamp="1607350121728">
+    <state width="1237" height="241" key="GridCell.Tab.0.right" timestamp="1607420879103">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607350121728" />
+    <state width="1237" height="241" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607420879103" />
     <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1606981531290" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1606379047755">
       <screen x="0" y="0" width="1366" height="738" />
