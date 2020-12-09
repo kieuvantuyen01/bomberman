@@ -160,7 +160,6 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         String name = playerNameTextField.getText();
         topHighScoreManagement.handleScores(name);
-        System.out.println(1000);
         new highScoreJframe().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_confirmButtonActionPerformed

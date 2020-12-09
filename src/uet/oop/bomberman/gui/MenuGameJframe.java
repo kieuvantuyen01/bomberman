@@ -20,8 +20,8 @@ import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
  * @author Admin
  */
 public class MenuGameJframe extends javax.swing.JFrame {
-    public static boolean isApplicationRunFirstTime = false;
     public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
+    public static boolean is_playing_game = false;
     /**
      * Creates new form MenuGameJframe
      */
@@ -164,13 +164,8 @@ public class MenuGameJframe extends javax.swing.JFrame {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         THREAD_SOUNDTRACK1.stop();
         this.dispose();
-        if(!isApplicationRunFirstTime) {
-            Application.launch(BombermanGame.class);
-            isApplicationRunFirstTime = true;
-        }
-        else if(isApplicationRunFirstTime){
-            BombermanGame.stage.show();
-        }
+        is_playing_game = true;
+        Application.launch(BombermanGame.class);
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void playButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseExited
