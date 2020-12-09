@@ -4,31 +4,24 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.MovableEntities;
 import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.Item;
+import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
 import uet.oop.bomberman.graphics.Sprite;
@@ -182,7 +175,6 @@ public class BombermanGame extends Application {
     @Override
     public void start(Stage stage1) {
         stage = stage1;
-        stage.initStyle(StageStyle.DECORATED);
         // Tao Canvas
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         canvas.setTranslateY(40);

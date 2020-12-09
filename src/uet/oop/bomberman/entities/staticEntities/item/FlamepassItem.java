@@ -1,4 +1,4 @@
-package uet.oop.bomberman.entities.item;
+package uet.oop.bomberman.entities.staticEntities.item;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;

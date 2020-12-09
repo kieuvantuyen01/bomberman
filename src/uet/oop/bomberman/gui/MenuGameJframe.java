@@ -10,18 +10,17 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.gameManagement.GameSound;
 
 import javax.sound.sampled.Clip;
-
 import java.awt.*;
 
 import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
 
 /**
- *
  * @author Admin
  */
 public class MenuGameJframe extends javax.swing.JFrame {
     public static boolean isApplicationRunFirstTime = false;
     public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
+
     /**
      * Creates new form MenuGameJframe
      */
@@ -30,7 +29,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
         initComponents();
         setJframeIconImage();
     }
-    
+
     public void setJframeIconImage() {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
@@ -38,6 +37,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
         setResizable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,12 +140,12 @@ public class MenuGameJframe extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -164,11 +164,10 @@ public class MenuGameJframe extends javax.swing.JFrame {
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         THREAD_SOUNDTRACK1.stop();
         this.dispose();
-        if(!isApplicationRunFirstTime) {
+        if (!isApplicationRunFirstTime) {
             Application.launch(BombermanGame.class);
             isApplicationRunFirstTime = true;
-        }
-        else if(isApplicationRunFirstTime){
+        } else if (isApplicationRunFirstTime) {
             BombermanGame.stage.show();
         }
     }//GEN-LAST:event_playButtonActionPerformed
@@ -182,11 +181,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_playButtonMouseMoved
 
     private void optionButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionButtonMouseExited
-         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option.png")));
+        optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option.png")));
     }//GEN-LAST:event_optionButtonMouseExited
 
     private void optionButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionButtonMouseMoved
-         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option2.png")));
+        optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option2.png")));
     }//GEN-LAST:event_optionButtonMouseMoved
 
     private void highScoreButtonMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_highScoreButtonMouseMoved
@@ -216,7 +215,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

@@ -8,9 +8,6 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Ghost extends Enemy {
 
-    protected double speed = 1;
-    double xa = 0, ya = 0;
-
     public Ghost(Coordinates tile, boolean horizontal) {
         super(tile, 200);
         img = Sprite.ghost_left1.getFxImage();
@@ -22,7 +19,7 @@ public class Ghost extends Enemy {
     }
 
     @Override
-    protected void handleMove() {
+    protected void handleDirection() {
         if (d.getX() == 0) {
             if (xa == -speed) {
                 if (canMoveToDirection(-1, 0)) {
@@ -74,16 +71,7 @@ public class Ghost extends Enemy {
             }
         }
 
-
-        if (d.getX() != 0 || d.getY() != 0) {
-            move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
-            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
-            _moving = true;
-        } else {
-            _moving = false;
-        }
-
+        handleMove();
     }
 
     @Override
@@ -98,7 +86,7 @@ public class Ghost extends Enemy {
         if(!_alive){
             return;
         }
-        handleMove();
+        handleDirection();
 
         chooseSprite(Sprite.ghost_left1,
                 Sprite.ghost_left1,Sprite.ghost_left2,Sprite.ghost_left3,
@@ -116,10 +104,7 @@ public class Ghost extends Enemy {
     @Override
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall) {
-            return false;
-        }
-        return true;
+        return !(entity instanceof Wall);
     }
 
     @Override

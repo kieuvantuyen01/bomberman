@@ -2,9 +2,9 @@ Tùng	1100
 alo alo alo	1000
 alo alo alo	1000
 alo alo alo	1000
-chắc dc	200
-chắc dc	200
+	800
+V.....	200
+V.....	200
+V.....	200
 haha ha	100
 haha ha	100
-Tùng	99
-Tùng	98

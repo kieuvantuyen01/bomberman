@@ -26,7 +26,7 @@ public abstract class MovableEntities extends Entity implements Animated {
     @Override
     public abstract void update();
 
-    protected abstract void handleMove();
+    protected abstract void handleDirection();
 
     protected void move(double xa, double ya) {
         if (d.getX() > 0) _direction = DIRECTION.RIGHT;
