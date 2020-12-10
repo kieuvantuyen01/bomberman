@@ -3,7 +3,7 @@ package uet.oop.bomberman.entities.staticEntities;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.Animated;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class Brick extends StaticEntity implements Animated {
     protected int frame=-1;

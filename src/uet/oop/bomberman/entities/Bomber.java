@@ -10,7 +10,7 @@ import uet.oop.bomberman.entities.staticEntities.Portal;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.gameManagement.MessageDisplay;
 import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 
