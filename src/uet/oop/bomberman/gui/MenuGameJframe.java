@@ -18,7 +18,7 @@ import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
  * @author Admin
  */
 public class MenuGameJframe extends javax.swing.JFrame {
-    public static boolean isApplicationRunFirstTime = false;
+    public static boolean is_playing_game = false;
     public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
 
     /**
@@ -31,9 +31,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
     }
 
     public void setJframeIconImage() {
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
         setResizable(false);
     }
@@ -163,13 +161,10 @@ public class MenuGameJframe extends javax.swing.JFrame {
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
         THREAD_SOUNDTRACK1.stop();
+        is_playing_game = true;
         this.dispose();
-        if (!isApplicationRunFirstTime) {
-            Application.launch(BombermanGame.class);
-            isApplicationRunFirstTime = true;
-        } else if (isApplicationRunFirstTime) {
-            BombermanGame.stage.show();
-        }
+        Application.launch(BombermanGame.class);
+
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void playButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playButtonMouseExited

@@ -20,14 +20,12 @@ public class highScoreJframe extends javax.swing.JFrame {
      */
     public highScoreJframe() {
         topHighScoreManagement.getScoreChartFromFile();
-        for (String i : topHighScoreManagement.high_scores_jframe) {
-            System.out.println(i);
-        }
         initComponents();
         setJframeIconImage();
     }
 
     public void setJframeIconImage() {
+        setLocationRelativeTo(null);
         setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
     }
@@ -231,8 +229,12 @@ public class highScoreJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseMoved
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        new MenuGameJframe().setVisible(true);
-        this.dispose();
+        if(!MenuGameJframe.is_playing_game) {
+            new MenuGameJframe().setVisible(true);
+            this.dispose();
+        } else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void backButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backButtonMouseExited

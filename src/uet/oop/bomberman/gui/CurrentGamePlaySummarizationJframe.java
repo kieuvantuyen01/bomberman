@@ -25,9 +25,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
     }
     
     public void setJframeIconImage() {
-        Toolkit toolkit = getToolkit();
-        Dimension size = toolkit.getScreenSize();
-        setLocation(size.width / 2 - getWidth() / 2, size.height / 2 - getHeight() / 2);
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
         setResizable(false);
     }
@@ -159,6 +157,7 @@ public class CurrentGamePlaySummarizationJframe extends javax.swing.JFrame {
             String name = playerNameTextField.getText();
             topHighScoreManagement.handleScores(name);
             new highScoreJframe().setVisible(true);
+            this.dispose();
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
