@@ -42,6 +42,8 @@ public class BombermanGame extends Application {
     private GraphicsContext gc;
     private Canvas canvas;
 
+    public static boolean isPauseGame = false;
+
     public static int _points = 0;
     private static Bomber bomber;
     private static List<Entity> entities;
@@ -57,7 +59,9 @@ public class BombermanGame extends Application {
 
     public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
 
-    public static void main(String[] args) { Application.launch(BombermanGame.class);}
+    public static void main(String[] args) {
+        Application.launch(BombermanGame.class);
+    }
 
     public static Entity getEntityAt(int x, int y) {
         Entity entity;
@@ -159,11 +163,11 @@ public class BombermanGame extends Application {
             if (cur.getTile().getY() == y && cur.getTile().getX() == x) {
                 entity = cur;
             }
-            if (cur instanceof Boss){
-                Boss boss= (Boss) cur;
-                for (Coordinates tile:boss.getTiles()){
-                    if (tile.getX()==x&&tile.getY()==y){
-                        entity=boss;
+            if (cur instanceof Boss) {
+                Boss boss = (Boss) cur;
+                for (Coordinates tile : boss.getTiles()) {
+                    if (tile.getX() == x && tile.getY() == y) {
+                        entity = boss;
                     }
                 }
             }
@@ -181,9 +185,9 @@ public class BombermanGame extends Application {
         gc = canvas.getGraphicsContext2D();
 
         // Tạo các thông số hiển thị trong game.
-       MessageDisplay messageDisplay = new MessageDisplay();
-       Background background=new Background(new BackgroundFill(Color.PINK,null, new Insets(0,-1000,-398,0)));
-       messageDisplay.setBackground(background);
+        MessageDisplay messageDisplay = new MessageDisplay();
+        Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
+        messageDisplay.setBackground(background);
         // Tao root container
         Group root = new Group();
         root.getChildren().add(messageDisplay);
@@ -224,7 +228,9 @@ public class BombermanGame extends Application {
             @Override
             public void handle(long l) {
                 render();
-                update();
+                if (!isPauseGame) {
+                    update();
+                }
             }
         };
         timer.start();

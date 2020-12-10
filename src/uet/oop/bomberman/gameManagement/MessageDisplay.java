@@ -11,8 +11,11 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 import javax.sound.sampled.Clip;
+
+import static uet.oop.bomberman.BombermanGame.isPauseGame;
 
 public class MessageDisplay extends Pane {
     // Dùng cho hiển thị mạng người chơi.
@@ -138,7 +141,7 @@ public class MessageDisplay extends Pane {
         game_status_Label.setTextFill(Color.web("#fffdfd"));
         game_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
         getChildren().add(game_status_Label);
-        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
+        game_status_animation = new Timeline(new KeyFrame(Duration.millis(50), e -> pauseGame()));
         game_status_animation.setCycleCount(Timeline.INDEFINITE);
         game_status_animation.play();
     }
@@ -180,9 +183,11 @@ public class MessageDisplay extends Pane {
 
     public void timelabel() {
         if (time > 0) {
-            time--;
+            if (!isPauseGame){
+                time--;
+            }
         } else {
-            System.exit(0);
+            new CurrentGamePlaySummarizationJframe().setVisible(true);
         }
         int second = time % 60;
         int minute = time / 60;
@@ -225,7 +230,7 @@ public class MessageDisplay extends Pane {
         }
     }
 
-    boolean isPauseGame = true;
+
     public void pauseGame() {
         if(BombermanGame.input.pause) {
             if(isPauseGame) {
