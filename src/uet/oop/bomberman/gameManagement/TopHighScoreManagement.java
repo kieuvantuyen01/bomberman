@@ -1,13 +1,16 @@
 package uet.oop.bomberman.gameManagement;
 
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.Score;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 public class TopHighScoreManagement {
-    public ArrayList<Score> top_high_scores = new ArrayList<>();
+    public HashMap<Integer, String> top_high_scores = new HashMap<>();
+    public ArrayList<Integer> scores = new ArrayList<>();
     public ArrayList<String> high_scores_jframe = new ArrayList<>();
     public static int point = 0;
 
@@ -26,7 +29,10 @@ public class TopHighScoreManagement {
                     if (parts.length == 2) {
                         name = parts[0];
                         score = parts[1];
-                        top_high_scores.add(new Score(name, Integer.parseInt(score)));
+                        if (scores.size() <= 10) {
+                            scores.add(Integer.parseInt(score));
+                            top_high_scores.put(Integer.parseInt(score), name);
+                        }
                     }
                 }
                 bufferedReader.close();
@@ -34,66 +40,54 @@ public class TopHighScoreManagement {
                 e.printStackTrace();
             }
             int high_score_order = 1;
-            for (Score iterator : top_high_scores) {
-                high_scores_jframe.add(String.format("%-10s %-30s %-15s",
-                        high_score_order + ".", iterator.getName(), iterator.getPoints()));
-                high_score_order++;
-            }
-            for (int i = top_high_scores.size(); i < 10; i++) {
-                high_scores_jframe.add(String.format("%-10s %-30s %-15s",
-                        high_score_order + ".", "-", 0));
+            for (int iterator : scores) {
+                high_scores_jframe.add(String.format("%-10s %-30s %-15s", String.valueOf(high_score_order) + ".", top_high_scores.get(iterator), String.valueOf(iterator)));
                 high_score_order++;
             }
         }
     }
 
     public void writeToScoreChartFile() {
-        try {
-            FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
-            BufferedWriter bw = new BufferedWriter(fos);
-            for (Score score : top_high_scores) {
-                //System.out.println(top_high_scores.get(score) + "\t" + score);
-                bw.write(score.getName() + "\t" + score.getPoints() + "\n");
+            try {
+                FileWriter fos = new FileWriter("res\\scores\\scoreChart.txt");
+                BufferedWriter bw = new BufferedWriter(fos);
+                int high_score_order = 1;
+                for (int score : scores) {
+                    bw.write(top_high_scores.get(score) + "\t" + String.valueOf(score) + "\n");
+                }
+                bw.flush();
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            bw.flush();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void addIntoTopHighScores(String name) {
-        top_high_scores.add(new Score(name, point));
-        top_high_scores.sort((score2, score1) -> {
-            Integer int1 = score1.getPoints();
-            Integer int2 = score2.getPoints();
-            return int1.compareTo(int2);
-        });
-        System.out.println(top_high_scores);
-        System.out.println(2000);
-        if (!high_scores_jframe.isEmpty()) {
+        scores.add(point);
+        Comparator c = Collections.reverseOrder();
+        Collections.sort(scores, c);
+        top_high_scores.put(point, name);
+        if(!high_scores_jframe.isEmpty()) {
             high_scores_jframe.removeAll(high_scores_jframe);
         }
         int high_score_order = 1;
-        for (Score score : top_high_scores) {
-            high_scores_jframe.add(String.format("%-10s %-30s %-15s",
-                    high_score_order + ".", score.getName(), score.getPoints()));
+        for (int score : scores) {
+            high_scores_jframe.add(String.format("%-10s %-30s %-15s", String.valueOf(high_score_order) + ".", top_high_scores.get(score), String.valueOf(score)));
             high_score_order++;
         }
     }
 
     // Use to limit top high scores = 10.
     public void removeFromTopHighScores() {
-        top_high_scores.remove(top_high_scores.size() - 1);
+        scores.remove(scores.size() - 1);
     }
 
     public void handleScores(String name) {
         getScoreChartFromFile();
-
-        if (top_high_scores.size() > 10) {
+        addIntoTopHighScores(name);
+        if (scores.size() > 10) {
             removeFromTopHighScores();
         }
-        addIntoTopHighScores(name);
         writeToScoreChartFile();
     }
 }

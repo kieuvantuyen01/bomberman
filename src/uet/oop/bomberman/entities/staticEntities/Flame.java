@@ -62,6 +62,10 @@ public class Flame extends StaticEntity {
                 _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
                 Brick brick=(Brick) entity;
                 brick.remove();
+            } else if (entity instanceof Bomb){
+                radius=i-1;
+                ((Bomb) entity)._timeToExplode=0;
+
             } else {
                 if (i == radius) {
                     _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));

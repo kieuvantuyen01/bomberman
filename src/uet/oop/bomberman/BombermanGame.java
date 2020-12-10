@@ -5,12 +5,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
@@ -18,10 +21,10 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.MovableEntities;
 import uet.oop.bomberman.entities.enemy.Boss;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.item.Item;
+import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 import javax.sound.sampled.Clip;
 import java.util.*;
@@ -176,17 +179,17 @@ public class BombermanGame extends Application {
         canvas = new Canvas(Sprite.SCALED_SIZE * WIDTH, Sprite.SCALED_SIZE * HEIGHT);
         canvas.setTranslateY(40);
         gc = canvas.getGraphicsContext2D();
+
         // Tạo các thông số hiển thị trong game.
        MessageDisplay messageDisplay = new MessageDisplay();
-
+       Background background=new Background(new BackgroundFill(Color.PINK,null, new Insets(0,-1000,-398,0)));
+       messageDisplay.setBackground(background);
         // Tao root container
         Group root = new Group();
-        root.getChildren().add(canvas);
         root.getChildren().add(messageDisplay);
-
+        root.getChildren().add(canvas);
         // Tao scene
         Scene scene = new Scene(root);
-
         // Them scene vao stage
 
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -204,7 +207,7 @@ public class BombermanGame extends Application {
         });
 
         // Them scene vao stage
-
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
         Timeline animation;

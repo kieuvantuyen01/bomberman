@@ -17,8 +17,4 @@ public abstract class Boss extends Enemy {
     public List<Coordinates> getTiles() {
         return tiles;
     }
-
-    public void setTiles(List<Coordinates> tiles) {
-        this.tiles = tiles;
-    }
 }

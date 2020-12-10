@@ -25,6 +25,7 @@ public class highScoreJframe extends javax.swing.JFrame {
     }
 
     public void setJframeIconImage() {
+        setLocationRelativeTo(null);
         setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/textures/Bomberman_Icon.png")));
     }

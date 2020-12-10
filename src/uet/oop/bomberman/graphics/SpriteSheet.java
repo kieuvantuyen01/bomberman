@@ -1,4 +1,4 @@
-package uet.oop.bomberman.graphics;
+package uet.oop.bomberman.Graphics;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -16,7 +16,7 @@ public class SpriteSheet {
 	public int[] _pixels;
 	public BufferedImage image;
 
-	public static SpriteSheet tiles = new SpriteSheet("/textures/classic.png", 256);
+	public static SpriteSheet tiles = new SpriteSheet("/textures/classic1.png", 512);
 
 	public SpriteSheet(String path, int size) {
 		_path = path;

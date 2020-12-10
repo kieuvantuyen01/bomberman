@@ -1,6 +1,6 @@
 package uet.oop.bomberman;
 
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class Coordinates {
     private int x;

@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities.staticEntities;
 
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class Wall extends StaticEntity {
 

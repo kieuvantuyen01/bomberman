@@ -57,17 +57,21 @@ public class MessageDisplay extends Pane {
         heart_label = new Label("Hearts: ");
         heart_label.setFont(Font.font(20));
         heart_label.setTranslateX(380);
+        heart_label.setTranslateY(8);
 
         Image image = new Image("/textures/heart.png");
 
         img1 = new ImageView(image);
         img1.setTranslateX(450);
+        img1.setTranslateY(10);
 
         img2 = new ImageView(image);
         img2.setTranslateX(480);
+        img2.setTranslateY(10);
 
         img3 = new ImageView(image);
         img3.setTranslateX(510);
+        img3.setTranslateY(10);
 
         getChildren().add(heart_label);
         getChildren().add(img1);
@@ -91,6 +95,7 @@ public class MessageDisplay extends Pane {
         // Dùng cho hiển thị điểm.
         score_label.setFont(Font.font(20));
         score_label.setTranslateX(800);
+        score_label.setTranslateY(8);
         getChildren().add(score_label);
         score_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> ScoreLabel()));
         score_animation.setCycleCount(Timeline.INDEFINITE);
@@ -99,6 +104,7 @@ public class MessageDisplay extends Pane {
         // Dùng cho hiển thị thời gian chơi.
         time_label.setFont(Font.font(20));
         time_label.setTranslateX(70);
+        time_label.setTranslateY(8);
         getChildren().add(time_label);
         time_animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> timelabel()));
         time_animation.setCycleCount(Timeline.INDEFINITE);
@@ -198,7 +204,7 @@ public class MessageDisplay extends Pane {
     }
 
     public void winOrLose_label() {
-        //System.out.println(Bomber.bomber_life);
+        System.out.println(Bomber.bomber_life);
         if(Bomber.bomber_life <= 0) {
             winOrLose_label.setText("YOU LOSE!");
         }

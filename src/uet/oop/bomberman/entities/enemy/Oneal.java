@@ -5,19 +5,19 @@ import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Brick;
 import uet.oop.bomberman.entities.staticEntities.Wall;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class Oneal extends Enemy {
-    protected double speed = 1;
-    double xa = -speed, ya = 0;
+
 
     public Oneal(Coordinates tile) {
         super(tile, 300);
         img = Sprite.oneal_left1.getFxImage();
+        xa = -speed;
     }
 
     @Override
-    protected void handleMove() {
+    protected void handleDirection() {
         if (d.getY() == 0 && d.getX() == 0) {
             findBomber();
         }
@@ -55,15 +55,7 @@ public class Oneal extends Enemy {
                 }
             }
         }
-
-        if (d.getX() != 0 || d.getY() != 0) {
-            move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
-            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
-            _moving = true;
-        } else {
-            _moving = false;
-        }
+        handleMove();
     }
 
     @Override
@@ -72,7 +64,7 @@ public class Oneal extends Enemy {
         if (!_alive) {
             return;
         }
-        handleMove();
+        handleDirection();
 
         chooseSprite(Sprite.oneal_left1,
                 Sprite.oneal_left1, Sprite.oneal_left2, Sprite.oneal_left3,
@@ -157,7 +149,6 @@ public class Oneal extends Enemy {
             ya = ytemp;
         }
         speed = 1;
-        return;
     }
 
     @Override

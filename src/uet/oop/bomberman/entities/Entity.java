@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
 
 public abstract class Entity {
-    //T?a ?? X t�nh t? g�c tr�i tr�n trong Canvas
     protected Coordinates pixel;
 
     protected Coordinates tile;

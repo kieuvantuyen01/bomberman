@@ -4,7 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class FlameSegment extends StaticEntity implements Animated {
     protected boolean _last;
@@ -56,7 +56,6 @@ public class FlameSegment extends StaticEntity implements Animated {
                 }
                 break;
             case NONE:
-                break;
             default:
                 break;
         }
@@ -78,8 +77,8 @@ public class FlameSegment extends StaticEntity implements Animated {
     public void handleCollision() {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
         if (entity instanceof MovableEntities) {
-            if (((MovableEntities) entity).is_flamepass() == false) {
-                if (entity instanceof Bomber && ((Bomber) entity).is_alive() == true) {
+            if (!((MovableEntities) entity).is_flamepass()) {
+                if (entity instanceof Bomber && ((Bomber) entity).is_alive()) {
                     Bomber.bomber_life--;
                     GameSound.playMusic(GameSound.BOMBER_DIE);
                 }
@@ -88,10 +87,6 @@ public class FlameSegment extends StaticEntity implements Animated {
         }
         if (entity instanceof Brick) {
             ((Brick) entity).remove();
-        }
-
-        if (entity instanceof Bomb) {
-            ((Bomb) entity)._timeToExplode = 0;
         }
     }
 }

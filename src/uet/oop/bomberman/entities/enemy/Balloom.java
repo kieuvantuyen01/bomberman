@@ -1,12 +1,10 @@
 package uet.oop.bomberman.entities.enemy;
 
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 
 public class Balloom extends Enemy {
-    protected double speed = 1;
-    double xa = 0, ya = 0;
 
     public Balloom(Coordinates tile, boolean horizontal) {
         super(tile, 100);
@@ -19,7 +17,7 @@ public class Balloom extends Enemy {
     }
 
     @Override
-    protected void handleMove() {
+    protected void handleDirection() {
         if (d.getX() == 0) {
             if (xa == -speed) {
                 if (canMoveToDirection(-1, 0)) {
@@ -71,16 +69,7 @@ public class Balloom extends Enemy {
             }
         }
 
-
-        if (d.getX() != 0 || d.getY() != 0) {
-            move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
-            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
-            _moving = true;
-        } else {
-            _moving = false;
-        }
-
+      handleMove();
     }
 
     @Override
@@ -90,7 +79,7 @@ public class Balloom extends Enemy {
             return;
         }
 
-        handleMove();
+        handleDirection();
 
         chooseSprite(Sprite.balloom_right1,
                 Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3,

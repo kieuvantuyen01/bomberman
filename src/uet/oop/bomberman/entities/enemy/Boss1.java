@@ -2,11 +2,9 @@ package uet.oop.bomberman.entities.enemy;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public class Boss1 extends Boss {
-    protected double speed = 1;
-    double xa = -speed, ya = 0;
 
     public Boss1(Coordinates tile) {
         super(tile, 1000);
@@ -15,10 +13,11 @@ public class Boss1 extends Boss {
         tiles.add(new Coordinates(tile.getX() + 1, tile.getY()));
         tiles.add(new Coordinates(tile.getX(), tile.getY() + 1));
         tiles.add(new Coordinates(tile.getX() + 1, tile.getY() + 1));
+        xa=-speed;
     }
 
     @Override
-    protected void handleMove() {
+    protected void handleDirection() {
         if (d.getX() == 0) {
             if (xa == -speed) {
                 if (canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)) {
@@ -70,15 +69,7 @@ public class Boss1 extends Boss {
             }
         }
 
-
-        if (d.getX() != 0 || d.getY() != 0) {
-            move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
-            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
-            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
-            _moving = true;
-        } else {
-            _moving = false;
-        }
+        handleMove();
 
     }
 
@@ -89,7 +80,7 @@ public class Boss1 extends Boss {
             return;
         }
 
-        handleMove();
+        handleDirection();
 
     }
 

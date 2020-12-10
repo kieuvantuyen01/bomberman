@@ -4,10 +4,12 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.entities.MovableEntities;
+import uet.oop.bomberman.Graphics.Sprite;
 
 public abstract class Enemy extends MovableEntities {
     protected int _points;
-    BombermanGame game;
+    protected double speed = 1;
+    double xa = 0, ya = 0;
 
     public Enemy(Coordinates tile, int points) {
         super(tile);
@@ -22,12 +24,12 @@ public abstract class Enemy extends MovableEntities {
     @Override
     public void update() {
         animate();
-        if (_alive == false) {
+        if (!_alive) {
             afterDie();
 
             if (_animate == 60) {
                 BombermanGame.addPoints(_points);
-                //System.out.println(BombermanGame.get_points());
+                System.out.println(BombermanGame.get_points());
                 BombermanGame.removeEnemy(this);
                 GameSound.playMusic(GameSound.ENEMY_DIE);
             }
@@ -35,8 +37,19 @@ public abstract class Enemy extends MovableEntities {
 
     }
 
+    protected void handleMove(){
+        if (d.getX() != 0 || d.getY() != 0) {
+            move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
+            d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));
+            d.setY((int) (d.getY() - ya * Sprite.PLAYERSPEED));
+            _moving = true;
+        } else {
+            _moving = false;
+        }
+    }
+
     @Override
-    protected abstract void handleMove();
+    protected abstract void handleDirection();
 
     @Override
     protected void move(double xa, double ya) {
