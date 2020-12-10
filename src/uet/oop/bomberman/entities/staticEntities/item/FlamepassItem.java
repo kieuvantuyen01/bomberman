@@ -8,7 +8,7 @@ public class FlamepassItem extends Item {
 
     public FlamepassItem(Coordinates tile) {
         super(tile);
-        this.img=Sprite.powerup_flamepass.getFxImage();
+        this.img = Sprite.powerup_flamepass.getFxImage();
     }
 
     @Override

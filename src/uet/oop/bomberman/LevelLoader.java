@@ -1,10 +1,10 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.enemy.Balloom;
-import uet.oop.bomberman.entities.enemy.Boss1;
-import uet.oop.bomberman.entities.enemy.Ghost;
-import uet.oop.bomberman.entities.enemy.Oneal;
+import uet.oop.bomberman.entities.enemies.Balloom;
+import uet.oop.bomberman.entities.enemies.Boss1;
+import uet.oop.bomberman.entities.enemies.Ghost;
+import uet.oop.bomberman.entities.enemies.Oneal;
 import uet.oop.bomberman.entities.staticEntities.item.BombsItem;
 import uet.oop.bomberman.entities.staticEntities.item.FlamesItem;
 import uet.oop.bomberman.entities.staticEntities.item.SpeedItem;

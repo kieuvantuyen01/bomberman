@@ -8,7 +8,7 @@ public class BombsItem extends Item {
 
     public BombsItem(Coordinates tile) {
         super(tile);
-        this.img=Sprite.powerup_bombs.getFxImage();
+        this.img = Sprite.powerup_bombs.getFxImage();
     }
 
     @Override

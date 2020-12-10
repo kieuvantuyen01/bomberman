@@ -1,6 +1,7 @@
-package uet.oop.bomberman.entities.enemy;
+package uet.oop.bomberman.entities.enemies;
 
 import uet.oop.bomberman.Coordinates;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +10,8 @@ public abstract class Boss extends Enemy {
 
     public Boss(Coordinates tile, int points) {
         super(tile, points);
-        tiles=new ArrayList<>();
-        pixel=tile.convertTileToPixel();
+        tiles = new ArrayList<>();
+        pixel = tile.convertTileToPixel();
         //img= Sprite.boss_down.getFxImage();
     }
 

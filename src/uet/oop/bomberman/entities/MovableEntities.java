@@ -12,10 +12,9 @@ public abstract class MovableEntities extends Entity implements Animated {
     protected boolean _alive = true;
     protected boolean _moving = false;
     protected boolean _bombpass = false;
-    protected boolean _flamepass=false;
-    protected boolean _brickpass=false;
+    protected boolean _flamepass = false;
+    protected boolean _brickpass = false;
 
-    ;
     protected int _animate = 0;
     protected Coordinates d = new Coordinates(0, 0);
 
@@ -51,24 +50,8 @@ public abstract class MovableEntities extends Entity implements Animated {
 
     protected boolean canMoveToDirection(int x, int y) {
         Entity entity = BombermanGame.getEntityAt(tile.getX() + x, tile.getY() + y);
-        if (entity instanceof Wall || (!_brickpass && entity instanceof Brick) || (!_bombpass && entity instanceof Bomb)) {
-            return false;
-        }
-        return true;
+        return !(entity instanceof Wall) && (_brickpass || !(entity instanceof Brick)) && (_bombpass || !(entity instanceof Bomb));
     }
-
-    public boolean isAlive() {
-        return _alive;
-    }
-
-    public boolean isMoving() {
-        return _moving;
-    }
-
-    public DIRECTION getDirection() {
-        return _direction;
-    }
-
 
     @Override
     public void loadAnimated(Sprite sprite1, Sprite sprite2, Sprite sprite3) {
@@ -106,10 +89,6 @@ public abstract class MovableEntities extends Entity implements Animated {
         return _flamepass;
     }
 
-    public boolean is_bombpass() {
-        return _bombpass;
-    }
-
     public void set_bombpass(boolean _bombpass) {
         this._bombpass = _bombpass;
     }
@@ -118,8 +97,8 @@ public abstract class MovableEntities extends Entity implements Animated {
         this._flamepass = _flamepass;
     }
 
-    public void set_brickpass(boolean _brickpass){
-        this._brickpass=_brickpass;
+    public void set_brickpass(boolean _brickpass) {
+        this._brickpass = _brickpass;
     }
 
     public Coordinates getD() {
@@ -136,15 +115,4 @@ public abstract class MovableEntities extends Entity implements Animated {
         return _alive;
     }
 
-    public void set_alive(boolean _alive) {
-        this._alive = _alive;
-    }
-
-    public boolean is_moving() {
-        return _moving;
-    }
-
-    public void set_moving(boolean _moving) {
-        this._moving = _moving;
-    }
 }

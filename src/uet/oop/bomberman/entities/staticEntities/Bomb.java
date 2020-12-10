@@ -32,17 +32,17 @@ public class Bomb extends StaticEntity implements Animated {
     @Override
     public void update() {
         animate();
-        if (_timeToExplode < 0){
+        if (_timeToExplode < 0) {
             GameSound.playMusic(GameSound.BONG_BANG);
             bombExplode();
             return;
         }
-        loadAnimated(Sprite.bomb,Sprite.bomb_1,Sprite.bomb_2);
+        loadAnimated(Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2);
 
     }
 
-    protected void bombExplode(){
-        BombermanGame.setFlame(new Flame(tile,damage));
+    protected void bombExplode() {
+        BombermanGame.setFlame(new Flame(tile, damage));
         BombermanGame.removeBomb();
     }
 

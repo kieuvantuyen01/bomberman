@@ -7,7 +7,7 @@ public class Grass extends StaticEntity {
 
     public Grass(Coordinates tile) {
         super(tile);
-        this.img=Sprite.grass.getFxImage();
+        this.img = Sprite.grass.getFxImage();
     }
 
 }

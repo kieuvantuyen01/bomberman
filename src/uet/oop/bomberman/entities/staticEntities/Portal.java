@@ -7,7 +7,7 @@ public class Portal extends StaticEntity {
 
     public Portal(Coordinates tile) {
         super(tile);
-        this.img=Sprite.portal.getFxImage();
+        this.img = Sprite.portal.getFxImage();
     }
 
 }

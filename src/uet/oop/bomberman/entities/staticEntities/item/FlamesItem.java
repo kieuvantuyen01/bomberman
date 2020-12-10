@@ -9,12 +9,12 @@ public class FlamesItem extends Item {
 
     public FlamesItem(Coordinates tile) {
         super(tile);
-        this.img=Sprite.powerup_flames.getFxImage();
+        this.img = Sprite.powerup_flames.getFxImage();
     }
 
     @Override
     public void getItem() {
-        Bomb.setDamage(Bomb.getDamage()+1);
+        Bomb.setDamage(Bomb.getDamage() + 1);
         BombermanGame.removeItem(this);
     }
 

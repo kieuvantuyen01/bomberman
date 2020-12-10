@@ -7,7 +7,7 @@ public class Wall extends StaticEntity {
 
     public Wall(Coordinates tile) {
         super(tile);
-        this.img=Sprite.wall.getFxImage();
+        this.img = Sprite.wall.getFxImage();
     }
 
 }

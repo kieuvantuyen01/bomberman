@@ -4,14 +4,12 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -19,8 +17,8 @@ import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.MovableEntities;
-import uet.oop.bomberman.entities.enemy.Boss;
-import uet.oop.bomberman.entities.enemy.Enemy;
+import uet.oop.bomberman.entities.enemies.Boss;
+import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
@@ -57,7 +55,9 @@ public class BombermanGame extends Application {
 
     public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
 
-    public static void main(String[] args) { Application.launch(BombermanGame.class);}
+    public static void main(String[] args) {
+        Application.launch(BombermanGame.class);
+    }
 
     public static Entity getEntityAt(int x, int y) {
         Entity entity;
@@ -159,11 +159,11 @@ public class BombermanGame extends Application {
             if (cur.getTile().getY() == y && cur.getTile().getX() == x) {
                 entity = cur;
             }
-            if (cur instanceof Boss){
-                Boss boss= (Boss) cur;
-                for (Coordinates tile:boss.getTiles()){
-                    if (tile.getX()==x&&tile.getY()==y){
-                        entity=boss;
+            if (cur instanceof Boss) {
+                Boss boss = (Boss) cur;
+                for (Coordinates tile : boss.getTiles()) {
+                    if (tile.getX() == x && tile.getY() == y) {
+                        entity = boss;
                     }
                 }
             }
@@ -181,9 +181,9 @@ public class BombermanGame extends Application {
         gc = canvas.getGraphicsContext2D();
 
         // Tạo các thông số hiển thị trong game.
-       MessageDisplay messageDisplay = new MessageDisplay();
-       Background background=new Background(new BackgroundFill(Color.PINK,null, new Insets(0,-1000,-398,0)));
-       messageDisplay.setBackground(background);
+        MessageDisplay messageDisplay = new MessageDisplay();
+        Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
+        messageDisplay.setBackground(background);
         // Tao root container
         Group root = new Group();
         root.getChildren().add(messageDisplay);
@@ -192,24 +192,14 @@ public class BombermanGame extends Application {
         Scene scene = new Scene(root);
         // Them scene vao stage
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyPressed(event);
-            }
-        });
+        scene.setOnKeyPressed(event -> input.keyPressed(event));
 
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                input.keyRelease(event);
-            }
-        });
+        scene.setOnKeyReleased(event -> input.keyRelease(event));
 
         // Them scene vao stage
         stage.setResizable(false);
         stage.setScene(scene);
-        stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
+        stage.setTitle("Bomberman game | " + Fps.get() + " fps");
         Timeline animation;
         animation = new Timeline(new KeyFrame(Duration.seconds(1), e -> fpsDisplay(stage)));
         animation.setCycleCount(Timeline.INDEFINITE);
@@ -223,8 +213,10 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                render();
-                update();
+                if (!MessageDisplay.isPauseGame){
+                    render();
+                    update();
+                }
             }
         };
         timer.start();
@@ -365,6 +357,6 @@ public class BombermanGame extends Application {
     }
 
     public void fpsDisplay(Stage stage) {
-        stage.setTitle("Bomberman game | " + String.valueOf(Fps.get()) + " fps");
+        stage.setTitle("Bomberman game | " + Fps.get() + " fps");
     }
 }

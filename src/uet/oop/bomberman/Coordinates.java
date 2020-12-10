@@ -31,13 +31,11 @@ public class Coordinates {
     }
 
     public Coordinates convertPixelToTile() {
-        Coordinates tile = new Coordinates((x + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE,
+        return new Coordinates((x + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE,
                 (y + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE);
-        return tile;
     }
 
     public Coordinates convertTileToPixel() {
-        Coordinates pixel = new Coordinates(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
-        return pixel;
+        return new Coordinates(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
     }
 }

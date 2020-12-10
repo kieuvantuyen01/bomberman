@@ -1,4 +1,4 @@
-package uet.oop.bomberman.entities.enemy;
+package uet.oop.bomberman.entities.enemies;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
@@ -153,7 +153,7 @@ public class Oneal extends Enemy {
 
     @Override
     protected void afterDie() {
-        img=Sprite.oneal_dead.getFxImage();
+        img = Sprite.oneal_dead.getFxImage();
     }
 }
 

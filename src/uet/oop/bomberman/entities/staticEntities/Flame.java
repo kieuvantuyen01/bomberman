@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Flame extends StaticEntity {
-    protected int time=30;
-    protected int frame=-1;
+    protected int time = 30;
+    protected int frame = -1;
     protected List<FlameSegment> _flameSegments;
     protected int _radius;
 
@@ -21,7 +21,7 @@ public class Flame extends StaticEntity {
 
     public void update() {
         time--;
-        if (time>0){
+        if (time > 0) {
             _flameSegments.forEach(FlameSegment::update);
         } else {
             BombermanGame.removeFlame();
@@ -37,19 +37,19 @@ public class Flame extends StaticEntity {
         for (int i = 1; i <= radius; i++) {
             switch (direction) {
                 case UP:
-                    xt = x ;
-                    yt = y-i;
+                    xt = x;
+                    yt = y - i;
                     break;
                 case DOWN:
-                    xt = x ;
-                    yt = y+i;
+                    xt = x;
+                    yt = y + i;
                     break;
                 case LEFT:
-                    xt = x-i;
+                    xt = x - i;
                     yt = y;
                     break;
                 case RIGHT:
-                    xt = x+i
+                    xt = x + i
                     ;
                     yt = y;
                     break;
@@ -60,11 +60,11 @@ public class Flame extends StaticEntity {
             } else if (entity instanceof Brick) {
                 radius = i;
                 _flameSegments.add(new FlameSegment(new Coordinates(xt, yt), direction, true));
-                Brick brick=(Brick) entity;
+                Brick brick = (Brick) entity;
                 brick.remove();
-            } else if (entity instanceof Bomb){
-                radius=i-1;
-                ((Bomb) entity)._timeToExplode=0;
+            } else if (entity instanceof Bomb) {
+                radius = i - 1;
+                ((Bomb) entity)._timeToExplode = 0;
 
             } else {
                 if (i == radius) {

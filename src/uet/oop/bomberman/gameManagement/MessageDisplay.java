@@ -2,6 +2,7 @@ package uet.oop.bomberman.gameManagement;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.Keyboard;
 import uet.oop.bomberman.entities.Bomber;
 
 import javax.sound.sampled.Clip;
@@ -49,7 +51,7 @@ public class MessageDisplay extends Pane {
 
     // Dùng để pause game
     private Timeline game_status_animation;
-    private Label game_status_Label = new Label("   Pause   ");
+    private static Label game_status_Label = new Label("   Pause   ");
 
 
     public MessageDisplay() {
@@ -138,7 +140,7 @@ public class MessageDisplay extends Pane {
         game_status_Label.setTextFill(Color.web("#fffdfd"));
         game_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
         getChildren().add(game_status_Label);
-        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
+        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame(BombermanGame.stage.getScene(),BombermanGame.input)));
         game_status_animation.setCycleCount(Timeline.INDEFINITE);
         game_status_animation.play();
     }
@@ -225,16 +227,20 @@ public class MessageDisplay extends Pane {
         }
     }
 
-    boolean isPauseGame = true;
-    public void pauseGame() {
-        if(BombermanGame.input.pause) {
-            if(isPauseGame) {
+    public static boolean isPauseGame = false;
+    public static void pauseGame(Scene scene, Keyboard input) {
+        if(isPauseGame) {
                 game_status_Label.setText(" Continue ");
-                isPauseGame = false;
+                if (BombermanGame.input.pause) {
+                    isPauseGame = false;
+                    System.out.println(isPauseGame);
+                }
             } else {
                 game_status_Label.setText("   Pause   ");
-                isPauseGame = true;
+                if (BombermanGame.input.pause) {
+                    isPauseGame = true;
+                }
             }
-        }
     }
+
 }

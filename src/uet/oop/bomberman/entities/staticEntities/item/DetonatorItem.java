@@ -8,7 +8,7 @@ public class DetonatorItem extends Item {
 
     public DetonatorItem(Coordinates tile) {
         super(tile);
-        this.img=Sprite.powerup_detonator.getFxImage();
+        this.img = Sprite.powerup_detonator.getFxImage();
     }
 
     @Override

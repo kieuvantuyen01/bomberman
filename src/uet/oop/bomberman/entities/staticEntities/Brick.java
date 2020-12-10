@@ -6,8 +6,8 @@ import uet.oop.bomberman.entities.Animated;
 import uet.oop.bomberman.Graphics.Sprite;
 
 public class Brick extends StaticEntity implements Animated {
-    protected int frame=-1;
-    protected boolean destroyed=false;
+    protected int frame = -1;
+    protected boolean destroyed = false;
 
 
     public Brick(Coordinates tile) {
@@ -16,7 +16,7 @@ public class Brick extends StaticEntity implements Animated {
     }
 
     public void remove() {
-        destroyed=true;
+        destroyed = true;
     }
 
 
@@ -36,13 +36,13 @@ public class Brick extends StaticEntity implements Animated {
 
     @Override
     public void update() {
-        if (destroyed){
+        if (destroyed) {
             animate();
-            if (frame==30){
+            if (frame == 30) {
                 BombermanGame.removeBrick(this);
                 return;
             }
-            loadAnimated(Sprite.brick_exploded,Sprite.brick_exploded1,Sprite.brick_exploded2);
+            loadAnimated(Sprite.brick_exploded, Sprite.brick_exploded1, Sprite.brick_exploded2);
 
         }
     }

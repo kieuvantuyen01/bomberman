@@ -1,4 +1,4 @@
-package uet.oop.bomberman.entities.enemy;
+package uet.oop.bomberman.entities.enemies;
 
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
@@ -37,7 +37,7 @@ public abstract class Enemy extends MovableEntities {
 
     }
 
-    protected void handleMove(){
+    protected void handleMove() {
         if (d.getX() != 0 || d.getY() != 0) {
             move(xa * Sprite.PLAYERSPEED, ya * Sprite.PLAYERSPEED);
             d.setX((int) (d.getX() - xa * Sprite.PLAYERSPEED));

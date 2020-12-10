@@ -8,7 +8,7 @@ public class BrickpassItem extends Item {
 
     public BrickpassItem(Coordinates tile) {
         super(tile);
-        this.img=Sprite.powerup_wallpass.getFxImage();
+        this.img = Sprite.powerup_wallpass.getFxImage();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package uet.oop.bomberman.entities.enemy;
+package uet.oop.bomberman.entities.enemies;
 
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Graphics.Sprite;
@@ -24,10 +24,10 @@ public class Balloom extends Enemy {
                     d.setX(-Sprite.SCALED_SIZE);
                 } else {
                     xa = 0;
-                    if (canMoveToDirection(0,-1)){
+                    if (canMoveToDirection(0, -1)) {
                         ya = -speed;
                     } else {
-                        ya=speed;
+                        ya = speed;
                     }
                 }
             } else if (xa == speed) {
@@ -35,10 +35,10 @@ public class Balloom extends Enemy {
                     d.setX(Sprite.SCALED_SIZE);
                 } else {
                     xa = 0;
-                    if (canMoveToDirection(0,1)){
+                    if (canMoveToDirection(0, 1)) {
                         ya = speed;
                     } else {
-                        ya=-speed;
+                        ya = -speed;
                     }
                 }
             }
@@ -49,10 +49,10 @@ public class Balloom extends Enemy {
                     d.setY(-Sprite.SCALED_SIZE);
                 } else {
                     ya = 0;
-                    if (canMoveToDirection(1,0)){
+                    if (canMoveToDirection(1, 0)) {
                         xa = speed;
                     } else {
-                        xa=-speed;
+                        xa = -speed;
                     }
                 }
             } else if (ya == speed) {
@@ -60,32 +60,32 @@ public class Balloom extends Enemy {
                     d.setY(Sprite.SCALED_SIZE);
                 } else {
                     ya = 0;
-                    if (canMoveToDirection(-1,0)){
+                    if (canMoveToDirection(-1, 0)) {
                         xa = -speed;
                     } else {
-                        xa=speed;
+                        xa = speed;
                     }
                 }
             }
         }
 
-      handleMove();
+        handleMove();
     }
 
     @Override
     public void update() {
         super.update();
-        if (!_alive){
+        if (!_alive) {
             return;
         }
 
         handleDirection();
 
         chooseSprite(Sprite.balloom_right1,
-                Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3,
-                Sprite.balloom_right1,Sprite.balloom_right2,Sprite.balloom_right3,
-                Sprite.balloom_left1,Sprite.balloom_left2,Sprite.balloom_left3,
-                Sprite.balloom_right1,Sprite.balloom_right2,Sprite.balloom_right3);
+                Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3,
+                Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3,
+                Sprite.balloom_left1, Sprite.balloom_left2, Sprite.balloom_left3,
+                Sprite.balloom_right1, Sprite.balloom_right2, Sprite.balloom_right3);
 
     }
 
@@ -106,6 +106,6 @@ public class Balloom extends Enemy {
 
     @Override
     protected void afterDie() {
-        img=Sprite.balloom_dead.getFxImage();
+        img = Sprite.balloom_dead.getFxImage();
     }
 }

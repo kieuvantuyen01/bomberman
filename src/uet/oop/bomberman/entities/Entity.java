@@ -34,12 +34,4 @@ public abstract class Entity {
         this.tile = tile;
     }
 
-    public Coordinates getPixel() {
-        return pixel;
-    }
-
-    public void setPixel(Coordinates pixel) {
-        this.pixel = pixel;
-    }
-
 }
