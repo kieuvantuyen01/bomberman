@@ -141,7 +141,7 @@ public class MessageDisplay extends Pane {
         game_status_Label.setTextFill(Color.web("#fffdfd"));
         game_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
         getChildren().add(game_status_Label);
-        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
+        game_status_animation = new Timeline(new KeyFrame(Duration.millis(50), e -> pauseGame()));
         game_status_animation.setCycleCount(Timeline.INDEFINITE);
         game_status_animation.play();
     }

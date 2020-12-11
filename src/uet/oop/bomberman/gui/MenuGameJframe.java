@@ -12,14 +12,14 @@ import uet.oop.bomberman.gameManagement.GameSound;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 
-import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopMusic;
 
 /**
  * @author Admin
  */
 public class MenuGameJframe extends javax.swing.JFrame {
     public static boolean is_playing_game = false;
-    public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
+    public static Clip THREAD_SOUNDTRACK1 = loopMusic(GameSound.MENU);
 
     /**
      * Creates new form MenuGameJframe
@@ -138,12 +138,12 @@ public class MenuGameJframe extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
