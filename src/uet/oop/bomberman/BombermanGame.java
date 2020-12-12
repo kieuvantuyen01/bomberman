@@ -22,14 +22,14 @@ import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopMusic;
 
 public class BombermanGame extends Application {
     public static Stage stage = new Stage();
@@ -39,6 +39,8 @@ public class BombermanGame extends Application {
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
+
+    public static boolean isPauseGame = false;
 
     public static int _points = 0;
     private static Bomber bomber;
@@ -53,7 +55,7 @@ public class BombermanGame extends Application {
     private static List<Grass> grasses;
     public static Keyboard input = new Keyboard();
 
-    public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
+    public static Clip THREAD_SOUNDTRACK = loopMusic(GameSound.PLAYGAME);
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
@@ -213,8 +215,8 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                if (!MessageDisplay.isPauseGame){
-                    render();
+                render();
+                if (!isPauseGame) {
                     update();
                 }
             }

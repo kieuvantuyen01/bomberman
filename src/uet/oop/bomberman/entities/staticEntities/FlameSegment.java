@@ -4,7 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.entities.*;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public class FlameSegment extends StaticEntity implements Animated {
     protected boolean _last;

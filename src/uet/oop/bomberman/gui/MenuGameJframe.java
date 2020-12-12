@@ -12,14 +12,14 @@ import uet.oop.bomberman.gameManagement.GameSound;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 
-import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopMusic;
 
 /**
  * @author Admin
  */
 public class MenuGameJframe extends javax.swing.JFrame {
     public static boolean is_playing_game = false;
-    public static Clip THREAD_SOUNDTRACK1 = loopPlaySound(GameSound.MENU);
+    public static Clip THREAD_SOUNDTRACK1 = loopMusic(GameSound.MENU);
 
     /**
      * Creates new form MenuGameJframe
@@ -70,11 +70,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 playButtonMouseExited(evt);
             }
         });
-        playButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                playButtonActionPerformed(evt);
-            }
-        });
+        playButton.addActionListener(this::playButtonActionPerformed);
         jPanel1.add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 140, 50));
 
         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option.png"))); // NOI18N
@@ -89,11 +85,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 optionButtonMouseExited(evt);
             }
         });
-        optionButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionButtonActionPerformed(evt);
-            }
-        });
+        optionButton.addActionListener(this::optionButtonActionPerformed);
         jPanel1.add(optionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 140, 50));
 
         highScoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/HightScore.png"))); // NOI18N
@@ -107,11 +99,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 highScoreButtonMouseExited(evt);
             }
         });
-        highScoreButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                highScoreButtonActionPerformed(evt);
-            }
-        });
+        highScoreButton.addActionListener(this::highScoreButtonActionPerformed);
         jPanel1.add(highScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 140, 50));
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Exit.png"))); // NOI18N
@@ -125,11 +113,7 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 exitButtonMouseExited(evt);
             }
         });
-        exitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitButtonActionPerformed(evt);
-            }
-        });
+        exitButton.addActionListener(this::exitButtonActionPerformed);
         jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 140, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/backGroundMenu.png"))); // NOI18N

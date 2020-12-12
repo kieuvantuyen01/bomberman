@@ -2,7 +2,6 @@ package uet.oop.bomberman.gameManagement;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,10 +10,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
-import uet.oop.bomberman.Keyboard;
 import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 import javax.sound.sampled.Clip;
+
+import static uet.oop.bomberman.BombermanGame.isPauseGame;
 
 public class MessageDisplay extends Pane {
     // Dùng cho hiển thị mạng người chơi.
@@ -51,7 +52,7 @@ public class MessageDisplay extends Pane {
 
     // Dùng để pause game
     private Timeline game_status_animation;
-    private static Label game_status_Label = new Label("   Pause   ");
+    private Label game_status_Label = new Label("   Pause   ");
 
 
     public MessageDisplay() {
@@ -140,7 +141,7 @@ public class MessageDisplay extends Pane {
         game_status_Label.setTextFill(Color.web("#fffdfd"));
         game_status_Label.setStyle("-fx-border-color:black; -fx-background-color: #f94794;");
         getChildren().add(game_status_Label);
-        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame(BombermanGame.stage.getScene(),BombermanGame.input)));
+        game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
         game_status_animation.setCycleCount(Timeline.INDEFINITE);
         game_status_animation.play();
     }
@@ -182,9 +183,11 @@ public class MessageDisplay extends Pane {
 
     public void timelabel() {
         if (time > 0) {
-            time--;
+            if (!isPauseGame){
+                time--;
+            }
         } else {
-            System.exit(0);
+            new CurrentGamePlaySummarizationJframe().setVisible(true);
         }
         int second = time % 60;
         int minute = time / 60;
@@ -227,20 +230,16 @@ public class MessageDisplay extends Pane {
         }
     }
 
-    public static boolean isPauseGame = false;
-    public static void pauseGame(Scene scene, Keyboard input) {
-        if(isPauseGame) {
+
+    public void pauseGame() {
+        if(BombermanGame.input.pause) {
+            if(isPauseGame) {
                 game_status_Label.setText(" Continue ");
-                if (BombermanGame.input.pause) {
-                    isPauseGame = false;
-                    System.out.println(isPauseGame);
-                }
+                isPauseGame = false;
             } else {
                 game_status_Label.setText("   Pause   ");
-                if (BombermanGame.input.pause) {
-                    isPauseGame = true;
-                }
+                isPauseGame = true;
             }
+        }
     }
-
 }

@@ -5,7 +5,7 @@ import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Brick;
 import uet.oop.bomberman.entities.staticEntities.Wall;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 
 public abstract class MovableEntities extends Entity implements Animated {

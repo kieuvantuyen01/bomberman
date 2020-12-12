@@ -4,7 +4,7 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.entities.MovableEntities;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 public abstract class Enemy extends MovableEntities {
     protected int _points;

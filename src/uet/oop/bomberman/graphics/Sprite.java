@@ -1,4 +1,4 @@
-package uet.oop.bomberman.Graphics;
+package uet.oop.bomberman.graphics;
 
 import javafx.scene.image.*;
 
