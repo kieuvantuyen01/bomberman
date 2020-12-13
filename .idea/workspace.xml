@@ -30,20 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level3.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/levels/Level5.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/levels/Level5.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/classic1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/classic1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/classic2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/classic2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Boss1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Boss1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/EpidemicZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/EpidemicZone.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

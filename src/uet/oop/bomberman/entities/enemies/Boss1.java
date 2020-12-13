@@ -8,7 +8,8 @@ import uet.oop.bomberman.graphics.Sprite;
 import java.util.Random;
 
 public class Boss1 extends Boss {
-    private static Random random=new Random();
+    private static Random random = new Random();
+
     public Boss1(Coordinates tile) {
         super(tile, 1000);
         img = new Image("textures/boss_down1.png");
@@ -21,56 +22,44 @@ public class Boss1 extends Boss {
 
     @Override
     protected void handleDirection() {
-        if (d.getX() == 0) {
-            if (xa == -speed) {
-                if (canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)) {
-                    d.setX(-Sprite.SCALED_SIZE);
-                } else {
-                    xa = 0;
-                    if (canMoveToDirection(0, -1) && canMoveToDirection(1, -1)) {
-                        ya = -speed;
-                    } else {
-                        ya = speed;
-                    }
-                }
-            } else if (xa == speed) {
-                if (canMoveToDirection(2, 0) && canMoveToDirection(2, 1)) {
-                    d.setX(Sprite.SCALED_SIZE);
-                } else {
-                    xa = 0;
-                    if (canMoveToDirection(0, 2) && canMoveToDirection(1, 2)) {
-                        ya = speed;
-                    } else {
-                        ya = -speed;
-                    }
-                }
+        int xt=0, yt=0;
+        if (d.getX() == 0 && d.getY() == 0) {
+            boolean temp = random.nextBoolean();
+
+            if (temp) {
+                do {
+                    xt = random.nextInt(3);
+                    xt--;
+                } while (xt == 0);
+            } else {
+                do {
+                    yt = random.nextInt(3);
+                    yt--;
+                } while (yt == 0);
+            }
+
+            if (xt == -1 && canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)){
+                ya=0;
+                xa=-speed;
+                d.setX(-Sprite.SCALED_SIZE);
+            }
+            if (xt==1&&canMoveToDirection(2, 0) && canMoveToDirection(2, 1)){
+                ya=0;
+                xa=speed;
+                d.setX(Sprite.SCALED_SIZE);
+            }
+            if (yt==-1 && canMoveToDirection(0, -1) && canMoveToDirection(1, -1)){
+                xa=0;
+                ya=-speed;
+                d.setY(-Sprite.SCALED_SIZE);
+            }
+            if (yt==1 &&canMoveToDirection(0, 2) && canMoveToDirection(1, 2)){
+                xa=0;
+                ya=speed;
+                d.setY(Sprite.SCALED_SIZE);
             }
         }
-        if (d.getY() == 0) {
-            if (ya == -speed) {
-                if (canMoveToDirection(0, -1) && canMoveToDirection(1, -1)) {
-                    d.setY(-Sprite.SCALED_SIZE);
-                } else {
-                    ya = 0;
-                    if (canMoveToDirection(2, 0) && canMoveToDirection(2, 1)) {
-                        xa = speed;
-                    } else {
-                        xa = -speed;
-                    }
-                }
-            } else if (ya == speed) {
-                if (canMoveToDirection(0, 2) && canMoveToDirection(1, 2)) {
-                    d.setY(Sprite.SCALED_SIZE);
-                } else {
-                    ya = 0;
-                    if (canMoveToDirection(-1, 0) && canMoveToDirection(-1, 1)) {
-                        xa = -speed;
-                    } else {
-                        xa = speed;
-                    }
-                }
-            }
-        }
+
 
         handleMove();
 
@@ -98,8 +87,8 @@ public class Boss1 extends Boss {
         tiles.add(new Coordinates(tile.getX() + 1, tile.getY() + 1));
     }
 
-    private void proliferate(){
-        if (_animate%120==0){
+    private void proliferate() {
+        if (_animate % 120 == 0) {
             BombermanGame.setEnemy(new Oneal(tile));
         }
     }
