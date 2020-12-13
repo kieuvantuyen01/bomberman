@@ -57,12 +57,12 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
                           <Component id="backButton" min="-2" pref="137" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="359" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -113,22 +113,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="massageLabel" alignment="1" min="-2" pref="453" max="-2" attributes="0"/>
-                          <Component id="jLabel6" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel7" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel8" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel9" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel10" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel3" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel1" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel2" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel4" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                          <Component id="jLabel5" linkSize="1" alignment="1" pref="453" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="massageLabel" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel7" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel8" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel9" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel10" alignment="1" pref="507" max="32767" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -361,8 +356,9 @@
             <Component class="javax.swing.JLabel" name="massageLabel">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="0"/>
+                  <Font name="Tahoma" size="16" style="1"/>
                 </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
           </SubComponents>
