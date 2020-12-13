@@ -23,7 +23,19 @@ public class GameSound {
 
     public static String SOUND_TEMPLATE = "/sound/%s";
 
-    public static Clip loopPlaySound(String nameSound){
+    public static void playMusic(String filePath) {
+        InputStream music;
+        try {
+            music = GameSound.class.getResourceAsStream(String.format(SOUND_TEMPLATE, filePath));
+            AudioStream audio = new AudioStream(music);
+            AudioPlayer.player.start(audio);
+
+        } catch (Exception e) {
+            System.out.println("File path was not found!");
+        }
+    }
+
+    public static Clip loopMusic(String nameSound){
         Clip clip = null;
         try {
             AudioInputStream audio = AudioSystem.getAudioInputStream(GameSound.class.getResource("/sound/" + nameSound));
@@ -33,17 +45,5 @@ public class GameSound {
             e.printStackTrace();
         }
         return clip;
-    }
-
-    public static void playMusic(String filePath) {
-        InputStream music;
-        try {
-            music = GameSound.class.getResourceAsStream(String.format(SOUND_TEMPLATE, filePath));
-            AudioStream audio = new AudioStream(music);
-            AudioPlayer.player.start(audio);
-
-        } catch (Exception e) {
-            System.out.println("not here");
-        }
     }
 }

@@ -3,126 +3,15 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/daotung" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/Untitled-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/Untitled-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/Untitled-1.psd" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/Untitled-1.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/classic1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/classic1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Coordinates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Animated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Animated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Balloom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Balloom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Boss1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Boss1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Oneal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemy/Oneal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Brick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Brick.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Grass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Grass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Portal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Portal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BombpassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BombpassItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BombsItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BombsItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BrickpassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/BrickpassItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/DetonatorItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/DetonatorItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/FlamepassItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/FlamepassItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/FlamesItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/FlamesItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/SpeedItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/SpeedItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Graphics/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Graphics/SpriteSheet.java" afterDir="false" />
-    </list>
+    <list default="true" id="c4cbc485-0d7f-4796-b8da-c9a509d93273" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$" source="vp" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="daotung" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="KEEP" />
-  </component>
-  <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="2" />
-    <option name="recentBranches">
-      <RecentBranches>
-        <option name="branchesForRepo">
-          <list>
-            <RecentBranchesForRepo>
-              <option name="branches">
-                <list>
-                  <RecentBranch>
-                    <option name="branchName" value="vp" />
-                    <option name="lastUsedInstant" value="1606846459" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="daotung" />
-                    <option name="lastUsedInstant" value="1606846443" />
-                  </RecentBranch>
-                </list>
-              </option>
-              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
-            </RecentBranchesForRepo>
-          </list>
-        </option>
-      </RecentBranches>
-    </option>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -131,10 +20,7 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="1" />
-  </component>
-  <component name="ProjectId" id="1k3pkgcmPuTTyIzlns3euU6k5z3" />
+  <component name="ProjectId" id="1lc5oIs1tiaJqJujzI8azb51xG4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -143,43 +29,18 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bom/asg1-mi-ng-th-t-to-master/bombermanv2" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
-  </component>
-  <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="uet.oop.bomberman.entities" />
-    </key>
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager" selected="Application.BombermanGame">
-    <configuration name="BombermanGame" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="BombermanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="bomberman" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="uet.oop.bomberman.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.sample.Main" />
-      <module name="Bomberman" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="uet.oop.bomberman.sample.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -200,260 +61,67 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="highScoreJframe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.gui.highScoreJframe" />
-      <module name="bomberman" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="uet.oop.bomberman.gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.BombermanGame" />
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.MenuGameJframe" />
-      <item itemvalue="Application.highScoreJframe" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BombermanGame" />
         <item itemvalue="Application.MenuGameJframe" />
-        <item itemvalue="Application.highScoreJframe" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="" />
-      <created>1604939277659</created>
+      <changelist id="c4cbc485-0d7f-4796-b8da-c9a509d93273" name="Default Changelist" comment="" />
+      <created>1607883713446</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1604939277659</updated>
-      <workItem from="1604939282197" duration="3881000" />
-      <workItem from="1604985253909" duration="10427000" />
-      <workItem from="1605024326610" duration="1672000" />
-      <workItem from="1605075895777" duration="21797000" />
-      <workItem from="1605164533417" duration="5032000" />
-      <workItem from="1605176774351" duration="1274000" />
-      <workItem from="1605202319387" duration="1093000" />
-      <workItem from="1605242915315" duration="5605000" />
-      <workItem from="1605295677718" duration="1003000" />
-      <workItem from="1605320105924" duration="7926000" />
-      <workItem from="1605458008040" duration="1108000" />
-      <workItem from="1605549098437" duration="722000" />
-      <workItem from="1605590146904" duration="10639000" />
-      <workItem from="1605637811634" duration="3342000" />
-      <workItem from="1605684313214" duration="95000" />
-      <workItem from="1605699852739" duration="9119000" />
-      <workItem from="1605760469359" duration="2365000" />
-      <workItem from="1605767023352" duration="8019000" />
-      <workItem from="1605794999932" duration="2461000" />
-      <workItem from="1605847457571" duration="1063000" />
-      <workItem from="1605848588430" duration="19084000" />
-      <workItem from="1605883413883" duration="1064000" />
-      <workItem from="1605892001173" duration="347000" />
-      <workItem from="1605929637355" duration="12491000" />
-      <workItem from="1605966328805" duration="6648000" />
-      <workItem from="1606019518408" duration="7419000" />
-      <workItem from="1606055966812" duration="6780000" />
-      <workItem from="1606090505358" duration="1843000" />
-      <workItem from="1606096762828" duration="3641000" />
-      <workItem from="1606101766467" duration="6941000" />
-      <workItem from="1606113166917" duration="9251000" />
-      <workItem from="1606193123393" duration="22608000" />
-      <workItem from="1606273023658" duration="5942000" />
-      <workItem from="1606286915881" duration="1597000" />
-      <workItem from="1606317937481" duration="6866000" />
-      <workItem from="1606353778302" duration="3935000" />
-      <workItem from="1606371667024" duration="864000" />
-      <workItem from="1606373689048" duration="5306000" />
-      <workItem from="1606403037559" duration="273000" />
-      <workItem from="1606445998272" duration="9000" />
-      <workItem from="1606489298180" duration="755000" />
-      <workItem from="1606490331754" duration="922000" />
-      <workItem from="1606551999374" duration="1762000" />
-      <workItem from="1606697388853" duration="113000" />
-      <workItem from="1606817356631" duration="899000" />
-      <workItem from="1606819240516" duration="1436000" />
-      <workItem from="1606843947059" duration="3760000" />
-      <workItem from="1606882341878" duration="15244000" />
-      <workItem from="1606921098130" duration="104000" />
-      <workItem from="1606977530197" duration="5718000" />
-      <workItem from="1607350653716" duration="510000" />
-      <workItem from="1607398217840" duration="8291000" />
-      <workItem from="1607504996015" duration="20000" />
-      <workItem from="1607537090690" duration="1899000" />
-      <workItem from="1607580858675" duration="1524000" />
+      <updated>1607883713446</updated>
+      <workItem from="1607883714832" duration="2039000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/daotung" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="456" y="0" key="#Auto_Import" timestamp="1606354883295">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1607885497050">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="456" y="0" key="#Auto_Import/0.0.1366.738@0.0.1366.738" timestamp="1606354883295" />
-    <state x="470" y="162" key="#TODO" timestamp="1606844125307">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607885497050" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1607885497050">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="470" y="162" key="#TODO/0.0.1366.738@0.0.1366.738" timestamp="1606844125307" />
-    <state x="137" y="24" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606921085675">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607885497050" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1607885497050">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="137" y="24" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1606921085675" />
-    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser" timestamp="1607330904059">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607885497050" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1607885497050">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1607330904059" />
-    <state x="412" y="159" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606921191632">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607885497050" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1607883734739">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="412" y="159" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1606921191632" />
-    <state x="363" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1606489967084">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1607883734739" />
+    <state x="478" y="150" width="579" height="534" key="find.popup" timestamp="1607884372138">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="363" y="105" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1606489967084" />
-    <state x="393" y="242" key="#com.intellij.refactoring.memberPullUp.PullUpDialog" timestamp="1606378246929">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="393" y="242" key="#com.intellij.refactoring.memberPullUp.PullUpDialog/0.0.1366.738@0.0.1366.738" timestamp="1606378246929" />
-    <state x="466" y="263" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606377142284">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="466" y="263" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.738@0.0.1366.738" timestamp="1606377142284" />
-    <state x="450" y="97" key="#xdebugger.evaluate" timestamp="1606378497827">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="450" y="97" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1606378497827" />
-    <state x="186" y="0" key="CommitChangelistDialog2" timestamp="1606844131803">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="186" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1606844131803" />
-    <state x="129" y="56" key="DiffContextDialog" timestamp="1606844047123">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="129" y="56" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1606844047123" />
-    <state x="463" y="124" key="FileChooserDialogImpl" timestamp="1607498519225">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607498519225" />
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom" timestamp="1607582397883">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607582397883" />
-    <state width="1323" height="181" key="GridCell.Tab.0.center" timestamp="1607582397883">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607582397883" />
-    <state width="1323" height="181" key="GridCell.Tab.0.left" timestamp="1607582397882">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607582397882" />
-    <state width="1323" height="181" key="GridCell.Tab.0.right" timestamp="1607582397883">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="181" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607582397883" />
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1607366497761">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607366497761" />
-    <state width="1323" height="227" key="GridCell.Tab.1.center" timestamp="1607366497761">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1607366497761" />
-    <state width="1323" height="227" key="GridCell.Tab.1.left" timestamp="1607366497761">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1607366497761" />
-    <state width="1323" height="227" key="GridCell.Tab.1.right" timestamp="1607366497761">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="227" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1607366497761" />
-    <state x="263" y="104" key="IDE.errors.dialog" timestamp="1605767561231">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="263" y="104" key="IDE.errors.dialog/0.0.1366.738@0.0.1366.738" timestamp="1605767561231" />
-    <state x="258" y="64" key="MergeDialog" timestamp="1607581245213">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="258" y="64" key="MergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1607581245213" />
-    <state x="524" y="138" key="MultipleFileMergeDialog" timestamp="1606882362727">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="524" y="138" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1606882362727" />
-    <state x="517" y="71" key="RollbackChangesDialog" timestamp="1606844057298">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="517" y="71" key="RollbackChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1606844057298" />
-    <state x="163" y="0" key="SettingsEditor" timestamp="1606846045452">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="163" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1606846045452" />
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2" timestamp="1607398561646">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="275" y="102" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1607398561646" />
-    <state x="467" y="103" key="VcsDiffUtil.ChangesDialog" timestamp="1606845266561">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="467" y="103" key="VcsDiffUtil.ChangesDialog/0.0.1366.738@0.0.1366.738" timestamp="1606845266561" />
-    <state x="474" y="82" key="git4idea.branch.GitSmartOperationDialog" timestamp="1607581237159">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="474" y="82" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.738@0.0.1366.738" timestamp="1607581237159" />
-    <state x="554" y="281" key="git4idea.rebase.GitUnstructuredEditor" timestamp="1606844583444">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="554" y="281" key="git4idea.rebase.GitUnstructuredEditor/0.0.1366.738@0.0.1366.738" timestamp="1606844583444" />
-    <state x="274" y="0" key="new project wizard" timestamp="1607498522230">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="274" y="0" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1607498522230" />
-    <state x="526" y="126" key="refactoring.ChangeSignatureDialog" timestamp="1606903136578">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="526" y="126" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1606903136578" />
-    <state x="339" y="165" key="run.anything.popup" timestamp="1606372390368">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1606372390368" />
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1606231909009">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1606231909009" />
+    <state x="478" y="150" width="579" height="534" key="find.popup/0.0.1536.834@0.0.1536.834" timestamp="1607884372138" />
   </component>
 </project>

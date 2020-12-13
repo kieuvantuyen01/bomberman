@@ -24,23 +24,25 @@ import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopMusic;
 
 public class BombermanGame extends Application {
     public static Stage stage = new Stage();
 
     public static final int WIDTH = 34;
-    public static final int HEIGHT = 13;
+    public static final int HEIGHT = 15;
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
+
+    public static boolean isPauseGame = false;
 
     public static int _points = 0;
     private static Bomber bomber;
@@ -55,9 +57,11 @@ public class BombermanGame extends Application {
     private static List<Grass> grasses;
     public static Keyboard input = new Keyboard();
 
-    public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
+    public static Clip THREAD_SOUNDTRACK = loopMusic(GameSound.PLAYGAME);
 
-    public static void main(String[] args) { Application.launch(BombermanGame.class);}
+    public static void main(String[] args) {
+        Application.launch(BombermanGame.class);
+    }
 
     public static Entity getEntityAt(int x, int y) {
         Entity entity;
@@ -159,11 +163,11 @@ public class BombermanGame extends Application {
             if (cur.getTile().getY() == y && cur.getTile().getX() == x) {
                 entity = cur;
             }
-            if (cur instanceof Boss){
-                Boss boss= (Boss) cur;
-                for (Coordinates tile:boss.getTiles()){
-                    if (tile.getX()==x&&tile.getY()==y){
-                        entity=boss;
+            if (cur instanceof Boss) {
+                Boss boss = (Boss) cur;
+                for (Coordinates tile : boss.getTiles()) {
+                    if (tile.getX() == x && tile.getY() == y) {
+                        entity = boss;
                     }
                 }
             }
@@ -181,13 +185,15 @@ public class BombermanGame extends Application {
         gc = canvas.getGraphicsContext2D();
 
         // Tạo các thông số hiển thị trong game.
-       MessageDisplay messageDisplay = new MessageDisplay();
-       Background background=new Background(new BackgroundFill(Color.PINK,null, new Insets(0,-1000,-398,0)));
-       messageDisplay.setBackground(background);
+        MessageDisplay messageDisplay = new MessageDisplay();
+        Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
+//        messageDisplay.setBackground(background);
+
         // Tao root container
-        Group root = new Group();
-        root.getChildren().add(messageDisplay);
+        Pane root = new Pane();
         root.getChildren().add(canvas);
+        root.getChildren().add(messageDisplay);
+        root.setBackground(background);
         // Tao scene
         Scene scene = new Scene(root);
         // Them scene vao stage
@@ -224,7 +230,9 @@ public class BombermanGame extends Application {
             @Override
             public void handle(long l) {
                 render();
-                update();
+                if (!isPauseGame) {
+                    update();
+                }
             }
         };
         timer.start();

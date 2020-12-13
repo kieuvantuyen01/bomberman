@@ -4,18 +4,19 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
+import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.gameManagement.MessageDisplay;
-import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.graphics.SpriteSheet;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
+
+import static uet.oop.bomberman.gameManagement.MessageDisplay.player_skin_number;
 
 
 public class Bomber extends MovableEntities {
-   TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;
@@ -168,6 +169,13 @@ public class Bomber extends MovableEntities {
 
     @Override
     protected void afterDie() {
+        if (player_skin_number == 1) {
+            SpriteSheet._path = "/textures/classic2.png";
+            SpriteSheet.tiles = new SpriteSheet("/textures/classic2.png", 512);
+        } else {
+            SpriteSheet._path = "/textures/classic1.png";
+            SpriteSheet.tiles = new SpriteSheet("/textures/classic1.png", 512);
+        }
         img = Sprite.movingSprite(Sprite.player_dead1.getFxImage(),
                 Sprite.player_dead2.getFxImage(),
                 Sprite.player_dead3.getFxImage(),
