@@ -41,7 +41,7 @@ public class TopHighScoreManagement {
             System.out.println(highest_score + " " + lowest_score);
             int high_score_order = 1;
             for (Score iterator : top_high_scores) {
-                high_scores_jframe.add(String.format("%-10s %-30s %-15s",
+                high_scores_jframe.add(String.format("%-10s %-35s %-15s",
                         high_score_order + ".", iterator.getName(), iterator.getPoints()));
                 high_score_order++;
             }

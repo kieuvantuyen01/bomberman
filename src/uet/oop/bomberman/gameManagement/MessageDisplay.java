@@ -54,6 +54,13 @@ public class MessageDisplay extends Pane {
     private Timeline game_status_animation;
     private Label game_status_Label = new Label("   Pause   ");
 
+    // Dùng để hiển thị skin người chơi
+    private Timeline skin_animation;
+    private ImageView player_skin_1;
+    private ImageView player_skin_2;
+    private Label player_skin_label1;
+    private Label player_skin_label2;
+    public static int player_skin_number = 1;
 
     public MessageDisplay() {
         // Dùng cho hiển thị mạng người chơi.
@@ -144,6 +151,27 @@ public class MessageDisplay extends Pane {
         game_status_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> pauseGame()));
         game_status_animation.setCycleCount(Timeline.INDEFINITE);
         game_status_animation.play();
+
+        // Dùng để hiển thị skin người chơi
+        Image img_skin_1= new Image("/textures/skin.png");
+        Image img_skin_2 = new Image("/textures/skin.png");
+
+        player_skin_1 = new ImageView(img_skin_1);
+        player_skin_label1 = new Label("",player_skin_1);
+        player_skin_label1.setTranslateX(994);
+        player_skin_label1.setTranslateY(40);
+        player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: white;");
+        player_skin_2 = new ImageView(img_skin_2);
+        player_skin_label2 = new Label("",player_skin_2);
+        player_skin_label2.setTranslateX(994);
+        player_skin_label2.setTranslateY(210);
+
+        getChildren().add(player_skin_label1);
+        getChildren().add(player_skin_label2);
+
+        skin_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> setSkin()));
+        skin_animation.setCycleCount(Timeline.INDEFINITE);
+        skin_animation.play();
     }
 
     public void heartImg() {
@@ -176,6 +204,7 @@ public class MessageDisplay extends Pane {
             changeLevel = false;
         }
     }
+
     public void ScoreLabel() {
         String score = ("Scores: " + String.valueOf(BombermanGame.get_points()));
         score_label.setText(score);
@@ -234,11 +263,25 @@ public class MessageDisplay extends Pane {
     public void pauseGame() {
         if(BombermanGame.input.pause) {
             if(isPauseGame) {
-                game_status_Label.setText(" Continue ");
+                game_status_Label.setText("   Pause   ");
                 isPauseGame = false;
             } else {
-                game_status_Label.setText("   Pause   ");
+                game_status_Label.setText(" Continue ");
                 isPauseGame = true;
+            }
+        }
+    }
+
+    public void setSkin() {
+        if(BombermanGame.input.changeSkin) {
+            if (player_skin_number == 1) {
+                player_skin_label2.setStyle("-fx-border-color: black; -fx-background-color: white;");
+                player_skin_label1.setStyle("-fx-border-color: white; -fx-background-color: white;");
+                player_skin_number = 2;
+            } else {
+                player_skin_label2.setStyle("-fx-border-color: white; -fx-background-color: white;");
+                player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: white;");
+                player_skin_number = 1;
             }
         }
     }

@@ -186,12 +186,13 @@ public class BombermanGame extends Application {
 
         // Tạo các thông số hiển thị trong game.
         MessageDisplay messageDisplay = new MessageDisplay();
-        Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
-        messageDisplay.setBackground(background);
+//        Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
+//        messageDisplay.setBackground(background);
+
         // Tao root container
         Group root = new Group();
-        root.getChildren().add(messageDisplay);
         root.getChildren().add(canvas);
+        root.getChildren().add(messageDisplay);
         // Tao scene
         Scene scene = new Scene(root);
         // Them scene vao stage
