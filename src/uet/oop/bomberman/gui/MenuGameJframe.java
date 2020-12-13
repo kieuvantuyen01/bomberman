@@ -70,7 +70,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 playButtonMouseExited(evt);
             }
         });
-        playButton.addActionListener(this::playButtonActionPerformed);
+        playButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(playButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 140, 50));
 
         optionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Option.png"))); // NOI18N
@@ -85,7 +89,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 optionButtonMouseExited(evt);
             }
         });
-        optionButton.addActionListener(this::optionButtonActionPerformed);
+        optionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(optionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 140, 50));
 
         highScoreButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/HightScore.png"))); // NOI18N
@@ -99,7 +107,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 highScoreButtonMouseExited(evt);
             }
         });
-        highScoreButton.addActionListener(this::highScoreButtonActionPerformed);
+        highScoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                highScoreButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(highScoreButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 140, 50));
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/Exit.png"))); // NOI18N
@@ -113,7 +125,11 @@ public class MenuGameJframe extends javax.swing.JFrame {
                 exitButtonMouseExited(evt);
             }
         });
-        exitButton.addActionListener(this::exitButtonActionPerformed);
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 140, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/textures/backGroundMenu.png"))); // NOI18N
@@ -122,12 +138,12 @@ public class MenuGameJframe extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

@@ -30,22 +30,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Kondoria.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Minvo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/EpidemicZone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/textures/classic1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/classic1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/LevelLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/MovableEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Balloom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Balloom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Ghost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Oneal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/enemies/Oneal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/FlameSegment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/SpeedItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/staticEntities/item/SpeedItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/textures/backGroundMenu.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/textures/backGroundMenu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Keyboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/Fps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/Fps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/GameSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/GameSound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/TopHighScoreManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/CurrentGamePlaySummarizationJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/highScoreJframe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/optionMenuJframe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +148,7 @@
       <recent name="uet.oop.bomberman.entities" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BombermanGame">
+  <component name="RunManager" selected="Application.MenuGameJframe">
     <configuration name="BombermanGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.BombermanGame" />
       <module name="bomberman" />
@@ -379,22 +380,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607888998284" />
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom" timestamp="1607892433137">
+    <state width="1323" height="180" key="GridCell.Tab.0.bottom" timestamp="1607894588044">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607892433137" />
-    <state width="1323" height="180" key="GridCell.Tab.0.center" timestamp="1607892433137">
+    <state width="1323" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607894588044" />
+    <state width="1323" height="180" key="GridCell.Tab.0.center" timestamp="1607894588044">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607892433137" />
-    <state width="1323" height="180" key="GridCell.Tab.0.left" timestamp="1607892433137">
+    <state width="1323" height="180" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607894588044" />
+    <state width="1323" height="180" key="GridCell.Tab.0.left" timestamp="1607894588044">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607892433137" />
-    <state width="1323" height="180" key="GridCell.Tab.0.right" timestamp="1607892433137">
+    <state width="1323" height="180" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607894588044" />
+    <state width="1323" height="180" key="GridCell.Tab.0.right" timestamp="1607894588044">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607892433137" />
+    <state width="1323" height="180" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607894588044" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1607366497761">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
