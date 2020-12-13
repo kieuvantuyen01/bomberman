@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.util.Duration;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.entities.Bomber;
+import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.graphics.SpriteSheet;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 import javax.sound.sampled.Clip;
@@ -153,14 +155,14 @@ public class MessageDisplay extends Pane {
         game_status_animation.play();
 
         // Dùng để hiển thị skin người chơi
-        Image img_skin_1= new Image("/textures/skin.png");
-        Image img_skin_2 = new Image("/textures/skin.png");
+        Image img_skin_1= new Image("/textures/char1.png");
+        Image img_skin_2 = new Image("/textures/char2.png");
 
         player_skin_1 = new ImageView(img_skin_1);
         player_skin_label1 = new Label("",player_skin_1);
         player_skin_label1.setTranslateX(994);
         player_skin_label1.setTranslateY(40);
-        player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: white;");
+        player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: pink;");
         player_skin_2 = new ImageView(img_skin_2);
         player_skin_label2 = new Label("",player_skin_2);
         player_skin_label2.setTranslateX(994);
@@ -169,7 +171,7 @@ public class MessageDisplay extends Pane {
         getChildren().add(player_skin_label1);
         getChildren().add(player_skin_label2);
 
-        skin_animation = new Timeline(new KeyFrame(Duration.millis(100), e -> setSkin()));
+        skin_animation = new Timeline(new KeyFrame(Duration.millis(150), e -> setSkin()));
         skin_animation.setCycleCount(Timeline.INDEFINITE);
         skin_animation.play();
     }
@@ -275,13 +277,17 @@ public class MessageDisplay extends Pane {
     public void setSkin() {
         if(BombermanGame.input.changeSkin) {
             if (player_skin_number == 1) {
-                player_skin_label2.setStyle("-fx-border-color: black; -fx-background-color: white;");
-                player_skin_label1.setStyle("-fx-border-color: white; -fx-background-color: white;");
+                player_skin_label2.setStyle("-fx-border-color: black; -fx-background-color: pink;");
+                player_skin_label1.setStyle("-fx-border-color: pink; -fx-background-color: pink;");
                 player_skin_number = 2;
+                SpriteSheet._path = "/textures/classic2.png";
+                //SpriteSheet.tiles = new SpriteSheet("/textures/classic2.png", 512);
             } else {
-                player_skin_label2.setStyle("-fx-border-color: white; -fx-background-color: white;");
-                player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: white;");
+                player_skin_label2.setStyle("-fx-border-color: pink; -fx-background-color: pink;");
+                player_skin_label1.setStyle("-fx-border-color: pink; -fx-background-color: pink;");
                 player_skin_number = 1;
+                SpriteSheet._path = "/textures/classic1.png";
+                //SpriteSheet.tiles = new SpriteSheet("/textures/classic1.png", 512);
             }
         }
     }

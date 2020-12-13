@@ -10,7 +10,10 @@ import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.gameManagement.MessageDisplay;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.graphics.SpriteSheet;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
+
+import static uet.oop.bomberman.gameManagement.MessageDisplay.player_skin_number;
 
 
 public class Bomber extends MovableEntities {
@@ -48,12 +51,19 @@ public class Bomber extends MovableEntities {
         putBomb();
         handleDirection();
         handleCollision();
-
-        chooseSprite(Sprite.player_right,
-                Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
-                Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2,
-                Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2,
-                Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2);
+        if (player_skin_number == 1) {
+            chooseSprite(Sprite.player_right,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                    Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2,
+                    Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2,
+                    Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2);
+        } else {
+            chooseSprite(Sprite.player_left,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2);
+        }
 
 
     }
