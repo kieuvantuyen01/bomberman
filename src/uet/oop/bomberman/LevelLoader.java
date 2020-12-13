@@ -86,13 +86,19 @@ public class LevelLoader {
                             BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case '1':
-                            BombermanGame.setEnemy(new Kondoria(new Coordinates(j, i)));
+                            BombermanGame.setEnemy(new Balloom(new Coordinates(j, i)));
                             break;
                         case '2':
-                            BombermanGame.setEnemy(new Ghost(new Coordinates(j, i)));
+                            BombermanGame.setEnemy(new Oneal(new Coordinates(j, i)));
                             break;
                         case '3':
                             BombermanGame.setEnemy(new Ghost(new Coordinates(j,i)));
+                            break;
+                        case '4':
+                            BombermanGame.setEnemy(new Minvo(new Coordinates(j,i)));
+                            break;
+                        case '5':
+                            BombermanGame.setEnemy(new Kondoria(new Coordinates(j,i)));
                             break;
                         default:
                             break;

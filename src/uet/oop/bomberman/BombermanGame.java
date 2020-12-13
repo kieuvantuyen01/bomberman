@@ -369,8 +369,8 @@ public class BombermanGame extends Application {
         return dead;
     }
 
-    public static void setDead(MovableEntity movableEntity) {
-        BombermanGame.dead.add((Enemy) movableEntity);
+    public static void setDead(Enemy enemy) {
+        BombermanGame.dead.add((Enemy) enemy);
     }
 
     public void fpsDisplay(Stage stage) {

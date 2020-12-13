@@ -1,11 +1,14 @@
 package uet.oop.bomberman.entities.enemies;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Boss1 extends Boss {
+import java.util.Random;
 
+public class Boss1 extends Boss {
+    private static Random random=new Random();
     public Boss1(Coordinates tile) {
         super(tile, 1000);
         img = new Image("textures/boss_down1.png");
@@ -79,6 +82,7 @@ public class Boss1 extends Boss {
         if (!_alive) {
             return;
         }
+        proliferate();
 
         handleDirection();
 
@@ -92,6 +96,12 @@ public class Boss1 extends Boss {
         tiles.add(new Coordinates(tile.getX() + 1, tile.getY()));
         tiles.add(new Coordinates(tile.getX(), tile.getY() + 1));
         tiles.add(new Coordinates(tile.getX() + 1, tile.getY() + 1));
+    }
+
+    private void proliferate(){
+        if (_animate%120==0){
+            BombermanGame.setEnemy(new Oneal(tile));
+        }
     }
 
     @Override
