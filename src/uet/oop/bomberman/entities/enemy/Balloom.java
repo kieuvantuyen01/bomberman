@@ -1,7 +1,7 @@
 package uet.oop.bomberman.entities.enemy;
 
 import uet.oop.bomberman.Coordinates;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 
 public class Balloom extends Enemy {

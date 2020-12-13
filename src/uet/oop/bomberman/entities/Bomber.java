@@ -4,18 +4,16 @@ import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.Keyboard;
 import uet.oop.bomberman.entities.enemy.Enemy;
-import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.Bomb;
 import uet.oop.bomberman.entities.staticEntities.Portal;
+import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.gameManagement.GameSound;
 import uet.oop.bomberman.gameManagement.MessageDisplay;
-import uet.oop.bomberman.gameManagement.TopHighScoreManagement;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 
 public class Bomber extends MovableEntities {
-   TopHighScoreManagement topHighScoreManagement = new TopHighScoreManagement();
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;

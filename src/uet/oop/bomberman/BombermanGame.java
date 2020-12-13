@@ -24,14 +24,14 @@ import uet.oop.bomberman.entities.enemy.Enemy;
 import uet.oop.bomberman.entities.staticEntities.item.Item;
 import uet.oop.bomberman.entities.staticEntities.*;
 import uet.oop.bomberman.gameManagement.*;
-import uet.oop.bomberman.Graphics.Sprite;
+import uet.oop.bomberman.graphics.Sprite;
 
 import javax.sound.sampled.Clip;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static uet.oop.bomberman.gameManagement.GameSound.loopPlaySound;
+import static uet.oop.bomberman.gameManagement.GameSound.loopMusic;
 
 public class BombermanGame extends Application {
     public static Stage stage = new Stage();
@@ -57,7 +57,7 @@ public class BombermanGame extends Application {
     private static List<Grass> grasses;
     public static Keyboard input = new Keyboard();
 
-    public static Clip THREAD_SOUNDTRACK = loopPlaySound(GameSound.PLAYGAME);
+    public static Clip THREAD_SOUNDTRACK = loopMusic(GameSound.PLAYGAME);
 
     public static void main(String[] args) {
         Application.launch(BombermanGame.class);
