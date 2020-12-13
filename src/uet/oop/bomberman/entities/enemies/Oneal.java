@@ -94,7 +94,7 @@ public class Oneal extends Enemy {
         if (BombermanGame.getBomber() == null) {
             return;
         }
-        double xtemp = 0, ytemp = 0;
+        int xtemp = 0, ytemp = 0;
         int low, high;
         speed = 1;
         if (tile.getX() == BombermanGame.getBomber().getTile().getX()) {

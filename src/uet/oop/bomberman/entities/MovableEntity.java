@@ -8,17 +8,19 @@ import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
 
-public abstract class MovableEntities extends Entity implements Animated {
+public abstract class MovableEntity extends Entity implements Animated {
     protected boolean _alive = true;
     protected boolean _moving = false;
     protected boolean _bombpass = false;
     protected boolean _flamepass = false;
     protected boolean _brickpass = false;
+    protected int speed = 1;
+    protected int xa = 0, ya = 0;
 
     protected int _animate = 0;
     protected Coordinates d = new Coordinates(0, 0);
 
-    public MovableEntities(Coordinates tile) {
+    public MovableEntity(Coordinates tile) {
         super(tile);
     }
 
@@ -44,6 +46,7 @@ public abstract class MovableEntities extends Entity implements Animated {
         if (!_alive) return;
         this._alive = false;
         _animate = 0;
+        BombermanGame.setDead(this);
     }
 
     protected abstract void afterDie();

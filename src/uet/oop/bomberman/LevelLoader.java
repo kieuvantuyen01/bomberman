@@ -1,10 +1,7 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.entities.Bomber;
-import uet.oop.bomberman.entities.enemies.Balloom;
-import uet.oop.bomberman.entities.enemies.Boss1;
-import uet.oop.bomberman.entities.enemies.Ghost;
-import uet.oop.bomberman.entities.enemies.Oneal;
+import uet.oop.bomberman.entities.enemies.*;
 import uet.oop.bomberman.entities.staticEntities.item.BombsItem;
 import uet.oop.bomberman.entities.staticEntities.item.FlamesItem;
 import uet.oop.bomberman.entities.staticEntities.item.SpeedItem;
@@ -89,13 +86,13 @@ public class LevelLoader {
                             BombermanGame.setBrick(new Brick(new Coordinates(j, i)));
                             break;
                         case '1':
-                            BombermanGame.setEnemy(new Balloom(new Coordinates(j, i), true));
+                            BombermanGame.setEnemy(new Kondoria(new Coordinates(j, i)));
                             break;
                         case '2':
-                            BombermanGame.setEnemy(new Oneal(new Coordinates(j, i)));
+                            BombermanGame.setEnemy(new Ghost(new Coordinates(j, i)));
                             break;
                         case '3':
-                            BombermanGame.setEnemy(new Ghost(new Coordinates(j,i), true));
+                            BombermanGame.setEnemy(new Ghost(new Coordinates(j,i)));
                             break;
                         default:
                             break;

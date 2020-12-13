@@ -16,7 +16,7 @@ public class SpeedItem extends Item {
     public void getItem() {
         if (BombermanGame.getBomber().getD().getX() % 2 == 0
                 && BombermanGame.getBomber().getD().getY() % 2 == 0) {
-            Bomber.setSpeed(2);
+            BombermanGame.getBomber().setSpeed(2);
             BombermanGame.removeItem(this);
         }
     }

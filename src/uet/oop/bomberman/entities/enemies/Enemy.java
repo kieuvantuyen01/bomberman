@@ -3,13 +3,11 @@ package uet.oop.bomberman.entities.enemies;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.Coordinates;
 import uet.oop.bomberman.gameManagement.GameSound;
-import uet.oop.bomberman.entities.MovableEntities;
+import uet.oop.bomberman.entities.MovableEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
-public abstract class Enemy extends MovableEntities {
+public abstract class Enemy extends MovableEntity {
     protected int _points;
-    protected double speed = 1;
-    double xa = 0, ya = 0;
 
     public Enemy(Coordinates tile, int points) {
         super(tile);
@@ -17,7 +15,7 @@ public abstract class Enemy extends MovableEntities {
     }
 
     public void animate() {
-        if (_animate > 120) _animate = 0;
+        if (_animate > 1200) _animate = 0;
         else _animate++;
     }
 
@@ -25,12 +23,13 @@ public abstract class Enemy extends MovableEntities {
     public void update() {
         animate();
         if (!_alive) {
+            BombermanGame.removeEnemy(this);
             afterDie();
 
             if (_animate == 60) {
                 BombermanGame.addPoints(_points);
+                BombermanGame.removeDead(this);
                 System.out.println(BombermanGame.get_points());
-                BombermanGame.removeEnemy(this);
                 GameSound.playMusic(GameSound.ENEMY_DIE);
             }
         }

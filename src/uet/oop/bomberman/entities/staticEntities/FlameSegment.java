@@ -76,13 +76,13 @@ public class FlameSegment extends StaticEntity implements Animated {
 
     public void handleCollision() {
         Entity entity = BombermanGame.getEntityAt(tile.getX(), tile.getY());
-        if (entity instanceof MovableEntities) {
-            if (!((MovableEntities) entity).is_flamepass()) {
+        if (entity instanceof MovableEntity) {
+            if (!((MovableEntity) entity).is_flamepass()) {
                 if (entity instanceof Bomber && ((Bomber) entity).is_alive()) {
                     Bomber.bomber_life--;
                     GameSound.playMusic(GameSound.BOMBER_DIE);
                 }
-                ((MovableEntities) entity).die();
+                ((MovableEntity) entity).die();
             }
         }
         if (entity instanceof Brick) {

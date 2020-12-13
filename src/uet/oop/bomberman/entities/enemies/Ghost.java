@@ -6,66 +6,54 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.staticEntities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Ghost extends Enemy {
+import java.util.Random;
 
-    public Ghost(Coordinates tile, boolean horizontal) {
+public class Ghost extends Enemy {
+    private static Random random = new Random();
+    int direc = 0;
+
+    public Ghost(Coordinates tile) {
         super(tile, 200);
         img = Sprite.ghost_left1.getFxImage();
-        if (horizontal) {
-            xa = -speed;
-        } else {
-            ya = -speed;
-        }
+        xa = speed;
     }
 
     @Override
     protected void handleDirection() {
         if (d.getX() == 0) {
-            if (xa == -speed) {
-                if (canMoveToDirection(-1, 0)) {
-                    d.setX(-Sprite.SCALED_SIZE);
+            if (Math.abs(xa) == speed) {
+                int xt = xa / Math.abs(xa);
+                if (canMoveToDirection(xt, 0)) {
+                    d.setX(xt * Sprite.SCALED_SIZE);
                 } else {
                     xa = 0;
-                    if (canMoveToDirection(0, -1)) {
-                        ya = -speed;
+                    do {
+                        direc = random.nextInt(3);
+                        direc--;
+                    } while (direc == 0);
+                    if (canMoveToDirection(0, direc)) {
+                        ya = direc * speed;
                     } else {
-                        ya = speed;
-                    }
-                }
-            } else if (xa == speed) {
-                if (canMoveToDirection(1, 0)) {
-                    d.setX(Sprite.SCALED_SIZE);
-                } else {
-                    xa = 0;
-                    if (canMoveToDirection(0, 1)) {
-                        ya = speed;
-                    } else {
-                        ya = -speed;
+                        ya = -direc * speed;
                     }
                 }
             }
         }
         if (d.getY() == 0) {
-            if (ya == -speed) {
-                if (canMoveToDirection(0, -1)) {
-                    d.setY(-Sprite.SCALED_SIZE);
+            if (Math.abs(ya) == speed) {
+                int yt = ya / Math.abs(ya);
+                if (canMoveToDirection(0, yt)) {
+                    d.setY(yt * Sprite.SCALED_SIZE);
                 } else {
                     ya = 0;
-                    if (canMoveToDirection(1, 0)) {
-                        xa = speed;
+                    do {
+                        direc = random.nextInt(3);
+                        direc--;
+                    } while (direc == 0);
+                    if (canMoveToDirection(direc, 0)) {
+                        xa = direc * speed;
                     } else {
-                        xa = -speed;
-                    }
-                }
-            } else if (ya == speed) {
-                if (canMoveToDirection(0, 1)) {
-                    d.setY(Sprite.SCALED_SIZE);
-                } else {
-                    ya = 0;
-                    if (canMoveToDirection(-1, 0)) {
-                        xa = -speed;
-                    } else {
-                        xa = speed;
+                        xa = -direc * speed;
                     }
                 }
             }

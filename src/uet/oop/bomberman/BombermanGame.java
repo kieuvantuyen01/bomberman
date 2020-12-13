@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
-import uet.oop.bomberman.entities.MovableEntities;
+import uet.oop.bomberman.entities.MovableEntity;
 import uet.oop.bomberman.entities.enemies.Boss;
 import uet.oop.bomberman.entities.enemies.Enemy;
 import uet.oop.bomberman.entities.staticEntities.item.Item;
@@ -53,6 +53,7 @@ public class BombermanGame extends Application {
     private static List<Entity> items;
     private static List<Entity> enemies;
     private static List<Grass> grasses;
+    private static List<Enemy> dead;
     public static Keyboard input = new Keyboard();
 
     public static Clip THREAD_SOUNDTRACK = loopMusic(GameSound.PLAYGAME);
@@ -109,13 +110,17 @@ public class BombermanGame extends Application {
             brick.update();
         }
         for (Entity _enemy : enemies) {
-            MovableEntities enemy = (MovableEntities) _enemy;
+            MovableEntity enemy = (MovableEntity) _enemy;
             enemy.update();
         }
 
         for (Entity _bomb : bombs) {
             Bomb bomb = (Bomb) _bomb;
             bomb.update();
+        }
+        for (Entity _enemy:dead){
+            MovableEntity enemy= (MovableEntity) _enemy;
+            enemy.update();
         }
 
         if (bomber != null) {
@@ -135,6 +140,7 @@ public class BombermanGame extends Application {
         bricks.forEach(brick -> brick.render(gc));
         enemies.forEach(enemy -> enemy.render(gc));
         bombs.forEach(g -> g.render(gc));
+        dead.forEach(dead->dead.render(gc));
         if (bomber != null) {
             bomber.render(gc);
         }
@@ -150,6 +156,7 @@ public class BombermanGame extends Application {
         items = new CopyOnWriteArrayList<>();
         enemies = new CopyOnWriteArrayList<>();
         grasses = new ArrayList<>();
+        dead=new CopyOnWriteArrayList<>();
     }
 
     public static Entity get(List<Entity> entities, int x, int y) {
@@ -358,7 +365,19 @@ public class BombermanGame extends Application {
         BombermanGame.bomber = bomber;
     }
 
+    public static List<Enemy> getDead() {
+        return dead;
+    }
+
+    public static void setDead(MovableEntity movableEntity) {
+        BombermanGame.dead.add((Enemy) movableEntity);
+    }
+
     public void fpsDisplay(Stage stage) {
         stage.setTitle("Bomberman game | " + Fps.get() + " fps");
+    }
+
+    public static void removeDead(Enemy enemy){
+        BombermanGame.dead.remove(enemy);
     }
 }

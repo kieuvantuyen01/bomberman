@@ -13,11 +13,10 @@ import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
 
-public class Bomber extends MovableEntities {
+public class Bomber extends MovableEntity {
     public static int bomber_life = 3;
     protected Keyboard _input;
     public static int time_exit_game = 60;
-    protected static int speed = 1;
     protected static int bomb = 1;
     protected static int distance = 0;
     protected static boolean flame = false;
@@ -99,7 +98,7 @@ public class Bomber extends MovableEntities {
 
     protected void resetBomberAbilityWhenPassLevel() {
         Bomb.setDamage(1);
-        Bomber.setSpeed(1);
+        setSpeed(1);
         bomb = 1;
     }
 
@@ -186,12 +185,12 @@ public class Bomber extends MovableEntities {
         bomb++;
     }
 
-    public static int getSpeed() {
-        return speed;
+    public int getSpeed() {
+        return (int) speed;
     }
 
-    public static void setSpeed(int speed) {
-        Bomber.speed = speed;
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
 }

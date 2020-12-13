@@ -6,14 +6,10 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Balloom extends Enemy {
 
-    public Balloom(Coordinates tile, boolean horizontal) {
+    public Balloom(Coordinates tile) {
         super(tile, 100);
         img = Sprite.balloom_left1.getFxImage();
-        if (horizontal) {
-            xa = -speed;
-        } else {
-            ya = -speed;
-        }
+        xa=-speed;
     }
 
     @Override
