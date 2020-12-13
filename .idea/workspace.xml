@@ -31,7 +31,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/BombermanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,22 +365,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="124" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1607899004454" />
-    <state width="319" height="180" key="GridCell.Tab.0.bottom" timestamp="1607899620822">
+    <state width="319" height="180" key="GridCell.Tab.0.bottom" timestamp="1607899742709">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="319" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607899620822" />
-    <state width="319" height="180" key="GridCell.Tab.0.center" timestamp="1607899620822">
+    <state width="319" height="180" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1607899742709" />
+    <state width="319" height="180" key="GridCell.Tab.0.center" timestamp="1607899742709">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="319" height="180" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607899620822" />
-    <state width="319" height="180" key="GridCell.Tab.0.left" timestamp="1607899620822">
+    <state width="319" height="180" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1607899742709" />
+    <state width="319" height="180" key="GridCell.Tab.0.left" timestamp="1607899742709">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="319" height="180" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607899620822" />
-    <state width="319" height="180" key="GridCell.Tab.0.right" timestamp="1607899620822">
+    <state width="319" height="180" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1607899742709" />
+    <state width="319" height="180" key="GridCell.Tab.0.right" timestamp="1607899742709">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="319" height="180" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607899620822" />
+    <state width="319" height="180" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1607899742709" />
     <state width="1323" height="227" key="GridCell.Tab.1.bottom" timestamp="1607366497761">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
