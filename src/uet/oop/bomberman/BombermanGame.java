@@ -35,7 +35,7 @@ public class BombermanGame extends Application {
     public static Stage stage = new Stage();
 
     public static final int WIDTH = 34;
-    public static final int HEIGHT = 13;
+    public static final int HEIGHT = 15;
     public static int load_map_level = 1;
     private GraphicsContext gc;
     private Canvas canvas;
@@ -192,11 +192,12 @@ public class BombermanGame extends Application {
         // Tạo các thông số hiển thị trong game.
         MessageDisplay messageDisplay = new MessageDisplay();
         Background background = new Background(new BackgroundFill(Color.PINK, null, new Insets(0, -1000, -398, 0)));
-        messageDisplay.setBackground(background);
+        //messageDisplay.setBackground(background);
         // Tao root container
-        Group root = new Group();
-        root.getChildren().add(messageDisplay);
+        Pane root = new Pane();
         root.getChildren().add(canvas);
+        root.getChildren().add(messageDisplay);
+        root.setBackground(background);
         // Tao scene
         Scene scene = new Scene(root);
         // Them scene vao stage
