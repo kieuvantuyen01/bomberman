@@ -12,6 +12,8 @@ import uet.oop.bomberman.gameManagement.MessageDisplay;
 import uet.oop.bomberman.graphics.Sprite;
 import uet.oop.bomberman.gui.CurrentGamePlaySummarizationJframe;
 
+import static uet.oop.bomberman.gameManagement.MessageDisplay.player_skin_number;
+
 
 public class Bomber extends MovableEntity {
     public static int bomber_life = 3;
@@ -48,12 +50,19 @@ public class Bomber extends MovableEntity {
         handleDirection();
         handleCollision();
 
-        chooseSprite(Sprite.player_right,
-                Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
-                Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2,
-                Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2,
-                Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2);
-
+        if (player_skin_number == 2) {
+            chooseSprite(Sprite.player_right,
+                    Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2,
+                    Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2,
+                    Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2,
+                    Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2);
+        } else {
+            chooseSprite(Sprite.play2_right,
+                    Sprite.play2_left, Sprite.play2_left_1, Sprite.play2_left_2,
+                    Sprite.play2_right, Sprite.play2_right_1, Sprite.play2_right_2,
+                    Sprite.play2_up, Sprite.play2_up_1, Sprite.play2_up_2,
+                    Sprite.play2_down, Sprite.play2_down_1, Sprite.play2_down_2);
+        }
 
     }
 
@@ -165,10 +174,18 @@ public class Bomber extends MovableEntity {
 
     @Override
     protected void afterDie() {
-        img = Sprite.movingSprite(Sprite.player_dead1.getFxImage(),
-                Sprite.player_dead2.getFxImage(),
-                Sprite.player_dead3.getFxImage(),
-                _animate, 20);
+        if (player_skin_number == 2) {
+            img = Sprite.movingSprite(Sprite.player_dead1.getFxImage(),
+                    Sprite.player_dead2.getFxImage(),
+                    Sprite.player_dead3.getFxImage(),
+                    _animate, 20);
+        } else {
+            img = Sprite.movingSprite(Sprite.play2_dead1.getFxImage(),
+                    Sprite.play2_dead2.getFxImage(),
+                    Sprite.play2_dead3.getFxImage(),
+                    _animate, 20);
+        }
+
         if (time_exit_game <= 0) {
             BombermanGame.THREAD_SOUNDTRACK.stop();
             BombermanGame.stage.hide();

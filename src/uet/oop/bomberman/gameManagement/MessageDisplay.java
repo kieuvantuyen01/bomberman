@@ -284,7 +284,7 @@ public class MessageDisplay extends Pane {
                 //SpriteSheet.tiles = new SpriteSheet("/textures/classic2.png", 512);
             } else {
                 player_skin_label2.setStyle("-fx-border-color: pink; -fx-background-color: pink;");
-                player_skin_label1.setStyle("-fx-border-color: pink; -fx-background-color: pink;");
+                player_skin_label1.setStyle("-fx-border-color: black; -fx-background-color: pink;");
                 player_skin_number = 1;
                 SpriteSheet._path = "/textures/classic1.png";
                 //SpriteSheet.tiles = new SpriteSheet("/textures/classic1.png", 512);
