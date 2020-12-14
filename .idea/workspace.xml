@@ -31,11 +31,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7211c82f-8f49-425d-93c3-c8df9f664ad0" name="Default Changelist" comment="Merge branch 'daotung' of https://github.com/kieuvantuyen01/bomberman into vp&#10;&#10;# Conflicts:&#10;#&#9;res/levels/Level1.txt&#10;#&#9;src/uet/oop/bomberman/BombermanGame.java&#10;#&#9;src/uet/oop/bomberman/LevelLoader.java&#10;#&#9;src/uet/oop/bomberman/entities/Bomber.java&#10;#&#9;src/uet/oop/bomberman/entities/Flame.java&#10;#&#9;src/uet/oop/bomberman/entities/FlameSegment.java&#10;#&#9;src/uet/oop/bomberman/entities/Portal.java&#10;#&#9;src/uet/oop/bomberman/entities/item/Item.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/scores/scoreChart.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/scores/scoreChart.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/entities/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gameManagement/MessageDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/graphics/SpriteSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uet/oop/bomberman/gui/MenuGameJframe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +163,7 @@
     </configuration>
     <configuration name="MenuGameJframe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uet.oop.bomberman.gui.MenuGameJframe" />
-      <module name="Bomberman3" />
+      <module name="bomberman" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="uet.oop.bomberman.gui.*" />
@@ -186,6 +183,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -275,6 +283,7 @@
       <workItem from="1607780946676" duration="2992000" />
       <workItem from="1607903909837" duration="4143000" />
       <workItem from="1607909792950" duration="386000" />
+      <workItem from="1607910771957" duration="524000" />
     </task>
     <servers />
   </component>
@@ -292,7 +301,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/daotung" />
+                        <option value="origin/vp" />
                       </list>
                     </value>
                   </entry>
@@ -314,10 +323,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="470" y="162" key="#TODO/0.0.1366.738@0.0.1366.738" timestamp="1606844125307" />
-    <state x="137" y="24" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606921085675">
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607910809286">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="137" y="24" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1606921085675" />
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1607910809286" />
     <state x="923" y="106" key="#com.intellij.ide.util.MemberChooser" timestamp="1607895899057">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
