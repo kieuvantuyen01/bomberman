@@ -50,10 +50,9 @@ public class LevelLoader {
             }
             rows = Integer.parseInt(line[1]);
             cols = Integer.parseInt(line[2]);
-            System.out.println(rows + " " + cols);
             for (int i = 0; i < rows; i++) {
                 String map = br.readLine();
-                System.out.println(map);
+                //System.out.println(map);
                 for (int j = 0; j < cols; j++) {
                     BombermanGame.setGrass(new Grass(new Coordinates(j, i)));
                     switch (map.charAt(j)) {
